@@ -17,17 +17,20 @@
                     <button type="button" class="togglebtn" onclick="login()">LOG IN</button>
                     <button type="button" class="togglebtn" onclick="register()">REGISTER</button>
                 </div>
+                
                 <div class="social-icons">
                     <img src="/assets/images/fb.png" alt="facebook">
                     <img src="/assets/images/tw.png" alt="twitter">
                     <img src="/assets/images/gl.png" alt="google">
                 </div>
+                
                 <form id="login" action="" class="input-group">
-                    <input type="text" class="input-field" placeholder="User name or Email" required>
-                    <input type="password" class="input-field" placeholder="Enter Password" required>
+                    <input type="text" class="input-field" name="userid" placeholder="User name or Email" required>
+                    <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
                     <input type="checkbox" class="checkbox"><span>Remember Password</span>
                     <button class="submit">Login</button>
                 </form>
+                
                 <form id="register" method="post" action="" class="input-group">
                     <input type="text" name="userid" class="input-field" placeholder="아이디를 입력해주세요." required>
                     <input type="password" name="password" class="input-field" placeholder="비밀번호를 입력해주세요." required>

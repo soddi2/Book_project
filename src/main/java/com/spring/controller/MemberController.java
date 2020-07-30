@@ -1,13 +1,16 @@
 package com.spring.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.AuthVO;
 import com.spring.domain.ClientVO;
+import com.spring.domain.LoginVO;
 import com.spring.service.ClientService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +23,7 @@ public class MemberController {
 	@Autowired
 	private ClientService service;
 	
+	// 회원가입
 	@GetMapping("/register")
 	public void register() {
 		log.info("register form 보여주기");
@@ -32,9 +36,41 @@ public class MemberController {
 		boolean register = service.register(vo);
 		
 		if(register) {
-			return "redirect:/";
+			return "redirect:/register/register";
 		}
 		
 		return "/register/register";		
 	}
-}
+	
+	
+	@PostMapping("/login")
+	public String loginPost(LoginVO login, HttpSession session) {
+		log.info("로그인 요청" + login);
+		AuthVO auth = service.login(login);
+		if(auth != null) {
+			session.setAttribute("auth", auth);
+			return "redirect:/";
+		} else {
+			return "/";
+		}
+	}
+	
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

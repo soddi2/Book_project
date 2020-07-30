@@ -1,1 +1,1 @@
-select * from SPRING_BOARD;
+select * from client;
