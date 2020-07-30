@@ -49,8 +49,8 @@ body {
 <body>
 	<article>
 		<div class="container" role="main">
-			<h2>Write</h2>
-			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/board/boolist">
+			<h2>Modify</h2>
+			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/board/read">
 				<div class="mb-3">
 					<label for="title">제목</label>
 					<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">
@@ -70,6 +70,7 @@ body {
 			</form>
 			<div >
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>
 			</div>
 		</div>
