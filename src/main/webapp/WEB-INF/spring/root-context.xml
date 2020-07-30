@@ -23,9 +23,9 @@
 	<!-- connection pool -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-		<property name="username" value="javaDB"/>
-		<property name="password" value="12345"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@database-1.c4gevwc95f8y.ap-northeast-2.rds.amazonaws.com:1521:orcl"/>
+		<property name="username" value="soddi"/>
+		<property name="password" value="qwer1234"/>
 	</bean>
 	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource" 
 					destroy-method="close">
