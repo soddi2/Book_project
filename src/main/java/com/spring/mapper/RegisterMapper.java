@@ -4,4 +4,5 @@ import com.spring.domain.ClientVO;
 
 public interface RegisterMapper {
 	public int register(ClientVO vo);
+	public ClientVO login();
 }

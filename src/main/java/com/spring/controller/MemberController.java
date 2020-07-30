@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.spring.domain.AuthVO;
 import com.spring.domain.ClientVO;
 import com.spring.domain.LoginVO;
-import com.spring.service.ClientService;
+import com.spring.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberController {
 	
 	@Autowired
-	private ClientService service;
+	private MemberService service;
 	
 	// 회원가입
 	@GetMapping("/register")
@@ -43,18 +43,18 @@ public class MemberController {
 	}
 	
 	
-	@PostMapping("/login")
-	public String loginPost(LoginVO login, HttpSession session) {
-		log.info("로그인 요청" + login);
-		AuthVO auth = service.login(login);
-		if(auth != null) {
-			session.setAttribute("auth", auth);
-			return "redirect:/";
-		} else {
-			return "/";
-		}
-	}
-	
+//	@PostMapping("/login")
+//	public String loginPost(LoginVO login, HttpSession session) {
+//		log.info("로그인 요청" + login);
+//		//AuthVO auth = service2
+//		if(auth != null) {
+//			session.setAttribute("auth", auth);
+//			return "redirect:/";
+//		} else {
+//			return "/";
+//		}
+//	}
+//	
 } 
 
 

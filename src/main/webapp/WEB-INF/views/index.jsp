@@ -106,8 +106,8 @@
                             <li><a href="#portfolio">Portfolio</a></li>
                             <li><a href="#test">Testimonial</a></li>
                             <li><a href="#contact">Contact</a></li>
-                            <li><a href="/register/register">Register</a></li>
-                            <li><a href="/board/bootlist">Board</a></li>
+                            <li><a href="/register/register">Login</a></li>
+                            <li><a href="/board/bootlist">Q&A</a></li>
                             <!-- 팝업창 띄우기 -->
                             <!-- <li>
 								<button onclick="window.open('/register/register','회원가입','width=410,height=490,location=no,status=no,scrollbars=no');">button</button>
@@ -432,7 +432,7 @@
 
                             <div class="col-md-4">
                                 <div class="head_title text-left sm-text-center wow fadeInDown">
-                                    <h2>Our Works</h2>
+                                    <h2>HIGHLY RECOMMENDES BOOKS</h2>
                                 </div>
                             </div>
 
@@ -440,8 +440,6 @@
                                 <div class="filters-button-group text-right sm-text-center">
                                     <button class="btn button is-checked" data-filter="*">all</button>
                                     <button class="btn button" data-filter=".metal">Web Design</button>
-                                    <button class="btn button" data-filter=".transition">Logo Design</button>
-                                    <button class="btn button" data-filter=".alkali">Branding</button>
                                     <button class="btn button" data-filter=".ar">Branding</button>
                                 </div>
                             </div>

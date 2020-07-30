@@ -7,6 +7,9 @@
 		insert into client(userid, password, email, address)
 		values(#{userid}, #{password}, #{email}, #{address})
 	</insert>
+	
+	<select id="login">
+	</select>
 
 
 </mapper>
