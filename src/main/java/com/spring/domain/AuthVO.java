@@ -3,7 +3,7 @@ package com.spring.domain;
 import lombok.Data;
 
 @Data
-public class AuthVO { //spring_member_auth 테이블
+public class AuthVO {
 	private String userid;
 	private String auth;
 }

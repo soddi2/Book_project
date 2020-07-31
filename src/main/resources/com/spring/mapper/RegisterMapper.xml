@@ -7,13 +7,25 @@
 		insert into client(userid, password, email, address)
 		values(#{userid}, #{password}, #{email}, #{address})
 	</insert>
-	
-	
-	
+
 	<!-- 중복 아이디 -->
 	<select id="checkId" resultType="int">
 		select count(*) from client where userid = #{userid}
 	</select>
-
+	
+	<!-- 로그인 -->
+	<select id="isLogin" resultType="com.spring.domain.LoginVO">
+		select userid from client where userid = #{userid} and password = #{password}
+	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="modify"> 
+		update client set password = #{password}, email = #{email}, address = #{address} where userid = #{userid}
+	</update>
+	
+	<!-- 탈퇴 -->
+	<delete id="leave">
+		delete from client where userid = #{userid} and password = #{password}  
+	</delete>
 
 </mapper>

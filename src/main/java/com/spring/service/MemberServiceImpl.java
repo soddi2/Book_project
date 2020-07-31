@@ -27,6 +27,12 @@ public class MemberServiceImpl implements MemberService {
 		int count=mapper.checkId(userid);
 		return count==1 ? true : false;
 	}
+
+	@Override
+	public LoginVO isLogin(LoginVO login) {
+		// TODO Auto-generated method stub
+		return mapper.isLogin(login);
+	}
 	
 
 

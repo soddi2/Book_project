@@ -4,9 +4,8 @@
 <html>
     <head>
         <title>로그인 / 회원가입 폼 템플릿</title>
-        <link rel="stylesheet" href="/assets/css/register_style.css">
+        <link rel="stylesheet" href="/assets/css/register_modify.css">
         <!-- Bootstrap CSS -->
-
 
     </head>
     <body>
@@ -25,14 +24,13 @@
                 </div>
                 
                 <form id="leave" action="" class="input-group">
-                    <input type="text" class="input-field" name="userid" placeholder="User name or Email" required>
-                    <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
+                    <input type="text" class="input-field" name="userid" placeholder="아이디를 입력하세요" required>
+                    <input type="password" class="input-field" name="password" placeholder="비밀번호를 입력하세요" required>
                     <input type="checkbox" class="checkbox"><span>Remember Password</span>
                     <button class="submit">LEAVE</button>
                 </form>
                 
                 <form id="modify" method="post" action="" class="input-group">
-                    <input type="text" name="userid" class="input-field" placeholder="아이디를 수정해주세요." required>
                     <input type="password" name="password" class="input-field" placeholder="비밀번호를 수정해주세요." required>
                     <input type="email" name="email" class="input-field" placeholder="이메일을 수정해주세요." required>
                     <input type="text" name="address" class="input-field" placeholder="주소를 수정해주세요." required>
