@@ -6,5 +6,5 @@ import com.spring.domain.LoginVO;
 
 public interface MemberService {
 	public boolean register(ClientVO vo);
-	public ClientVO login();
+	public boolean checkId(String userid);
 }

@@ -8,11 +8,16 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/rent/*")
+@RequestMapping("/shop/*")
 public class BookController {
 	
-	@GetMapping("rent")
+	@GetMapping("shop")
 	public void rent() {
+		log.info("shop 페이지 form");
+	}
+	
+	@GetMapping("product_single")
+	public void product_single() {
 		log.info("상세 페이지 form");
 	}
 }

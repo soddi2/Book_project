@@ -11,23 +11,44 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/board/*")
 public class BoardController {
 
-	@GetMapping("bootlist")
+	@GetMapping("QnAlist")
 	public void board() {
 		log.info("list Form");
 	}
 	
-	@GetMapping("write")
+	@GetMapping("QnAwrite")
 	public void writer() {
 		log.info("write form");
 	}
 	
-	@GetMapping("read")
+	@GetMapping("QnAread")
 	public void read() {
 		log.info("read form");
 	}
 	
-	@GetMapping("modify")
+	@GetMapping("QnAmodify")
 	public void modify() {
 		log.info("modify form");
 	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

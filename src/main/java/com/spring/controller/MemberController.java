@@ -3,10 +3,17 @@ package com.spring.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.AuthVO;
 import com.spring.domain.ClientVO;
@@ -23,6 +30,20 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
+	//중복아이디
+	@GetMapping("/dupId")
+	public ResponseEntity<String> duplicateId(String userid){
+		
+		log.info("중복아이디 검사 "+userid);
+		
+		if(service.checkId(userid)) {
+			return new ResponseEntity<String>("fail",HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("success",HttpStatus.OK);
+		}				
+	}
+	
+	
 	// 회원가입
 	@GetMapping("/register")
 	public void register() {
@@ -37,24 +58,19 @@ public class MemberController {
 		
 		if(register) {
 			return "redirect:/register/register";
+		}else {
+			return "/register/register";
 		}
-		
-		return "/register/register";		
+	}
+
+	//회원 정보 수정
+	@GetMapping("register_modify")
+	public void modify() {
+		log.info("register_modify form");
 	}
 	
 	
-//	@PostMapping("/login")
-//	public String loginPost(LoginVO login, HttpSession session) {
-//		log.info("로그인 요청" + login);
-//		//AuthVO auth = service2
-//		if(auth != null) {
-//			session.setAttribute("auth", auth);
-//			return "redirect:/";
-//		} else {
-//			return "/";
-//		}
-//	}
-//	
+	
 } 
 
 

@@ -8,7 +8,11 @@
 		values(#{userid}, #{password}, #{email}, #{address})
 	</insert>
 	
-	<select id="login">
+	
+	
+	<!-- 중복 아이디 -->
+	<select id="checkId" resultType="int">
+		select count(*) from client where userid = #{userid}
 	</select>
 
 

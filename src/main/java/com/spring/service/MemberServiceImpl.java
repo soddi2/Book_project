@@ -22,9 +22,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public ClientVO login() {
+	public boolean checkId(String userid) {
 		// TODO Auto-generated method stub
-		return null;
+		int count=mapper.checkId(userid);
+		return count==1 ? true : false;
 	}
 	
 

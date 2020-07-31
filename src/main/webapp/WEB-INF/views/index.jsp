@@ -106,8 +106,9 @@
                             <li><a href="#portfolio">Portfolio</a></li>
                             <li><a href="#test">Testimonial</a></li>
                             <li><a href="#contact">Contact</a></li>
+                            <li><a href="/shop/shop">Shop</a></li>
+                            <li><a href="/board/QnAlist">Q&A</a></li>
                             <li><a href="/register/register">Login</a></li>
-                            <li><a href="/board/bootlist">Q&A</a></li>
                             <!-- 팝업창 띄우기 -->
                             <!-- <li>
 								<button onclick="window.open('/register/register','회원가입','width=410,height=490,location=no,status=no,scrollbars=no');">button</button>

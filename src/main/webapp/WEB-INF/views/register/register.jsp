@@ -3,11 +3,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>로그인 / 회원가입 폼 템플릿</title>
+        <title>로그인 / 회원가입</title>
         <link rel="stylesheet" href="/assets/css/register_style.css">
         <!-- Bootstrap CSS -->
-
-
+        
+		<!-- jquery,jquery-validate : 순서 중요, 둘이 세트 -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+	    <!-- validation 사용자 작성 코드 삽입-->
+	    <!-- <script src="/assets/validation/join.js"></script> -->
+	    
     </head>
     <body>
         <div class="wrap">
@@ -32,12 +37,12 @@
                 </form>
                 
                 <form id="register" method="post" action="" class="input-group">
-                    <input type="text" name="userid" class="input-field" placeholder="아이디를 입력해주세요." required>
+                    <input type="text" name="userid" id="userid" class="input-field" placeholder="아이디를 입력해주세요." value="${vo.userid}" required>
                     <input type="password" name="password" class="input-field" placeholder="비밀번호를 입력해주세요." required>
                     <input type="email" name="email" class="input-field" placeholder="이메일을 입력해주세요." required>
                     <input type="text" name="address" class="input-field" placeholder="주소를 입력해주세요." required>
                     <input type="checkbox" class="checkbox"><span>Terms and conditions</span>
-                    <button class="submit">REGISTER</button>
+                    <button class="submit" class="btn btn-primary">REGISTER</button>
                 </form>
             </div>
         </div>
@@ -59,5 +64,28 @@
                 z.style.left = "110px";
             }
         </script>
+<script>
+$("#userid").on("change",function(){
+
+	console.log($("#userid").val());
+	//폼안에 데이터를 json 형태로 서버로 보내기
+	//입력 후 결과를 받아 출력하기
+	$.ajax({
+		url : 'dupId',
+		type : 'get',
+		data :  {
+			userid : $("#userid").val()  
+		},
+		success:function(data){ 
+			if(data==='fail'){
+				alert("중복된 아이디 입니다.")
+			}
+		},
+		error:function(xhr,txtStatus,error){ 
+			alert(xhr.responseText);
+			}
+		})
+	})
+</script>
     </body>
 </html>
