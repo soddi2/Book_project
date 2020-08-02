@@ -30,8 +30,8 @@
                 </div>
                 
                 <form id="login" action="" class="input-group">
-                    <input type="text" class="input-field" name="userid" placeholder="User name or Email" required>
-                    <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
+                    <input type="text" class="input-field" name="userid" placeholder="아이디를 입력하세요" required>
+                    <input type="password" class="input-field" name="password" placeholder="비밀번호를 입력하세요" required>
                     <input type="checkbox" class="checkbox"><span>Remember Password</span>
                     <button class="submit">Login</button>
                 </form>

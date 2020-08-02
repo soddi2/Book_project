@@ -21,13 +21,13 @@ public class CustomUser extends User {
 		super(username, password, authorities);
 	}
 	
-//	public CustomUser(MemberVO member) {
-//		super(member.getUserid(),member.getUserpw(),member.getAuthList()
-//														  .stream()
-//														  .map(auth -> new SimpleGrantedAuthority(auth.getAuth()))
-//														  .collect(Collectors.toList()));
-//		this.member = member;
-//	}
+	public CustomUser(MemberVO member) {
+		super(member.getUserid(),member.getUserpw(),member.getAuthList()
+														  .stream()
+														  .map(auth -> new SimpleGrantedAuthority(auth.getAuth()))
+														  .collect(Collectors.toList()));
+		this.member = member;
+	}
 
 }
 
