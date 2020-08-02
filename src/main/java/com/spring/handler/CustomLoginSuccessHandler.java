@@ -20,14 +20,14 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		log.info("Login Success Handler");
+		//log.info("Login Success Handler");
 		
 		//Authentication 정보 확인해 보기
 		List<String> roleNames = new ArrayList<String>();
 		authentication.getAuthorities()
 					  .forEach(authority -> roleNames.add(authority.getAuthority()));
 		
-		log.info("roleNames "+roleNames);
+		//log.info("roleNames "+roleNames);
 		
 		//부여된 권한에 따라서 페이지 이동시키기
 		if(roleNames.contains("ROLE_ADMIN")) {

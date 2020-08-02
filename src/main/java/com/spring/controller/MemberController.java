@@ -35,7 +35,7 @@ public class MemberController {
 	@GetMapping("/dupId")
 	public ResponseEntity<String> duplicateId(String userid){
 		
-		log.info("중복아이디 검사 "+userid);
+		//log.info("중복아이디 검사 "+userid);
 		
 		if(service.checkId(userid)) {
 			return new ResponseEntity<String>("fail",HttpStatus.OK);
@@ -48,12 +48,12 @@ public class MemberController {
 	// 회원가입
 	@GetMapping("/register")
 	public void register() {
-		log.info("register form 보여주기");
+		//log.info("register form 보여주기");
 	}
 	
 	@PostMapping("/register")
 	public String registerPost(ClientVO vo) {
-		log.info("register 페이지 보여주기" + vo);
+		//log.info("register 페이지 보여주기" + vo);
 		
 		boolean register = service.register(vo);
 		
@@ -87,7 +87,7 @@ public class MemberController {
 	@PostMapping("/login")
 	public String loginPost(@ModelAttribute("login") LoginVO login,HttpSession session) {
 		//login.jsp에서 넘긴 값 가져오기
-		log.info(""+login);
+		//log.info(""+login);
 		//로그인 확인 => 성공시 index.jsp / 실패시 로그인 페이지
 		LoginVO auth = service.isLogin(login);
 		
@@ -106,7 +106,7 @@ public class MemberController {
 	//회원 정보 수정
 	@GetMapping("register_modify")
 	public void modify() {
-		log.info("register_modify form");
+		//log.info("register_modify form");
 	}
 	
 	

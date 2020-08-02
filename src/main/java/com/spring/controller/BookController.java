@@ -13,11 +13,11 @@ public class BookController {
 	
 	@GetMapping("shop")
 	public void rent() {
-		log.info("shop 페이지 form");
+		//log.info("shop 페이지 form");
 	}
 	
 	@GetMapping("product_single")
 	public void product_single() {
-		log.info("상세 페이지 form");
+		//log.info("상세 페이지 form");
 	}
 }

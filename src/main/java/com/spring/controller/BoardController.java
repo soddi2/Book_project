@@ -13,22 +13,22 @@ public class BoardController {
 
 	@GetMapping("QnAlist")
 	public void board() {
-		log.info("list Form");
+		//log.info("list Form");
 	}
 	
 	@GetMapping("QnAwrite")
 	public void writer() {
-		log.info("write form");
+		//log.info("write form");
 	}
 	
 	@GetMapping("QnAread")
 	public void read() {
-		log.info("read form");
+		//log.info("read form");
 	}
 	
 	@GetMapping("QnAmodify")
 	public void modify() {
-		log.info("modify form");
+		//log.info("modify form");
 	}
 	
 }
