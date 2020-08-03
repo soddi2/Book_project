@@ -33,6 +33,24 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return mapper.isLogin(login);
 	}
+
+	@Override
+	public boolean leave(LoginVO leave) {
+		// TODO Auto-generated method stub
+		return mapper.leave(leave) > 0 ? true:false;
+	}
+
+	@Override
+	public boolean modify(ClientVO modify) {
+		// TODO Auto-generated method stub
+		return mapper.modify(modify) > 0 ? true:false;
+	}
+
+	@Override
+	public String check_password(String userid) {
+		// 비밀 번호 확인
+		return mapper.check_password(userid);
+	}
 	
 
 

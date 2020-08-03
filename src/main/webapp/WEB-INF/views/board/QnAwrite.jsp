@@ -101,14 +101,14 @@
 			          <article>
 		<div class="container" role="main">
 			<h2>Write</h2>
-			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/board/QnAlist">
+			<form name="form" id="form" role="form" method="post" action="QnAwrite">
 				<div class="mb-3">
 					<label for="title">제목</label>
 					<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">
 				</div>
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="reg_id" id="reg_id" placeholder="이름을 입력해 주세요">
+					<input type="text" class="form-control" name="writer" id="reg_id" placeholder="이름을 입력해 주세요">
 				</div>
 				<div class="mb-3">
 					<label for="content">내용</label>
@@ -118,11 +118,11 @@
 					<label for="tag">TAG</label>
 					<input type="text" class="form-control" name="tag" id="tag" placeholder="태그를 입력해 주세요">
 				</div>
+				<div >
+					<button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+					<button type="submit" class="btn btn-sm btn-primary" id="btnList">목록</button>
+				</div>
 			</form>
-			<div >
-				<button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
-				<button type="submit" class="btn btn-sm btn-primary" id="btnList">목록</button>
-			</div>
 		</div>
 	</article>
 	

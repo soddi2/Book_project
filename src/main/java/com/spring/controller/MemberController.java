@@ -22,6 +22,7 @@ import com.spring.domain.LoginVO;
 import com.spring.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Slf4j
 @Controller
@@ -89,15 +90,104 @@ public class MemberController {
 			return "/register/register";			
 		}			
 	}
-
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("auth");
+		
+		return "redirect:/";
+	}
 	
 	//회원 정보 수정
 	@GetMapping("register_modify")
-	public void modify() {
-		//log.info("register_modify form");
+	public void modify_form() {
+		log.info("register_modify form");
 	}
 	
-} 
+	//비밀본호 확인
+	//페이지를 넘기지 않고 가만히 있을때는 ajax로 정보를 담아서 이동
+	@GetMapping("/dupPWD")
+	public ResponseEntity<String> duplicatePWD(String currentPassword,HttpSession session){
+		
+		LoginVO vo = (LoginVO) session.getAttribute("auth");
+		
+		//현재 입력한 비밀번호 가져오기
+		log.info("현재 비번 : "+currentPassword);
+		log.info("아이디 : "+vo.getUserid());
+		
+		
+		//db에 있는 진짜 비번 가져오기
+		String curPwd = service.check_password(vo.getUserid());
+		log.info("비밀번호 : "+curPwd);
+		log.info("확인비밀번호 : "+currentPassword);
+		
+		//사용자가 입력한 비번이랑 일치하는지 확인
+		if(curPwd.equals(currentPassword)) {			
+			log.info("성공");
+			return new ResponseEntity<String>("success",HttpStatus.OK);
+		}else {
+			log.info("실패");
+			return new ResponseEntity<String>("fail",HttpStatus.OK);
+		}				
+	}
+	
+	//회원 정보 수정
+	@PostMapping("/modify")
+	public String modify(HttpSession session,LoginVO vo,ClientVO modify,RedirectAttributes rttr) {
+		
+		//session에 있는 값 가져오기
+		vo = (LoginVO) session.getAttribute("auth");
+		
+		log.info(""+vo);
+		log.info(""+modify);
+		
+		modify.setUserid(vo.getUserid());
+		
+		if(service.modify(modify)) {
+			 session.removeAttribute("auth");
+			 rttr.addFlashAttribute("info", "수정 성공");
+				
+			 return "redirect:/";
+		}else {
+			 rttr.addFlashAttribute("error", "내용을 다시 확인해 주세요");
+			 return "/register/register_modify";
+		}
+	}
+
+	
+	//회원 탈퇴
+	@PostMapping("/leave") //변화를 줄때 post
+	public String leavePost(HttpSession session,LoginVO leave,RedirectAttributes rttr,String currentPassword) {
+		
+		log.info(""+leave);
+		
+		//auth = (AuthVO) session.getAttribute("auth");
+
+		//DB에서 userid가 넘겨져 옴
+		//userid와 일치하는 비밀번호 추출
+		//select password where userid = leave.getUserid()
+		
+		String curPwd = service.check_password(leave.getUserid());
+		
+		if(curPwd.equals(currentPassword)) {
+			//일치한다면 삭제작업 시작
+			if(service.leave(leave)) {
+				log.info(""+leave.toString());
+				session.removeAttribute("auth");
+				rttr.addFlashAttribute("info", "탈퇴 성공");
+				//삭제가 성공하면 세션 해제 인덱스 페이지로 이동
+				return "redirect:/";				
+			}else { //DB에러시
+				//삭제 실패시 leave 페이지 보여주기
+				rttr.addFlashAttribute("error", "탈퇴 실패");
+				return "/register/register_modify";
+			}
+		}
+		rttr.addFlashAttribute("error", "탈퇴 실패");
+		return "/register/register_modify";
+	}
+}
+
 
 
 

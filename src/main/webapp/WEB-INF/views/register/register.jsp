@@ -12,7 +12,7 @@
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
 	    <!-- validation 사용자 작성 코드 삽입-->
 	    <!-- <script src="/assets/validation/join.js"></script> -->
-	    
+   
     </head>
     <body>
         <div class="wrap">
@@ -29,11 +29,11 @@
                     <img src="/assets/images/gl.png" alt="google">
                 </div>
                 
-                <form id="login" method="post" action="" class="input-group">
+                <form id="login" method="post" action="login" class="input-group">
                     <input type="text" class="input-field" name="userid" placeholder="아이디를 입력하세요" required>
                     <input type="password" class="input-field" name="password" placeholder="비밀번호를 입력하세요" required>
                     <input type="checkbox" class="checkbox"><span>Remember Password</span>
-                    <button class="submit">Login</button>
+                    <button id="loginBtn" class="submit">Login</button>
                 </form>
                 
                 <form id="register" method="post" action="" class="input-group">
@@ -86,6 +86,49 @@ $("#userid").on("change",function(){
 			}
 		})
 	})
+	
+/* 	let loginBtn=$("#loginBtn");
+	$(function(){
+		$(loginBtn).click(function(){
+			loginBtn.text("LogOut")
+		   
+		}) // end submit()
+	}); */
 </script>
+
+
+<!-- login 폼에 담기 -->
+<!-- 
+<script>
+	let myForm=$("#login");
+	$(function(){
+		$("#loginBtn").click(function(e){
+			e.preventDefault();
+			
+			myForm.submit();
+		   
+		}) // end submit()
+	});
+	// end ready()
+</script>
+ -->
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

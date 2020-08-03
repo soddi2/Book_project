@@ -8,4 +8,7 @@ public interface MemberService {
 	public boolean register(ClientVO vo);
 	public boolean checkId(String userid);
 	public LoginVO isLogin(LoginVO login);
+	public boolean leave(LoginVO leave);
+	public boolean modify(ClientVO modify);
+	public String check_password(String userid);
 }

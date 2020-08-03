@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +37,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
+                        <c:if test="${empty auth}">
                             <li class="navbar-item">
                                 <a href="/" class="nav-link">Home</a>
                             </li>
@@ -51,6 +53,24 @@
                             <li class="navbar-item">
                                 <a href="/register/register" class="nav-link">Login</a>
                             </li>
+                        </c:if>
+                         <c:if test="${!empty auth}">
+                            <li class="navbar-item">
+                                <a href="/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navbar-item active">
+                                <a href="/shop/shop" class="nav-link">Shop</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="" class="nav-link">About</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="/board/QnAlist" class="nav-link">QnA</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="/register/logout" class="nav-link">LogOut</a>
+                            </li>
+                        </c:if>
                         </ul>
                         <div class="cart my-2 my-lg-0">
                             <span>

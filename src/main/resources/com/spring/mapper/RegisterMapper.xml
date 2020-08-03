@@ -14,10 +14,14 @@
 	</select>
 	
 	<!-- 로그인 -->
-	<select id="isLogin" resultType="com.spring.domain.AuthVO">
+	<select id="isLogin" resultType="com.spring.domain.LoginVO">
 		select userid from client where userid = #{userid} and password = #{password}
 	</select>
-
+	
+	<!-- 비밀번호 확인 -->
+	<select id="check_password" resultType="java.lang.String"> 
+		select password from client where userid=#{userid}
+	</select>
 	
 	<!-- 회원 정보 수정 -->
 	<update id="modify"> 

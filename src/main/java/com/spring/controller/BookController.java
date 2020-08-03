@@ -20,4 +20,9 @@ public class BookController {
 	public void product_single() {
 		log.info("상세 페이지 form");
 	}
+	
+	@GetMapping("shopping_list")
+	public void shopping_list() {
+		log.info("쇼핑리스트 form");
+	}
 }

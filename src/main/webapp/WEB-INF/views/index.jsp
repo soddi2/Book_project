@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -100,15 +101,31 @@
                     <!-- navbar menu -->
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#home">Home</a></li>                    
-                            <li><a href="#features">About</a></li>
-                            <li><a href="#service">Service</a></li>
-                            <li><a href="#portfolio">Portfolio</a></li>
-                            <li><a href="#test">Testimonial</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li><a href="/shop/shop">Shop</a></li>
-                            <li><a href="/board/QnAlist">Q&A</a></li>
-                            <li><a href="/register/register">Login</a></li>
+                        	<c:if test="${empty auth}">
+	                            <li><a href="#home">Home</a></li>                    
+	                            <li><a href="#features">About</a></li>
+	                            <li><a href="#service">Service</a></li>
+	                            <li><a href="#portfolio">Portfolio</a></li>
+	                            <li><a href="#test">Testimonial</a></li>
+	                            <li><a href="#contact">Contact</a></li>
+	                            <li><a href="/shop/shop">Shop</a></li>
+	                            <li><a href="/board/QnAlist">Q&A</a></li>
+	                            <li><a href="/register/register">Login</a></li>
+                        	</c:if>
+                            <!-- 로그아웃 -->
+							<c:if test="${!empty auth}">
+							    <li><a href="#home">Home</a></li>                    
+	                            <li><a href="#features">About</a></li>
+	                            <li><a href="#service">Service</a></li>
+	                            <li><a href="#portfolio">Portfolio</a></li>
+	                            <li><a href="#test">Testimonial</a></li>
+	                            <li><a href="#contact">Contact</a></li>
+	                            <li><a href="/shop/shop">Shop</a></li>
+	                            <li><a href="/board/QnAlist">Q&A</a></li>							
+								<li><a href="/register/logout">Logout</a></li>
+								<li><a href="/register/register_modify">Modify</a></li>
+							</c:if> 
+							
                             <!-- 팝업창 띄우기 -->
                             <!-- <li>
 								<button onclick="window.open('/register/register','회원가입','width=410,height=490,location=no,status=no,scrollbars=no');">button</button>
@@ -735,8 +752,6 @@
 
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
-
-	
 
     </body>
 </html>
