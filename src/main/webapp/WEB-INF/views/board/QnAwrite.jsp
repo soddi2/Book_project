@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/shop/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/shop/css/styles.css">
-
-<link rel="stylesheet" href="/assets/css/summernote/summernote-lite.css">
+    <!-- <link rel="stylesheet" href="/assets/summernote/fonts/font/summernote.woff2"> -->
+	<link rel="stylesheet" href="/assets/css/summernote/summernote-lite.css">
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -101,7 +101,7 @@
 			          <article>
 		<div class="container" role="main">
 			<h2>Write</h2>
-			<form name="form" id="form" role="form" method="post" action="QnAwrite">
+			<form name="form" id="form" role="form" method="post" action="">
 				<div class="mb-3">
 					<label for="title">제목</label>
 					<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">
@@ -118,11 +118,11 @@
 					<label for="tag">TAG</label>
 					<input type="text" class="form-control" name="tag" id="tag" placeholder="태그를 입력해 주세요">
 				</div>
-				<div >
-					<button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
-					<button type="submit" class="btn btn-sm btn-primary" id="btnList">목록</button>
-				</div>
 			</form>
+			<div>
+				<button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/board/QnAlist'">목록</button>
+			</div>
 		</div>
 	</article>
 	
@@ -175,8 +175,14 @@
                 contentType : false,
                 processData : false,
                 success : function(data) {
+                	console.log("data"+data);
                     //항상 업로드된 파일의 url이 있어야 한다.
-                    $(editor).summernote('insertImage', data.url);
+                    //url = encodeURIComponent(data.uploadPath+"_"+data.uuid+"_"+data.fileName);
+                    url = data.uploadPath+"\\"+data.uuid+"_"+data.fileName;
+                    console.log(url);
+                    
+                    
+                    $(editor).summernote('insertImage', "/summernote_image/"+url);
                 }
             });
         }
@@ -187,7 +193,11 @@
 	         }
 	        e.preventDefault();
 	   })
-	   
+	  
+	   $(document).on('click', '#btnSave', function(e){
+			$("#form").submit();
+		});
+
 		</script>
 		
         </div>

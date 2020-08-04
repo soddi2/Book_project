@@ -14,6 +14,8 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/assets/**" location="/assets/" />
+	<resources mapping="/summernote_image/**" location="file:///c:/summernote_image/" />
+	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -26,5 +28,16 @@
 	<!-- 파일 업로드 담당 클래스 생성 -->
 	<beans:bean id="multipartResolver" 
 			class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
-	
+			
+	<!-- gson 설정 -->
+	<!-- <beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+	<beans:property name="messageConverters">
+		<beans:list>
+			<beans:ref bean="jsonMessageConverter"/>
+		</beans:list>
+	</beans:property>
+	</beans:bean>
+		<beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.GsonHttpMessageConverter">
+    </beans:bean> -->
+
 </beans:beans>

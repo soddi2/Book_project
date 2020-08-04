@@ -18,7 +18,7 @@
 	<!-- Connection Pool / SqlSession -->
 	<context:component-scan base-package="com.spring.service" />
 	<context:component-scan base-package="com.spring.task"/>	
-	<context:property-placeholder location="spring.http.converters.preferred-json-mapper=gson"/>
+	<!-- <context:property-placeholder location="spring.http.converters.preferred-json-mapper=gson"/> -->
 	<mybatis-spring:scan base-package="com.spring.mapper"/>
 	
 	<!-- connection pool -->

@@ -36,11 +36,15 @@ public class BoardController {
 	public String writePost(BoardVO vo) {
 		log.info(""+vo);
 		
-		if(service.board_insert(vo)) {
-			return "redirect:/board/QnAlist";
+		try {
+			if(service.board_insert(vo)) {
+				return "redirect:/board/QnAlist";
+			}
+			
+			return "/board/QnAwrite";	
+		} catch (Exception e) {
+			return "board/QnAwrite";
 		}
-		
-		return "/board/QnAwrite";
 	}
 	
 	@GetMapping("QnAread")
