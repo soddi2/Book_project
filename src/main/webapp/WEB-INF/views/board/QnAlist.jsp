@@ -106,17 +106,19 @@
 							</thead>
 							<tbody>
 								<c:choose>
-									<c:when test="${empty boardList }" >
+									<c:when test="${empty List}" >
 										<tr><td colspan="5" align="center">데이터가 없습니다.</td></tr>
 									</c:when> 
-									<c:when test="${!empty boardList}">
-										<c:forEach var="list" items="${boardList}">
+									<c:when test="${!empty List}">
+										<c:forEach var="list" items="${List}">
 											<tr>
-												<td><c:out value="${list.bid}"/></td>
-												<td><c:out value="${list.title}"/></td>
-												<td><c:out value="${list.reg_id}"/></td>
-												<td><c:out value="${list.view_cnt}"/></td>
-												<td><c:out value="${list.reg_dt}"/></td>
+												<td>${list.bno}</td>
+												<td>${list.title}</td>
+												<td>${list.content}</td>
+												<td>${list.writer}</td>
+												<td><a href="<c:out value='${list.bno}' />" class="move">${list.title}</a>&nbsp;&nbsp;<strong>[${list.replycnt}]</strong></td>  
+		                                        <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value='${list.regdate}'/></td>
+		                                        <%-- <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value='${list.updatedate}'/></td> --%>
 											</tr>
 										</c:forEach>
 									</c:when>

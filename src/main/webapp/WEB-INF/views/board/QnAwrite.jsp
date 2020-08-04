@@ -112,7 +112,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="content">내용</label>
-					<textarea id="summernote" name="editordata"></textarea>
+					<textarea id="summernote" name="content"></textarea>
 				</div>
 				<div class="mb-3">
 					<label for="tag">TAG</label>
