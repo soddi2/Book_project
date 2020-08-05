@@ -30,4 +30,19 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.list(cri);
 	}
 
+	@Override
+	public BoardVO read(int bno) {
+		return mapper.read(bno);
+	}
+
+	@Override
+	public boolean modify(BoardVO modify) {
+		return mapper.modify(modify) > 0 ? true:false;
+	}
+
+	@Override
+	public boolean delete(int bno) {
+		return mapper.delete(bno) > 0 ? true:false;
+	}
+
 }

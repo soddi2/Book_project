@@ -100,25 +100,24 @@
 									<th>NO</th>
 									<th>글제목</th>
 									<th>작성자</th>
-									<th>조회수</th>
 									<th>작성일</th>
+									<th>수정일</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:choose>
-									<c:when test="${empty List}" >
+									<c:when test="${empty list}" >
 										<tr><td colspan="5" align="center">데이터가 없습니다.</td></tr>
 									</c:when> 
-									<c:when test="${!empty List}">
-										<c:forEach var="list" items="${List}">
+									<c:when test="${!empty list}">
+										<c:forEach var="list" items="${list}">
 											<tr>
 												<td>${list.bno}</td>
-												<td>${list.title}</td>
-												<td>${list.content}</td>
+												<td><a href="#" onClick="fn_contentView(<c:out value="${list.bno}"/>)"><c:out value="${list.title}"/></a>&nbsp;&nbsp;<strong>[${list.replycnt}]</strong></td>  
+												<%-- <td>${list.content}</td> --%>
 												<td>${list.writer}</td>
-												<td><a href="<c:out value='${list.bno}' />" class="move">${list.title}</a>&nbsp;&nbsp;<strong>[${list.replycnt}]</strong></td>  
-		                                        <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value='${list.regdate}'/></td>
-		                                        <%-- <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value='${list.updatedate}'/></td> --%>
+		                                        <td><fmt:formatDate pattern="yyyy-MM-dd" value='${list.regdate}'/></td>
+		                                        <td><fmt:formatDate pattern="yyyy-MM-dd" value='${list.updatedate}'/></td>
 											</tr>
 										</c:forEach>
 									</c:when>
@@ -136,6 +135,25 @@
 					e.preventDefault();
 					location.href = "${pageContext.request.contextPath}/board/QnAwrite";
 				});
+				
+				//글제목 클릭시 read창으로 넘어가는 스크립트
+				function fn_contentView(bno){
+					var url = "${pageContext.request.contextPath}/board/QnAread";
+					url = url + "?bno="+bno;
+					location.href = url;
+				}
+
+			    $(".move").click(function(e){
+			    	//37번줄에
+			    	//페이지 나누기 후에 변화를 주는 부분
+			    	<%-- <a href="read?bno=${vo.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}">${vo.title}</a> --%>
+			    	// 이렇게 작성하는 부분 대체
+			    	e.preventDefault();
+			    	actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"' />");
+			    	actionForm.attr('action','read');
+			    	actionForm.submit();
+			    })
+				
 			</script>
         </div>
     </section>

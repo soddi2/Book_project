@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/shop/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/shop/css/styles.css">
-
-<link rel="stylesheet" href="/assets/css/summernote/summernote-lite.css">
+    <!-- <link rel="stylesheet" href="/assets/summernote/fonts/font/summernote.woff2"> -->
+	<link rel="stylesheet" href="/assets/css/summernote/summernote-lite.css">
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -67,7 +67,7 @@
                                 <a href="/shop/shop" class="nav-link">Shop</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="/" class="nav-link">About</a>
+                                <a href="about.html" class="nav-link">About</a>
                             </li>
                             <li class="navbar-item active">
                                 <a href="/board/QnAlist" class="nav-link">QnA</a>
@@ -101,31 +101,90 @@
 			          <article>
 		<div class="container" role="main">
 			<h2>Modify</h2>
-			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/board/QnAlist">
+			<form name="form" id="form" role="form" method="post" action="">
 				<div class="mb-3">
 					<label for="title">제목</label>
-					<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">
+					<input type="text" class="form-control" name="title" id="title" value="${read.title}">
 				</div>
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="reg_id" id="reg_id" placeholder="이름을 입력해 주세요">
+					<input type="text" class="form-control" name="writer" id="reg_id" value="${read.writer}">
 				</div>
 				<div class="mb-3">
 					<label for="content">내용</label>
-					<textarea id="summernote" name="editordata"></textarea>
+					<textarea id="summernote" name="content">${read.content}</textarea>
 				</div>
 				<div class="mb-3">
 					<label for="tag">TAG</label>
-					<input type="text" class="form-control" name="tag" id="tag" placeholder="태그를 입력해 주세요">
+					<input type="text" class="form-control" name="tag" id="tag" value="${read.tag}"> 
 				</div>
+				<input type="hidden" name="bno" value="${read.bno}" />
 			</form>
-			<div >
-				<button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
-				<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
-				<button type="submit" class="btn btn-sm btn-primary" id="btnList">목록</button>
+			<div>
+				<button type="submit" data-oper='modify' class="btn btn-sm btn-primary" id="btnSave">저장</button>
+				<button type="submit" data-oper='remove' class="btn btn-sm btn-primary" id="btnSave">삭제</button>
+				<button type="submit" data-oper='list' class="btn btn-sm btn-primary" id="btnList">목록</button>
 			</div>
 		</div>
 	</article>
+	
+	<%-- remove와 list를 위한 폼--%>
+	<form method="post" id="myForm">
+		<input type="hidden" name="bno" value="${read.bno}" />
+		<input type="hidden" name="writer" value="${vo.writer}" />
+		<input type="hidden" name="pageNum" value="${cri.pageNum}" />	
+		<input type="hidden" name="amount" value="${cri.amount}" />	
+		<input type="hidden" name="type" value="${cri.type}" /> <!-- pageVO.cri.type -->
+		<input type="hidden" name="keyword" value="${cri.keyword}" />
+		<!-- post로 가는 모든 경로는 csrf로 담기(보안) -->
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />  
+	</form>
+	
+	<script>
+	$(function(){
+		let form = $("#myForm");
+		
+		$("button").click(function(e){
+			//버튼은 모두 submit 형태이기 때문에 submit 속성 중지시키기
+			e.preventDefault();
+			
+			//버튼이 눌러지면 어느 버튼에서 온 것인지 알아내기
+			let oper = $(this).data("oper");
+			
+			if(oper === 'modify'){
+				//Modify 버튼이 눌러지면 수정 폼 보내기
+				form = $("form[role='form']");
+				//QnAmodify를 컨트롤러로 보내기
+				form.attr('action','QnAmodify');
+				
+				//form.attr('method','post');
+				// 첨부파일 정보를 수집해서 수정 버튼이 눌러지면 다시 보내기
+				// 첨부물 추가는 기존꺼까지 다 밀어버리고 다시 인설트 하는게 편하다
+				/* let str = "";
+				$(".uploadResult ul li").each(function(i, ele) {
+					let job = $(ele);
+					
+					str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+job.data("uuid")+"'>";
+					str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+job.data("path")+"'>";
+					str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+job.data("filename")+"'>";
+					str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+job.data("type")+"'>";			
+				}) */
+				//console.log(str);
+				//form.append(str);
+				
+			}else if(oper === 'list'){			
+				//List가 눌러지면 bno는 삭제하고 method=get 방식으로 myForm 보내기
+				form.attr('action','QnAlist');
+				form.attr('method','get');
+				form.find("input[name='bno']").remove();			
+			}else if(oper === 'remove'){
+				//Remove가 눌러지면 myForm 보내기
+				form.attr('action','QnAremove');			
+			}	
+			form.submit();
+		})	
+	})
+	</script>
 	
 	<script src="/assets/js/summernote/summernote-lite.js"></script>
 	<script src="/assets/js/summernote/lang/summernote-ko-KR.js"></script>
@@ -139,7 +198,13 @@
 				  maxHeight: null,             // 최대 높이
 				  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 				  lang: "ko-KR",					// 한글 설정
-				  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+				  placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+				  spellCheck: false,
+				  callbacks: {	
+		               onImageUpload : function(files) {
+		                    uploadSummernoteImageFile(files[0],this);
+		                }
+		          }
 			});
 		});
 		
@@ -159,9 +224,40 @@
 				fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
 				fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
 		  });
+		
+		function uploadSummernoteImageFile(file, editor) {
+            data = new FormData();
+            data.append("file", file);
+            $.ajax({
+                data : data,
+                type : "POST",
+                url : "/uploadSummernoteImageFile",
+                contentType : false,
+                processData : false,
+                success : function(data) {
+                	console.log("data"+data);
+                    //항상 업로드된 파일의 url이 있어야 한다.
+                    //url = encodeURIComponent(data.uploadPath+"_"+data.uuid+"_"+data.fileName);
+                    url = data.uploadPath+"\\"+data.uuid+"_"+data.fileName;
+                    console.log(url);
+                    
+                    
+                    $(editor).summernote('insertImage', "/summernote_image/"+url);
+                }
+            });
+        }
+		
+		$("div.note-editable").on('drop',function(e){
+	         for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
+	         	uploadSummernoteImageFile(e.originalEvent.dataTransfer.files[i],$("#summernote")[0]);
+	         }
+	        e.preventDefault();
+	   })
 		</script>
+		
         </div>
     </section>
+    
     <footer>
         <div class="container">
             <div class="row">

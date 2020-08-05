@@ -88,24 +88,47 @@
 			<article>
 				<form action="" role="form">
 					<div class="container" role="main">
-						<h2>board Content</h2>
+						<h2>Board Content</h2>
 						<div class="bg-white rounded shadow-sm">
-							<div class="board_title"><c:out value="${boardContent.title}"/></div>
+							<div class="board_title"><c:out value="${read.bno}"></c:out>,${read.title}</div>
 							<div class="board_info_box">
-								<span class="board_author"><c:out value="${boardContent.reg_id}"/>,</span><span class="board_date"><c:out value="${boardContent.reg_dt}"/></span>
+								<span class="board_author"></span><span class="board_date">${read.regdate}</span>
 							</div>
-							<div class="board_content">${boardContent.content}</div>
-							<div class="board_tag">TAG : <c:out value="${boardContent.tag}"/></div>
+							<div class="board_content">${read.content}</div>
+							<div class="board_tag">TAG : <c:out value="${read.tag}"/></div>
 						</div>
-						<div style="margin-top : 20px">
-							<button type="submit" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
-							<button type="submit" class="btn btn-sm btn-primary" id="btnList">목록</button>
-						</div>	
 					</div>
 				</form>
+				<div style="margin-top : 20px; margin : 50px">
+					<button type="submit" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
+					<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/board/QnAlist'">목록</button>
+				</div>	
 			</article>
         </div>
     </section>
+    
+    <!-- 페이지 나누기와 다른 작업들을 위해서 폼 작성 -->      
+	<!-- 스크립트에 myForm을 가져온다 -->
+	<form id="myForm">
+		<input type="hidden" name="bno" value="${read.bno}" />
+		<input type="hidden" name="pageNum" value="${cri.pageNum}" />	
+		<input type="hidden" name="amount" value="${cri.amount}" />	
+		<input type="hidden" name="type" value="${cri.type }" /> <!-- pageVO.cri.type -->
+		<input type="hidden" name="keyword" value="${cri.keyword }" />
+	</form>
+    
+    <script>
+  	//수정 버튼 클릭 이벤트
+	$(document).on('click', '#btnUpdate', function(){
+		var url = "${pageContext.request.contextPath}/board/QnAmodify";
+		url = url + "?bno="+${read.bno};
+		url = url + "&mode=edit";
+		location.href = url;
+	});
+
+    </script>
+    
+    
     <footer>
         <div class="container">
             <div class="row">

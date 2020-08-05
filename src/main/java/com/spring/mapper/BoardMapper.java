@@ -9,4 +9,7 @@ public interface BoardMapper {
 	public int board_insert(BoardVO vo);
 	public List<BoardVO> list(Criteria cri);
 	public int total(Criteria cri);
+	public BoardVO read(int bno);
+	public int modify(BoardVO modify);
+	public int delete(int bno);
 }

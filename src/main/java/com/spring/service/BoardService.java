@@ -10,5 +10,8 @@ public interface BoardService {
 	public boolean board_insert(BoardVO vo);
 	public List<BoardVO> list(Criteria cri);
 	public int total(Criteria cri);
+	public BoardVO read(int bno);
+	public boolean modify(BoardVO modify);
+	public boolean delete(int bno);
 	
 }
