@@ -23,7 +23,7 @@
 	</select>
 	
 	<!-- html에서 꺽쇠는 태그를 시작하는 의미가 있기때문에 크다작다인지 태그시작인지 헷깔려함 -->
-<!-- 	<select id="list" resultType="com.spring.domain.BoardVO">
+	<!-- <select id="list" resultType="com.spring.domain.BoardVO">
 		CDATA : <,>를 크다 작다의 의미로 나타내줌
 		<![CDATA[
 		select * 

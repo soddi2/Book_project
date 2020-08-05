@@ -125,37 +125,198 @@
 							</tbody>
 						</table>
 					</div>
-					<div>
-						<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
-					</div>
-				</div>
-			</article>
-			<script>
-				$(document).on('click', '#btnWriteForm', function(e){
-					e.preventDefault();
-					location.href = "${pageContext.request.contextPath}/board/QnAwrite";
-				});
-				
-				//글제목 클릭시 read창으로 넘어가는 스크립트
-				function fn_contentView(bno){
-					var url = "${pageContext.request.contextPath}/board/QnAread";
-					url = url + "?bno="+bno;
-					location.href = url;
-				}
+					<div class="col-md-2 col-md-offset-2">
 
-			    $(".move").click(function(e){
-			    	//37번줄에
-			    	//페이지 나누기 후에 변화를 주는 부분
-			    	<%-- <a href="read?bno=${vo.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}">${vo.title}</a> --%>
-			    	// 이렇게 작성하는 부분 대체
-			    	e.preventDefault();
-			    	actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"' />");
-			    	actionForm.attr('action','read');
-			    	actionForm.submit();
-			    })
-				
-			</script>
+				<div style="margin-left : 1000px">
+					<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
+				</div>
+        	   
+        	   	<!--페이지 목록 갯수 지정하는 폼-->
+        	   	<div style="margin-top : -50px; padding-right : 50px;">
+	        	   	<select class="form-control" name="amount">
+	        	   		<option value="10" <c:out value="${cri.amount == 10 ? 'selected':'' }" />>10</option>
+	        	   		<option value="20" <c:out value="${cri.amount == 20 ? 'selected':'' }" />>20</option>
+	        	   		<option value="30" <c:out value="${cri.amount == 30 ? 'selected':'' }" />>30</option>
+	        	   		<option value="40" <c:out value="${cri.amount == 40 ? 'selected':'' }" />>40</option>
+	                 	   	</select>
+						</div>                            	 
+	          		 </div>
+        	   	</div>
+        		 <!-- end search -->
+					
+
+		<!-- search{s} -->
+		<div class="form-group row justify-content-center">
+			<div class="w100" style="padding-right:10px">
+			<!-- 검색 title -->
+           <form action="" id="searchForm">
+			<!-- 주소줄 자리 때문에 위에 있음,일관성을 줄수 있음 -->
+			<input type="hidden" name="pageNum" value="${cri.pageNum}" />
+            <input type="hidden" name="amount" value="${cri.amount}" /> 
+				<select class="form-control form-control-sm" name="type" id="">
+					<option value="title">제목</option>
+					<option value="Content">본문</option>
+					<option value="reg_id">작성자</option>
+				</select>
+			</form>
+			</div>
+			<div class="w300" style="padding-right:10px">
+				<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
+			</div>
+			<div class="w300" style="padding-top : -10px">
+				<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
+			</div>
+		</div>
+		<!-- search{e} -->
+
+         <!-- start Pagination -->
+        <div class="text-center">
+        	<ul class="pagination">
+        		<c:if test="${pageVO.prev}">
+        			<li class="paginate_button previous"><a href="${pageVO.startPage-1}">Previous</a>                            		
+        		</c:if>
+        		<!-- 내가 5페이지를 보고 있어도 1-10까지 계속 페이지를 불러옴 -->
+        		<c:forEach var="idx" begin="${pageVO.startPage}" end="${pageVO.endPage}">
+        		<!-- 현재 보여지는 페이지 활성화 -->
+         		<li class="paginate_button ${pageVO.cri.pageNum==idx?'active':''}" ><a href="${idx}">${idx}</a></li>
+        		</c:forEach>
+        		<c:if test="${pageVO.next}">
+         		<li class="paginate_button next"><a href="${pageVO.endPage+1}">Next</a></li>
+        		</c:if>
+        	</ul>
         </div>
+        <!-- end Pagination -->  
+        
+<!-- 페이지번호를 누르면 동작하는 폼 -->
+<form action="list" id="actionForm">
+	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}" />
+	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />	
+	<input type="hidden" name="type" value="${cri.type }" /> <!-- pageVO.cri.type -->
+	<input type="hidden" name="keyword" value="${cri.keyword }" />
+</form>
+
+<!-- 모달 추가 -->
+<!-- alert 창 대신 -->
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">게시글 등록</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>처리가 완료되었습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 스크립트 -->
+<script>
+	$(document).on('click', '#btnWriteForm', function(e){
+		e.preventDefault();
+		location.href = "${pageContext.request.contextPath}/board/QnAwrite";
+	});
+	
+	//글제목 클릭시 read창으로 넘어가는 스크립트
+	function fn_contentView(bno){
+		var url = "${pageContext.request.contextPath}/board/QnAread";
+		url = url + "?bno="+bno;
+		location.href = url;
+	}
+
+    $(".move").click(function(e){
+    	//37번줄에
+    	//페이지 나누기 후에 변화를 주는 부분
+    	<%-- <a href="read?bno=${vo.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}">${vo.title}</a> --%>
+    	// 이렇게 작성하는 부분 대체
+    	e.preventDefault();
+    	actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"' />");
+    	actionForm.attr('action','read');
+    	actionForm.submit();
+    })
+    
+     $(function() {
+	    let result = '${result}';
+	    	
+	    checkModal(result);
+	    history.replaceState({}, null, null);
+	    
+	    	
+	    function checkModal(result){
+	    	if(result === '' || history.state){
+	    		return;
+	    	}
+	    	if(parseInt(result) > 0) {
+	    		$(".modal-body").html("게시글"+parseInt(result)+" 번이 등록되었습니다.");
+	    	}
+	    	//show가 띄워주기
+	    	$('#myModal').modal("show");
+	    }
+	    
+	    //사용자가 페이지 번호를 누르면 동작하는 스크립트
+	    let actionForm = $("#actionForm");
+	    $(".paginate_button a").click(function(e){
+	   		//a태그의 동작 막기
+	    	e.preventDefault();
+		    //전송해야 할 폼 가져온 후 pageNum의 값과 amount 값을 변경한 후 
+		    //attr : 태그에 들어있는 값을 가져다 줌
+		    actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		    //폼 전송하기 
+		    actionForm.submit();
+			//여기서 폼을 쓰면 여기서만 쓰고 밑에서 못 씀
+	    })
+	    
+	    //클릭하면 10,20창을  click으로 하면 두번 개념
+	    $(".form-control").change(function(){
+	    	//전송해야 할 폼 가져온 후 amount 값을 변경한 후 
+	    	//this = form-control이고 select은 value값을 가져올 수 있음
+	    	actionForm.find("input[name='amount']").val($(this).val());
+	    	//폼 전송하기
+	    	actionForm.submit();
+	    })
+	    
+	    //타이틀 클릭시 페이지 나누기 정보가 있는 폼 보내기
+	    $(".move").click(function(e){
+	    	//37번줄에
+	    	//페이지 나누기 후에 변화를 주는 부분
+	    	<%-- <a href="read?bno=${vo.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}">${vo.title}</a> --%>
+	    	// 이렇게 작성하는 부분 대체
+	    	e.preventDefault();
+	    	actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"' />");
+	    	actionForm.attr('action','read');
+	    	actionForm.submit();
+	    })
+	    
+	    //검색 버튼 클릭시
+	    $(".btn-default").click(function(){
+			//action id가 search폼인 거 담기
+	    	let searchForm = $("#searchForm");
+	    	
+	    	//type과 keyword가 비어 있는지 확인 하고
+			//비어 있으면 메세지 띄워준 후 return
+			//태그가 select면 select로 
+			if($("select[name='type']").val()===""){
+				alert("타입을 선택해 주세요");
+	    		return false; //return을 하면 안돌아 갈수도 있어어 예방차원에 false를 해줌
+			}else if($("input[name='keyword']").val()===""){
+		 		alert("검색어를 입력하세요");
+  				return false;
+	  		}
+	  
+			//모두 입력이 되어 있으면 폼 전송
+			searchForm.find("input[name='pageNum']").val("1");
+			searchForm.submit();
+	    })
+	    
+	  })
+</script>
     </section>
     <footer>
         <div class="container">
