@@ -53,6 +53,14 @@ textarea {
     background: #fff;
     color: #ff9700; }
 
+.btn-search {
+	padding : 15px 11px 1xp; 
+	color: #fff;
+	background-color: #FF9700;
+	border: 2px solid #ff9700;
+	border-radius: 2px;
+}
+
 .container {
   width: 1200px;
   padding: 0 50px;

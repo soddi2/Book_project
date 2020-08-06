@@ -21,7 +21,13 @@
     
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
+	
+<!-- : = 마우스를 올렸을 때 -->
+<!-- <style>
+.btn-search {
+	padding : 15px 11px 1xp; 
+}
+</style> -->
 </head>
 
 <body>
@@ -77,13 +83,14 @@
             </div>
         </div>
     </header>
+  
     <div class="breadcrumb">
         <div class="container">
 			            <a class="breadcrumb-item" href="index.html">Home</a>
 			            <span class="breadcrumb-item active">FAQ</span>
 			        </div>
 			    </div>
-			    <section class="static about-sec">
+		    	<section class="static about-sec">
 			        <div class="container">
 			           <div class="table-responsive">
 						<h2>Q&A List</h2>
@@ -125,8 +132,27 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="col-md-2 col-md-offset-2">
-
+					
+				<div class="col-md-2 col-md-offset-2">
+					
+				<!-- start Pagination -->
+		        <div class="text-center" style="margin-left : 450px">
+		        	<ul class="pagination">
+		        		<c:if test="${pageVO.prev}">
+		        			<li class="paginate_button previous"><a href="${pageVO.startPage-1}">Previous</a>                            		
+		        		</c:if>
+		        		<!-- 내가 5페이지를 보고 있어도 1-10까지 계속 페이지를 불러옴 -->
+		        		<c:forEach var="idx" begin="${pageVO.startPage}" end="${pageVO.endPage}">
+		        		<!-- 현재 보여지는 페이지 활성화 -->
+		         		<li class="paginate_button ${pageVO.cri.pageNum==idx?'active':''}" ><a href="${idx}">${idx}</a></li>
+		        		</c:forEach>
+		        		<c:if test="${pageVO.next}">
+		         		<li class="paginate_button next"><a href="${pageVO.endPage+1}">Next</a></li>
+		        		</c:if>
+		        	</ul>
+		        </div>
+		        <!-- end Pagination -->  
+	
 				<div style="margin-left : 1000px">
 					<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
 				</div>
@@ -138,62 +164,47 @@
 	        	   		<option value="20" <c:out value="${cri.amount == 20 ? 'selected':'' }" />>20</option>
 	        	   		<option value="30" <c:out value="${cri.amount == 30 ? 'selected':'' }" />>30</option>
 	        	   		<option value="40" <c:out value="${cri.amount == 40 ? 'selected':'' }" />>40</option>
-	                 	   	</select>
-						</div>                            	 
-	          		 </div>
-        	   	</div>
-        		 <!-- end search -->
+               	   	</select>
+				</div>                            	 
+        	</div>
+        </div>
+ 			<!-- end search -->
 					
 
 		<!-- search{s} -->
-		<div class="form-group row justify-content-center">
-			<div class="w100" style="padding-right:10px">
-			<!-- 검색 title -->
-           <form action="" id="searchForm">
-			<!-- 주소줄 자리 때문에 위에 있음,일관성을 줄수 있음 -->
-			<input type="hidden" name="pageNum" value="${cri.pageNum}" />
-            <input type="hidden" name="amount" value="${cri.amount}" /> 
-				<select class="form-control form-control-sm" name="type" id="">
-					<option value="title">제목</option>
-					<option value="Content">본문</option>
-					<option value="reg_id">작성자</option>
-				</select>
-			</form>
+	    <form action="" id="searchForm">
+			<div class="form-group row justify-content-center">
+				<div class="w100" style="padding-right:10px">
+				<!-- 검색 title -->
+				<!-- 주소줄 자리 때문에 위에 있음,일관성을 줄수 있음 -->
+				<input type="hidden" name="pageNum" value="${cri.pageNum}" />
+	            <input type="hidden" name="amount" value="${cri.amount}" /> 
+					<select class="form-control form-control-sm" name="type" id="">
+						<option value="title">제목</option>
+						<option value="Content">본문</option>
+						<option value="reg_id">작성자</option>
+					</select>
+				</div>
+				<div class="w300" style="padding-right:10px">
+					<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
+				</div>
+				<div class="w300">
+				<!-- btn btn-sm btn-primary  -->
+					<button class="btn-search" name="btnSearch" id="btnSearch">검색</button>
+				</div>
 			</div>
-			<div class="w300" style="padding-right:10px">
-				<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
-			</div>
-			<div class="w300" style="padding-top : -10px">
-				<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
-			</div>
-		</div>
+		</form>
 		<!-- search{e} -->
+		
+		<!-- 페이지번호를 누르면 동작하는 폼 -->
+		<form action="QnAlist" id="actionForm">
+			<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}" />
+			<input type="hidden" name="amount" value="${pageVO.cri.amount}" />	
+			<input type="hidden" name="type" value="${cri.type }" /> <!-- pageVO.cri.type -->
+			<input type="hidden" name="keyword" value="${cri.keyword }" />
+		</form>
 
-         <!-- start Pagination -->
-        <div class="text-center">
-        	<ul class="pagination">
-        		<c:if test="${pageVO.prev}">
-        			<li class="paginate_button previous"><a href="${pageVO.startPage-1}">Previous</a>                            		
-        		</c:if>
-        		<!-- 내가 5페이지를 보고 있어도 1-10까지 계속 페이지를 불러옴 -->
-        		<c:forEach var="idx" begin="${pageVO.startPage}" end="${pageVO.endPage}">
-        		<!-- 현재 보여지는 페이지 활성화 -->
-         		<li class="paginate_button ${pageVO.cri.pageNum==idx?'active':''}" ><a href="${idx}">${idx}</a></li>
-        		</c:forEach>
-        		<c:if test="${pageVO.next}">
-         		<li class="paginate_button next"><a href="${pageVO.endPage+1}">Next</a></li>
-        		</c:if>
-        	</ul>
-        </div>
-        <!-- end Pagination -->  
-        
-<!-- 페이지번호를 누르면 동작하는 폼 -->
-<form action="list" id="actionForm">
-	<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}" />
-	<input type="hidden" name="amount" value="${pageVO.cri.amount}" />	
-	<input type="hidden" name="type" value="${cri.type }" /> <!-- pageVO.cri.type -->
-	<input type="hidden" name="keyword" value="${cri.keyword }" />
-</form>
+
 
 <!-- 모달 추가 -->
 <!-- alert 창 대신 -->
@@ -317,7 +328,8 @@
 	    
 	  })
 </script>
-    </section>
+</section>
+
     <footer>
         <div class="container">
             <div class="row">
