@@ -5,6 +5,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- fmt라이브러리 : 등록일 생성 -->
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!-- 시큐리티 -->
+<%@taglib uri="http://www.springframework.org/security/tags"  prefix="sec"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,11 +116,11 @@
 							<div class="panel-heading">
 								<i class="fa fa-comments fa-fw"></i>
 								Reply
-								<sec:authorize access="isAuthenticated()">
+								<%-- <sec:authorize access="isAuthenticated()"> --%>
 									<button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">
 										New Reply
 									</button>
-								</sec:authorize>
+								<%-- </sec:authorize> --%>
 							</div>
 							<div class="panel-body">
 							<!-- 여기서 부터 반복 -->
@@ -190,7 +192,7 @@
 	<input type="hidden" name="keyword" value="${cri.keyword }" />
 </form>
     
-    <script>
+<script>
   	//수정 버튼 클릭 이벤트
 	$(document).on('click', '#btnUpdate', function(){
 		var url = "${pageContext.request.contextPath}/board/QnAmodify";
@@ -199,6 +201,38 @@
 		location.href = url;
 	});
   	
+	//댓글 영역 가져오기
+	let replyUL = $(".chat");
+	
+	//댓글 영역 내용을 보여주는 함수 호출 
+	showList(1);
+	
+	//모달 영역 가져오기
+	let modal = $(".modal");
+	//모달 영역이 가지고 있는 input 영역 찾기
+	let modalInputReply = modal.find("input[name='reply']");
+	let modalInputReplyer = modal.find("input[name='replyer']");
+	let modalInputReplyDate = modal.find("input[name='replydate']");
+	//모달 영역이 가지고 있는 버튼 찾기
+	let modalModBtn = $("#modalModBtn");
+	let modalRemoveBtn = $("#modalRemoveBtn");
+	let modalRegisterBtn = $("#modalRegisterBtn");
+	
+	//csrf 토큰 값 생성
+	let csrfHeaderName = "${_csrf.headerName}"
+	let csrfTokenValue = "${_csrf.token}"
+	
+	//ajax가 호출될 떄는 무조건 이 부분이 따라가도록 설정
+	$(document).ajaxSend(function(e,xhr,options){
+		xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+	})
+	
+	//현재 로그인 사용자값 가져오기
+	let replyer = null;
+	/* <sec:authorize access="isAuthenticated()"> */
+		replyer = '<sec:authentication property="principal.username"/>';
+	/* </sec:authorize> */
+	
 	$("#addReplyBtn").click(function(){
 		//input 안에 들어있는 내용 없애주기
 		modal.find("input").val("");
@@ -221,7 +255,7 @@
 	//$는 위에서 변수로 들어왔기 때문에 큰 의미는 없다
 	// on("click",~~) : click과 같은 역할인데,동적으로 나중에 바인딩 시킬  수 있는 기능이 추가 되어있음
 	//					여러 이벤트를 동시에 추가할 수 있음
-	//ex) .on("click","mouseenter",function()
+	<%--ex) .on("click","mouseenter",function()--%>
 	
 	//댓글 페이지 나누기로 추가
 	let pageNum = 1;
@@ -439,10 +473,8 @@
 		},function(error){
 			alert("데이터 없음");
 	
-		})   //get 종료
+		}) 
 	})
-	
-})
 
     </script>
 </section>

@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/shop/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/shop/css/styles.css">
-    
+
+
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	
@@ -120,7 +121,7 @@
 										<c:forEach var="list" items="${list}">
 											<tr>
 												<td>${list.bno}</td>
-												<td><a href="#" onClick="fn_contentView(<c:out value="${list.bno}"/>)"><c:out value="${list.title}"/></a>&nbsp;&nbsp;<strong>[${list.replycnt}]</strong></td>  
+												<td><a href="#" onclick="fn_contentView(<c:out value="${list.bno}"/>)"><c:out value="${list.title}"/></a>&nbsp;&nbsp;<strong>[${list.replycnt}]</strong></td>
 												<%-- <td>${list.content}</td> --%>
 												<td>${list.writer}</td>
 		                                        <td><fmt:formatDate pattern="yyyy-MM-dd" value='${list.regdate}'/></td>
@@ -133,78 +134,86 @@
 						</table>
 					</div>
 					
-				<div class="col-md-2 col-md-offset-2">
-					
-				<!-- start Pagination -->
-		        <div class="text-center" style="margin-left : 450px">
-		        	<ul class="pagination">
-		        		<c:if test="${pageVO.prev}">
-		        			<li class="paginate_button previous"><a href="${pageVO.startPage-1}">Previous</a>                            		
-		        		</c:if>
-		        		<!-- 내가 5페이지를 보고 있어도 1-10까지 계속 페이지를 불러옴 -->
-		        		<c:forEach var="idx" begin="${pageVO.startPage}" end="${pageVO.endPage}">
-		        		<!-- 현재 보여지는 페이지 활성화 -->
-		         		<li class="paginate_button ${pageVO.cri.pageNum==idx?'active':''}" ><a href="${idx}">${idx}</a></li>
-		        		</c:forEach>
-		        		<c:if test="${pageVO.next}">
-		         		<li class="paginate_button next"><a href="${pageVO.endPage+1}">Next</a></li>
-		        		</c:if>
-		        	</ul>
-		        </div>
+		<!--페이지 목록 갯수 지정하는 폼-->
+		<div class="d-flex justify-content-between" style="">
+			<div class="col-md-2 col-md-offset-2">
+				<select class="form-control" name="amount" style="width : 50%">
+        	   		<option value="10" <c:out value="${cri.amount == 10 ? 'selected':'' }" />>10</option>
+        	   		<option value="20" <c:out value="${cri.amount == 20 ? 'selected':'' }" />>20</option>
+        	   		<option value="30" <c:out value="${cri.amount == 30 ? 'selected':'' }" />>30</option>
+        	   		<option value="40" <c:out value="${cri.amount == 40 ? 'selected':'' }" />>40</option>
+            	</select>
+            </div>	
+            
+			<!-- start Pagination -->
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination">
+			    <c:if test="${pageVO.prev}">
+				    <li class="page-item paginate_button previous">
+				      <a class="page-link" href="${pageVO.startPage-1}" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+			    </c:if>
+			    <!-- 내가 5페이지를 보고 있어도 1-10까지 계속 페이지를 불러옴 -->
+		        <c:forEach var="idx" begin="${pageVO.startPage}" end="${pageVO.endPage}">
+		        	<!-- 현재 보여지는 페이지 활성화 -->
+			    	<li class="page-item paginate_button ${pageVO.cri.pageNum==idx?'active':''}"><a class="page-link" href="${idx}">${idx}</a></li>
+			    </c:forEach>
+			    <c:if test="${pageVO.next}">
+				    <li class="page-item paginate_button next">
+				      <a class="page-link" href="${pageVO.endPage+1}" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+			    </c:if>
+			  </ul>
+			</nav>
+ 			<!-- 페이지번호를 누르면 동작하는 폼 -->
+ 			<div class="page p-2 bd-highlight" style="">
+				<form action="QnAlist" id="actionForm">
+					<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}" />
+					<input type="hidden" name="amount" value="${pageVO.cri.amount}" />	
+					<input type="hidden" name="type" value="${cri.type }" /> <!-- pageVO.cri.type -->
+					<input type="hidden" name="keyword" value="${cri.keyword }" />
+				</form>
+ 			</div>
 		        <!-- end Pagination -->  
 	
-				<div style="margin-left : 1000px">
+				<!-- 글쓰기 -->
+				<div class="p-2 bd-highlight" style="margin-top: -10px">
 					<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
-				</div>
-        	   
-        	   	<!--페이지 목록 갯수 지정하는 폼-->
-        	   	<div style="margin-top : -50px; padding-right : 50px;">
-	        	   	<select class="form-control" name="amount">
-	        	   		<option value="10" <c:out value="${cri.amount == 10 ? 'selected':'' }" />>10</option>
-	        	   		<option value="20" <c:out value="${cri.amount == 20 ? 'selected':'' }" />>20</option>
-	        	   		<option value="30" <c:out value="${cri.amount == 30 ? 'selected':'' }" />>30</option>
-	        	   		<option value="40" <c:out value="${cri.amount == 40 ? 'selected':'' }" />>40</option>
-               	   	</select>
-				</div>                            	 
-        	</div>
-        </div>
- 			<!-- end search -->
-					
-
-		<!-- search{s} -->
-	    <form action="" id="searchForm">
-			<div class="form-group row justify-content-center">
-				<div class="w100" style="padding-right:10px">
-				<!-- 검색 title -->
-				<!-- 주소줄 자리 때문에 위에 있음,일관성을 줄수 있음 -->
-				<input type="hidden" name="pageNum" value="${cri.pageNum}" />
-	            <input type="hidden" name="amount" value="${cri.amount}" /> 
-					<select class="form-control form-control-sm" name="type" id="">
-						<option value="title">제목</option>
-						<option value="Content">본문</option>
-						<option value="reg_id">작성자</option>
-					</select>
-				</div>
-				<div class="w300" style="padding-right:10px">
-					<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
-				</div>
-				<div class="w300">
-				<!-- btn btn-sm btn-primary  -->
-					<button class="btn-search" name="btnSearch" id="btnSearch">검색</button>
-				</div>
+				</div>	                 	 
 			</div>
-		</form>
-		<!-- search{e} -->
-		
-		<!-- 페이지번호를 누르면 동작하는 폼 -->
-		<form action="QnAlist" id="actionForm">
-			<input type="hidden" name="pageNum" value="${pageVO.cri.pageNum}" />
-			<input type="hidden" name="amount" value="${pageVO.cri.amount}" />	
-			<input type="hidden" name="type" value="${cri.type }" /> <!-- pageVO.cri.type -->
-			<input type="hidden" name="keyword" value="${cri.keyword }" />
-		</form>
 
-
+				<!-- search{s} -->
+			    <form action="" id="searchForm">
+			    <!-- 주소줄 자리 때문에 위에 있음,일관성을 줄수 있음 -->
+					<div class="form-group row justify-content-center">
+						<div class="w100" style="padding-right:10px">
+							<!-- 검색 title -->
+							<!-- 주소줄 자리 때문에 위에 있음,일관성을 줄수 있음 -->
+							<input type="hidden" name="pageNum" value="${cri.pageNum}" />
+				            <input type="hidden" name="amount" value="${cri.amount}" /> 
+							<select class="form-control form-control-sm" name="type" id="">
+								<option value="" <c:out value="${empty cri.type?'selected':'' }" />>-------</option>
+                         			<option value="T" <c:out value="${cri.type=='T' ? 'selected':'' }" />>제목</option>
+                         			<option value="C" <c:out value="${cri.type=='C' ? 'selected':'' }" />>내용</option>
+                         			<option value="W" <c:out value="${cri.type=='W' ? 'selected':'' }" />>작성자</option>
+							</select>
+						</div>
+						<div class="w300" style="padding-right:10px">
+							<input type="text" class="form-control form-control-sm" name="keyword" id="keyword" value="${cri.keyword}">
+						</div>
+						<div class="w300">
+						<!-- btn btn-sm btn-primary  -->
+							<button class="btn-search" name="btnSearch" id="btnSearch">검색</button>
+						</div>
+					</div>
+				</form>
+				<!-- search{e} -->
+		 	</div>
+		 
 
 <!-- 모달 추가 -->
 <!-- alert 창 대신 -->
