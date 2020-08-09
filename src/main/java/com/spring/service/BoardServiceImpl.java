@@ -44,5 +44,11 @@ public class BoardServiceImpl implements BoardService {
 	public boolean delete(int bno) {
 		return mapper.delete(bno) > 0 ? true:false;
 	}
+	
+	@Override
+	public int updateReply(int bno, int amount) {
+		return mapper.updateReplyCnt(bno, amount);
+	}
+
 
 }

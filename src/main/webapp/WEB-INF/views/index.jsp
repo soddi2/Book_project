@@ -11,7 +11,7 @@
         <title>Library</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="favicon.ico">
+        <link rel="icon" type="image/png" href="assets/bookico_bk.ico">
 
         <!--Google Font link-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
@@ -41,6 +41,7 @@
         <link rel="stylesheet" href="assets/css/responsive.css" />
 
         <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     </head>
 
     <body data-spy="scroll" data-target=".navbar-collapse" data-offset="100">
@@ -69,8 +70,8 @@
                 <div class="top-search">
                     <div class="container">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input type="text" class="form-control" placeholder="Search">
+                        	<span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input id="bookName" type="text" class="form-control" placeholder="Search" onkeyup="enterkey();" />
                             <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
                         </div>
                     </div>
@@ -605,6 +606,45 @@
                     </div>
                 </div>
             </section><!-- End off test section -->
+            
+       <script> 
+        <!--네이버(검색)-->
+        <!--인터파크(베스트셀러)-->
+        <!--알라딘(신간)-->
+        
+        <!--카카오(검색)-->
+        function enterkey(e){
+		    $.ajax({
+		        url: "https://dapi.kakao.com/v3/search/book?target=title",
+		        type: "get",
+		        data: { query : $("#bookName").val() },
+		        headers : { Authorization : "KakaoAK d8a810dabcbbeac5ccd08bb772fcde61" },
+		        success: function(data){
+		        	console.log(data)
+		        	console.log(data.documents[0].title)	
+		        	console.log(data.documents[0].authors)	
+		        	console.log(data.documents[0].thumbnail)	
+		        	
+		        	if(window.event.keyCode ==  13){
+		            	 if($('#bookName').val() == ''){
+		               	     alert('검색어를 입력해 주세요');
+		                     $('#bookName').focus();
+		                     
+		            	 }else if($('#bookName').val() == data) {
+		            		 window.location.href = ( data + "/shop/shop");
+		            	 
+		            	 }else{
+		                     callAjax($('#bookName').val());
+		                     $('#name').val("");
+		             		}
+			            }
+		        },
+		        error: function (request, status, error){        
+		        	alert(xhr.responseText);
+		        }
+		      });
+        }
+		</script>
 
 
 
@@ -728,10 +768,6 @@
                     </div>
                 </div>
             </footer>
-
-
-
-
         </div>
 
         <!-- JS includes -->

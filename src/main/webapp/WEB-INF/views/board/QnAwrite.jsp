@@ -60,27 +60,48 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
+                            <c:if test="${empty auth}">
                             <li class="navbar-item">
                                 <a href="/" class="nav-link">Home</a>
                             </li>
-                            <li class="navbar-item">
+                            <li class="navbar-item active">
                                 <a href="/shop/shop" class="nav-link">Shop</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="about.html" class="nav-link">About</a>
+                                <a href="" class="nav-link">About</a>
                             </li>
-                            <li class="navbar-item active">
+                            <li class="navbar-item">
                                 <a href="/board/QnAlist" class="nav-link">QnA</a>
                             </li>
                             <li class="navbar-item">
                                 <a href="/register/register" class="nav-link">Login</a>
                             </li>
+                        </c:if>
+                         <c:if test="${!empty auth}">
+                            <li class="navbar-item">
+                                <a href="/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navbar-item active">
+                                <a href="/shop/shop" class="nav-link">Shop</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="" class="nav-link">About</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="/board/QnAlist" class="nav-link">QnA</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="/register/logout" class="nav-link">LogOut</a>
+                            </li>
+                            <li>
+		                        <div class="cart my-2 my-lg-0">
+		                            <span>
+		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+		                            <span class="quntity">3</span>
+		                        </div>
+	                        </li>
+                        </c:if>
                         </ul>
-                        <div class="cart my-2 my-lg-0">
-                            <span>
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-                            <span class="quntity">3</span>
-                        </div>
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
                             <span class="fa fa-search"></span>

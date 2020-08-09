@@ -52,6 +52,20 @@ textarea {
   .btn:hover {
     background: #fff;
     color: #ff9700; }
+    
+.btn-reply {
+	padding : 15px 11px 10xp; 
+	float : right;
+	color: #fff;
+	background-color: #FF9700;
+	border: 2px solid #ff9700;
+	border-radius: 2px;
+}
+
+.btn-reply:hover {
+	background: #fff;
+    color: #ff9700;
+}
 
 .btn-search {
 	padding : 15px 11px 1xp; 

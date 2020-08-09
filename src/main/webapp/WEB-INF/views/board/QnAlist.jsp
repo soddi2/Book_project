@@ -54,27 +54,48 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
+                         <c:if test="${empty auth}">
                             <li class="navbar-item">
                                 <a href="/" class="nav-link">Home</a>
                             </li>
-                            <li class="navbar-item">
+                            <li class="navbar-item active">
                                 <a href="/shop/shop" class="nav-link">Shop</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="/" class="nav-link">About</a>
+                                <a href="" class="nav-link">About</a>
                             </li>
-                            <li class="navbar-item active">
+                            <li class="navbar-item">
                                 <a href="/board/QnAlist" class="nav-link">QnA</a>
                             </li>
                             <li class="navbar-item">
                                 <a href="/register/register" class="nav-link">Login</a>
                             </li>
+                        </c:if>
+                         <c:if test="${!empty auth}">
+                            <li class="navbar-item">
+                                <a href="/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navbar-item active">
+                                <a href="/shop/shop" class="nav-link">Shop</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="" class="nav-link">About</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="/board/QnAlist" class="nav-link">QnA</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="/register/logout" class="nav-link">LogOut</a>
+                            </li>
+                            <li>
+		                        <div class="cart my-2 my-lg-0">
+		                            <span>
+		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+		                            <span class="quntity">3</span>
+		                        </div>
+	                        </li>
+                        </c:if>
                         </ul>
-                        <div class="cart my-2 my-lg-0">
-                            <span>
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-                            <span class="quntity">3</span>
-                        </div>
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
                             <span class="fa fa-search"></span>
@@ -83,7 +104,6 @@
                 </nav>
             </div>
         </div>
-    </header>
   
     <div class="breadcrumb">
         <div class="container">
@@ -181,37 +201,33 @@
 		        <!-- end Pagination -->  
 	
 				<!-- 글쓰기 -->
-				<div class="p-2 bd-highlight" style="margin-top: -10px">
+				<div class="p-2 bd-highlight" style="margin-top: -20px">
 					<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
 				</div>	                 	 
 			</div>
-
-				<!-- search{s} -->
-			    <form action="" id="searchForm">
-			    <!-- 주소줄 자리 때문에 위에 있음,일관성을 줄수 있음 -->
-					<div class="form-group row justify-content-center">
-						<div class="w100" style="padding-right:10px">
-							<!-- 검색 title -->
-							<!-- 주소줄 자리 때문에 위에 있음,일관성을 줄수 있음 -->
-							<input type="hidden" name="pageNum" value="${cri.pageNum}" />
-				            <input type="hidden" name="amount" value="${cri.amount}" /> 
-							<select class="form-control form-control-sm" name="type" id="">
-								<option value="" <c:out value="${empty cri.type?'selected':'' }" />>-------</option>
-                         			<option value="T" <c:out value="${cri.type=='T' ? 'selected':'' }" />>제목</option>
-                         			<option value="C" <c:out value="${cri.type=='C' ? 'selected':'' }" />>내용</option>
-                         			<option value="W" <c:out value="${cri.type=='W' ? 'selected':'' }" />>작성자</option>
-							</select>
-						</div>
-						<div class="w300" style="padding-right:10px">
-							<input type="text" class="form-control form-control-sm" name="keyword" id="keyword" value="${cri.keyword}">
-						</div>
-						<div class="w300">
-						<!-- btn btn-sm btn-primary  -->
-							<button class="btn-search" name="btnSearch" id="btnSearch">검색</button>
-						</div>
-					</div>
-				</form>
-				<!-- search{e} -->
+			
+			<!-- start search -->
+			<div class="row"> 
+               	<div class="col-md-12">
+               	  <div class="d-flex justify-content-center" style="margin-top: 10px"><!--search Form-->
+           	 		<!-- 검색 title -->
+              		<form action="" id="searchForm">
+              		<!-- 주소줄 자리 때문에 위에 있음,일관성을 줄수 있음 -->
+              			<input type="hidden" name="pageNum" value="${cri.pageNum}" />
+              			<input type="hidden" name="amount" value="${cri.amount}" />                            			
+              			<select name="type" id="">
+              				<option value="" <c:out value="${empty cri.type?'selected':'' }" />>-------</option>
+              				<option value="T" <c:out value="${cri.type=='T' ? 'selected':'' }" />>제목</option>
+              				<option value="C" <c:out value="${cri.type=='C' ? 'selected':'' }" />>내용</option>
+              				<option value="W" <c:out value="${cri.type=='W' ? 'selected':'' }" />>작성자</option>             			
+              			</select>
+               				<input type="text" name="keyword" value="${cri.keyword}" />
+              			<button class="btn-search" type='button'>검색</button>
+              		</form>
+              	   </div>
+               	 </div>                             	 
+        		 </div>
+        		 <!-- end search -->
 		 	</div>
 		 
 

@@ -49,27 +49,48 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
+                            <c:if test="${empty auth}">
                             <li class="navbar-item">
                                 <a href="/" class="nav-link">Home</a>
                             </li>
-                            <li class="navbar-item">
+                            <li class="navbar-item active">
                                 <a href="/shop/shop" class="nav-link">Shop</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="about.html" class="nav-link">About</a>
+                                <a href="" class="nav-link">About</a>
                             </li>
-                            <li class="navbar-item active">
+                            <li class="navbar-item">
                                 <a href="/board/QnAlist" class="nav-link">QnA</a>
                             </li>
                             <li class="navbar-item">
                                 <a href="/register/register" class="nav-link">Login</a>
                             </li>
+                        </c:if>
+                         <c:if test="${!empty auth}">
+                            <li class="navbar-item">
+                                <a href="/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navbar-item active">
+                                <a href="/shop/shop" class="nav-link">Shop</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="" class="nav-link">About</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="/board/QnAlist" class="nav-link">QnA</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="/register/logout" class="nav-link">LogOut</a>
+                            </li>
+                            <li>
+		                        <div class="cart my-2 my-lg-0">
+		                            <span>
+		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+		                            <span class="quntity">3</span>
+		                        </div>
+	                        </li>
+                        </c:if>
                         </ul>
-                        <div class="cart my-2 my-lg-0">
-                            <span>
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-                            <span class="quntity">3</span>
-                        </div>
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
                             <span class="fa fa-search"></span>
@@ -92,13 +113,13 @@
 					<div class="container" role="main">
 						<h2>Board Content</h2>
 						<div class="bg-white rounded shadow-sm">
-							<div class="board_title"><c:out value="${read.bno}"></c:out>,${read.title}</div>
+							<div class="board_title"><c:out value="${vo.bno}"></c:out>,${vo.title}</div>
 							<div class="board_info_box">
-								<span class="board_author"></span><span class="board_date">${read.regdate}</span>
+								<span class="board_author"></span><span class="board_date">${vo.regdate}</span>
 							</div>
-							<div class="board_content">${read.content}</div>
+							<div class="board_content">${vo.content}</div>
 							<section>
-								<div class="board_tag">TAG : <c:out value="${read.tag}"/></div>
+								<div class="board_tag">TAG : <c:out value="${vo.tag}"/></div>
 							</section>
 						</div>
 					</div>
@@ -109,6 +130,7 @@
 						<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/board/QnAlist'">목록</button>
 					</div>					
 				</section>
+				
 				<!-- 댓글 영역 -->
 				<div class="row">
 					<div class="col-lg-12">
@@ -117,12 +139,13 @@
 								<i class="fa fa-comments fa-fw"></i>
 								Reply
 								<%-- <sec:authorize access="isAuthenticated()"> --%>
-									<button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">
+									<button id="addReplyBtn" class="btn-reply btn-primary btn-sm">
 										New Reply
 									</button>
 								<%-- </sec:authorize> --%>
 							</div>
-							<div class="panel-body">
+							
+							<div class="panel-body" style="margin-top: 40px">
 							<!-- 여기서 부터 반복 -->
 								<ul class="chat"> 
 									<li class="left clearfix" data-rno='30'>
@@ -143,7 +166,7 @@
 							</div>
 						</div>
 					</div>
-				</div>      
+				</div>    
 	</article>
 </div>
 
@@ -185,21 +208,27 @@
 <!-- 페이지 나누기와 다른 작업들을 위해서 폼 작성 -->      
 <!-- 스크립트에 myForm을 가져온다 -->
 <form id="myForm">
-	<input type="hidden" name="bno" value="${read.bno}" />
+	<input type="hidden" name="bno" value="${vo.bno}" />
 	<input type="hidden" name="pageNum" value="${cri.pageNum}" />	
 	<input type="hidden" name="amount" value="${cri.amount}" />	
 	<input type="hidden" name="type" value="${cri.type }" /> <!-- pageVO.cri.type -->
 	<input type="hidden" name="keyword" value="${cri.keyword }" />
 </form>
     
+<script src="/assets/js/reply.js"></script>
 <script>
   	//수정 버튼 클릭 이벤트
 	$(document).on('click', '#btnUpdate', function(){
 		var url = "${pageContext.request.contextPath}/board/QnAmodify";
-		url = url + "?bno="+${read.bno};
+		url = url + "?bno="+${vo.bno};
 		url = url + "&mode=edit";
 		location.href = url;
 	});
+  	
+$(function() {
+  	
+	//현재 글의 글 번호 가져오기
+	let bno = ${vo.bno};
   	
 	//댓글 영역 가져오기
 	let replyUL = $(".chat");
@@ -229,9 +258,9 @@
 	
 	//현재 로그인 사용자값 가져오기
 	let replyer = null;
-	/* <sec:authorize access="isAuthenticated()"> */
+	<%-- <sec:authorize access="isAuthenticated()"> --%>
 		replyer = '<sec:authentication property="principal.username"/>';
-	/* </sec:authorize> */
+	<%-- </sec:authorize> --%>
 	
 	$("#addReplyBtn").click(function(){
 		//input 안에 들어있는 내용 없애주기
@@ -249,18 +278,11 @@
 		
 		modal.modal("show");
 	})
-	
-	//댓글 작업 호출
-	//댓글 등록하기
-	//$는 위에서 변수로 들어왔기 때문에 큰 의미는 없다
-	// on("click",~~) : click과 같은 역할인데,동적으로 나중에 바인딩 시킬  수 있는 기능이 추가 되어있음
-	//					여러 이벤트를 동시에 추가할 수 있음
-	<%--ex) .on("click","mouseenter",function()--%>
-	
-	//댓글 페이지 나누기로 추가
+
 	let pageNum = 1;
 	
 	modalRegisterBtn.on("click",function(){
+		
 		
 		var reply = {
 				bno:bno,
@@ -268,7 +290,7 @@
 				reply: modalInputReply.val()
 			};
 		
-			replyService.add(reply,function(result){ //2개이상 받는거 param{} 제이슨형식으로 보내기
+			replyService.add(reply,function(result){ 
 				alert(result);
 				//modal 에 있은 댓글 내용과 관련된 내용 지우기
 				modal.find("input").val("");
@@ -363,7 +385,6 @@
 		showList(pageNum);
 	})
 	
-	//$(modalRemoveBtn).click(function()) 이렇게 걸어도 상관은 없지만 그냥 .on 쓰자
 	$(modalRemoveBtn).on("click",function(){		
 		//댓글 삭제 버튼이 눌러지면 로그인 여부 확인하기
 		if(!replyer){
@@ -387,7 +408,6 @@
 					//모달 창 종료
 					modal.modal("hide");
 					//전체 댓글 리스트 보기
-					// showList(1);  페이지 나누기 전
 					showList(pageNum); //페이지 나누기 후 : 현재 보던 페이지
 	
 				},
@@ -425,7 +445,6 @@
 							modal.modal("hide");
 							
 							//전체 댓글 리스트 보기
-							// showList(1);  페이지 나누기 전
 							showList(pageNum); //페이지 나누기 후 : 현재 보던 페이지
 							
 						},function(error){
@@ -435,11 +454,10 @@
 	})
 	
 	//댓글 하나 가져오기
-	//json {key : value}
 	//실제로는 li에 이벤트를 걸어야 하지만 댓글이 나중에 생기는 
 	//부분이기 때문에 존재하는 영역에 댓글을 걸고 나중에 생기는 
 	//li 태그에 위임하는 방식으로 작성
-	$(".chat").on("click","li",function(){ //동적 바인딩 방식 나중에 생기는 영역은 인식을 못함  그냥 클릭은 현재 태그가 만들어져 있는 건 동작을 하지만 나중에 만든건 동작을 안함
+	$(".chat").on("click","li",function(){ 
 		
 		//현재 클릭된 댓글의 rno를 가져오기
 		var rno = $(this).data("rno");
@@ -475,7 +493,7 @@
 	
 		}) 
 	})
-
+})
     </script>
 </section>
     

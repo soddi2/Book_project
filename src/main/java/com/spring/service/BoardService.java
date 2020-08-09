@@ -13,5 +13,5 @@ public interface BoardService {
 	public BoardVO read(int bno);
 	public boolean modify(BoardVO modify);
 	public boolean delete(int bno);
-	
+	public int updateReply(int bno,int amount);
 }

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/shop/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/shop/css/styles.css">
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -70,13 +74,15 @@
                             <li class="navbar-item">
                                 <a href="/register/logout" class="nav-link">LogOut</a>
                             </li>
+	                        <li>
+		                        <div class="cart my-2 my-lg-0">
+		                            <span>
+		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+		                            <span class="quntity">3</span>
+		                        </div>
+	                        </li>
                         </c:if>
                         </ul>
-                        <div class="cart my-2 my-lg-0">
-                            <span>
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-                            <span class="quntity">3</span>
-                        </div>
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
                             <span class="fa fa-search"></span>
@@ -298,6 +304,15 @@
             </div>
         </div>
     </section>
+    
+    <script>
+    
+	$( "p" ).append( "<strong>"+data.documents[0].title+"</strong>" );
+	$( "p" ).append( "<strong>"+data.documents[0].authors+"</strong>" );
+	$( "p" ).append( "<img scr='"+data.documents[0].thumbnail+"'/>" );
+    
+    </script>
+    
     <footer>
         <div class="container">
             <div class="row">
@@ -312,8 +327,8 @@
                     <div class="timing">
                         <h4>Timing</h4>
                         <h6>Mon - Fri: 7am - 10pm</h6>
-                        <h6>​​Saturday: 8am - 10pm</h6>
-                        <h6>​Sunday: 8am - 11pm</h6>
+                        <h6>ââSaturday: 8am - 10pm</h6>
+                        <h6>âSunday: 8am - 11pm</h6>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -332,7 +347,7 @@
                         <ul>
                             <li><a href="">Shipping & Returns</a></li>
                             <li><a href="privacy-policy.html">Privacy</a></li>
-                            <li><a href="faq.html">FAQ’s</a></li>
+                            <li><a href="faq.html">FAQâs</a></li>
                         </ul>
                     </div>
                 </div>

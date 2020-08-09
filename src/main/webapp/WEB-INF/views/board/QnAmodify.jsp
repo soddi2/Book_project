@@ -60,27 +60,48 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
+                            <c:if test="${empty auth}">
                             <li class="navbar-item">
                                 <a href="/" class="nav-link">Home</a>
                             </li>
-                            <li class="navbar-item">
+                            <li class="navbar-item active">
                                 <a href="/shop/shop" class="nav-link">Shop</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="about.html" class="nav-link">About</a>
+                                <a href="" class="nav-link">About</a>
                             </li>
-                            <li class="navbar-item active">
+                            <li class="navbar-item">
                                 <a href="/board/QnAlist" class="nav-link">QnA</a>
                             </li>
                             <li class="navbar-item">
                                 <a href="/register/register" class="nav-link">Login</a>
                             </li>
+                        </c:if>
+                         <c:if test="${!empty auth}">
+                            <li class="navbar-item">
+                                <a href="/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navbar-item active">
+                                <a href="/shop/shop" class="nav-link">Shop</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="" class="nav-link">About</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="/board/QnAlist" class="nav-link">QnA</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="/register/logout" class="nav-link">LogOut</a>
+                            </li>
+                            <li>
+		                        <div class="cart my-2 my-lg-0">
+		                            <span>
+		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+		                            <span class="quntity">3</span>
+		                        </div>
+	                        </li>
+                        </c:if>
                         </ul>
-                        <div class="cart my-2 my-lg-0">
-                            <span>
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-                            <span class="quntity">3</span>
-                        </div>
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
                             <span class="fa fa-search"></span>
@@ -104,21 +125,21 @@
 			<form name="form" id="form" role="form" method="post" action="">
 				<div class="mb-3">
 					<label for="title">제목</label>
-					<input type="text" class="form-control" name="title" id="title" value="${read.title}">
+					<input type="text" class="form-control" name="title" id="title" value="${vo.title}">
 				</div>
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="writer" id="reg_id" value="${read.writer}">
+					<input type="text" class="form-control" name="writer" id="reg_id" value="${vo.writer}">
 				</div>
 				<div class="mb-3">
 					<label for="content">내용</label>
-					<textarea id="summernote" name="content">${read.content}</textarea>
+					<textarea id="summernote" name="content">${vo.content}</textarea>
 				</div>
 				<div class="mb-3">
 					<label for="tag">TAG</label>
-					<input type="text" class="form-control" name="tag" id="tag" value="${read.tag}"> 
+					<input type="text" class="form-control" name="tag" id="tag" value="${vo.tag}"> 
 				</div>
-				<input type="hidden" name="bno" value="${read.bno}" />
+				<input type="hidden" name="bno" value="${vo.bno}" />
 			</form>
 			<div>
 				<button type="submit" data-oper='modify' class="btn btn-sm btn-primary" id="btnSave">저장</button>
@@ -130,7 +151,7 @@
 	
 	<%-- remove와 list를 위한 폼--%>
 	<form method="post" id="myForm">
-		<input type="hidden" name="bno" value="${read.bno}" />
+		<input type="hidden" name="bno" value="${vo.bno}" />
 		<input type="hidden" name="writer" value="${vo.writer}" />
 		<input type="hidden" name="pageNum" value="${cri.pageNum}" />	
 		<input type="hidden" name="amount" value="${cri.amount}" />	

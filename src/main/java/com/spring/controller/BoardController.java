@@ -69,7 +69,7 @@ public class BoardController {
 		log.info(""+cri);
 		
 		BoardVO read = service.read(bno);
-		model.addAttribute("read", read);
+		model.addAttribute("vo", read);
 		//http://localhost:8080/board/read
 		//http://localhost:8080/board/modify
 
