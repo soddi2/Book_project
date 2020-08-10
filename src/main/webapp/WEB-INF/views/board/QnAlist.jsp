@@ -331,7 +331,7 @@
 	    })
 	    
 	    //검색 버튼 클릭시
-	    $(".btn-default").click(function(){
+	    $(".btn-search").click(function(){
 			//action id가 search폼인 거 담기
 	    	let searchForm = $("#searchForm");
 	    	

@@ -236,9 +236,9 @@ public class MemberController {
 	        	email.setSubject(vo.getUserid()+"님 비밀번호 찾기 메일입니다.");
 	        	emailSender.SendEmail(email);
 
-	        	return "redirect:/register/register";        	
+	        	return "/register/register";        	
 	        }else {
-	        	return "redirect:/register/register_findpwd";
+	        	return "/register/register_findpwd";
 	        }
 	    }
 	 
