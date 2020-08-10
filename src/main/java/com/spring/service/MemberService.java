@@ -11,4 +11,5 @@ public interface MemberService {
 	public boolean leave(LoginVO leave);
 	public boolean modify(ClientVO modify);
 	public String check_password(String userid);
+	public boolean forgetPwd(LoginVO vo);
 }

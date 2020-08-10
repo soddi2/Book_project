@@ -606,13 +606,13 @@
                     </div>
                 </div>
             </section><!-- End off test section -->
-            
+ 
        <script> 
-        <!--네이버(검색)-->
-        <!--인터파크(베스트셀러)-->
-        <!--알라딘(신간)-->
+        // 네이버(검색)
+        // 인터파크(베스트셀러)
+        // 알라딘(신간)
         
-        <!--카카오(검색)-->
+        //카카오(검색)
         function enterkey(e){
 		    $.ajax({
 		        url: "https://dapi.kakao.com/v3/search/book?target=title",
@@ -620,10 +620,12 @@
 		        data: { query : $("#bookName").val() },
 		        headers : { Authorization : "KakaoAK d8a810dabcbbeac5ccd08bb772fcde61" },
 		        success: function(data){
-		        	console.log(data)
-		        	console.log(data.documents[0].title)	
-		        	console.log(data.documents[0].authors)	
-		        	console.log(data.documents[0].thumbnail)	
+		        	console.log(data);
+		        	console.log(data.documents[0].title);	
+		        	console.log(data.documents[0].authors);
+		        	console.log(data.documents[0].thumbnail);
+		        	
+		        	$( "p" ).append( "<img scr='"+data.documents[0].thumbnail+"'/>" );
 		        	
 		        	if(window.event.keyCode ==  13){
 		            	 if($('#bookName').val() == ''){
@@ -631,8 +633,8 @@
 		                     $('#bookName').focus();
 		                     
 		            	 }else if($('#bookName').val() == data) {
-		            		 window.location.href = ( data + "/shop/shop");
-		            	 
+		            		
+		            	 	
 		            	 }else{
 		                     callAjax($('#bookName').val());
 		                     $('#name').val("");

@@ -51,6 +51,12 @@ public class MemberServiceImpl implements MemberService {
 		// 비밀 번호 확인
 		return mapper.check_password(userid);
 	}
+
+	@Override
+	public boolean forgetPwd(LoginVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.forgetPwd(vo) > 0 ? true:false;
+	}
 	
 
 

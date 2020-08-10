@@ -4,8 +4,8 @@
 
 	<!-- 회원가입 -->
 	<insert id="register">
-		insert into client(userid, password, email, address)
-		values(#{userid}, #{password}, #{email}, #{address})
+		insert into client(userid, password, email, address, mobile)
+		values(#{userid}, #{password}, #{email}, #{address}, #{mobile})
 	</insert>
 
 	<!-- 중복 아이디 -->
@@ -26,6 +26,11 @@
 	<!-- 회원 정보 수정 -->
 	<update id="modify"> 
 		update client set password = #{password}, email = #{email}, address = #{address} where userid = #{userid}
+	</update>
+	
+	<!-- 비밀번호 찾기 (비밀번호 변경) -->
+	<update id="forgetPwd">
+		update client set password = #{password} where userid = #{userid}
 	</update>
 	
 	<!-- 탈퇴 -->

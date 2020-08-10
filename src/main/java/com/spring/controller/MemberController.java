@@ -19,6 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.spring.domain.AuthVO;
 import com.spring.domain.ClientVO;
 import com.spring.domain.LoginVO;
+import com.spring.email.EmailSender;
+import com.spring.email.EmailVO;
+import com.spring.email.RandomString;
 import com.spring.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +34,13 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private EmailSender emailSender;
+	
+	@Autowired
+	private EmailVO email;
+	
 	
 	//중복아이디
 	//페이지를 넘기지 않고 가만히 있을때는 ajax로 정보를 담아서 이동
@@ -67,7 +77,7 @@ public class MemberController {
 			model.addAttribute("address", vo.getAddress());
 			model.addAttribute("email", vo.getEmail());
 			
-			return "redirect:/register/register";
+			return "/register/register";
 		}else {
 			return "/register/register";
 		}
@@ -186,6 +196,53 @@ public class MemberController {
 		rttr.addFlashAttribute("error", "탈퇴 실패");
 		return "/register/register_modify";
 	}
+	
+	 //비밀번호 찾기
+	 @GetMapping("/register_findpwd")
+	 public void findpwd() {
+		 log.info("팝업 창");
+	 }
+	
+	//비밀번호 찾기
+	 @PostMapping("/forgetPwd")
+	    public String sendEmailAction (ClientVO client,LoginVO login, Model model) throws Exception {
+	        log.info("E-mail 전송 서비스");
+	        log.info(""+client);
+	        
+	        //랜덤 문자열 reference
+	        String ENGLISH_LOWER = "abcdefghijklmnopqrstuvwxyz";
+	        String ENGLISH_UPPER = ENGLISH_LOWER.toUpperCase();
+	        String NUMBER = "0123456789";
+	        
+	        //랜덤을 생성할 대상 문자열
+	        String DATA_FOR_RANDOM_STRING = ENGLISH_LOWER + ENGLISH_UPPER + NUMBER;
+	        
+	        //랜덤 문자열 길이
+	        int random_string_length=10;
+	    	
+	        RandomString randomStr = new RandomString();
+	        String tempPwd=randomStr.generate(DATA_FOR_RANDOM_STRING, random_string_length);
+	        
+	        
+	        LoginVO vo=service.isLogin(login);
+	        if(client.getUserid().equals(vo.getUserid())) {
+	        	model.addAttribute("userid", vo.getUserid());
+				model.addAttribute("email", vo.getEmail());
+	        	
+	        	vo.setPassword(tempPwd);
+	        	service.forgetPwd(login);
+	        	email.setContent("비밀번호는 "+vo.getPassword()+" 입니다.");
+	        	email.setReciver(vo.getEmail());
+	        	email.setSubject(vo.getUserid()+"님 비밀번호 찾기 메일입니다.");
+	        	emailSender.SendEmail(email);
+
+	        	return "redirect:/register/register";        	
+	        }else {
+	        	return "redirect:/register/register_findpwd";
+	        }
+	    }
+	 
+
 }
 
 
