@@ -307,10 +307,35 @@
     
     <script>
     
-	$( "p" ).append( "<strong>"+data.documents[0].title+"</strong>" );
-	$( "p" ).append( "<strong>"+data.documents[0].authors+"</strong>" );
-	$( "p" ).append( "<img scr='"+data.documents[0].thumbnail+"'/>" );
+    $.ajax({ 
+    	url: "http://data4library.kr/api/loanItemSrch?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&format=json", 
+    	type: "GET", 
+		dataType: "Json", 
+    	data: { 
+	    		startDt : "2016-01-01",
+	    		endDt : "2016-05-15",
+	    		from_age : "6",
+	    		to_age : "10",
+	    		addCode : "0",
+	    		kdc : "8",
+	    		region : "11",
+	    		pageNo : 1,
+	    		pageSize : 200
+				},
+    	success : function(data){
+    		console.log(data);
+    	},
+    	error: function (request, status, error){        
+        	alert(xhr.responseText);
+        }
+    	
+    	
+
+    });
+
+
     
+
     </script>
     
     <footer>
