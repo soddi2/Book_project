@@ -222,27 +222,28 @@ public class MemberController {
 	    	
 	        RandomString randomStr = new RandomString();
 	        String tempPwd=randomStr.generate(DATA_FOR_RANDOM_STRING, random_string_length);
-	        
-	        
-	        LoginVO vo=service.isLogin(login);
-	        if(client.getUserid().equals(vo.getUserid())) {
-	        	model.addAttribute("userid", vo.getUserid());
-				model.addAttribute("email", vo.getEmail());
-	        	
-	        	vo.setPassword(tempPwd);
-	        	service.forgetPwd(login);
-	        	email.setContent("비밀번호는 "+vo.getPassword()+" 입니다.");
-	        	email.setReciver(vo.getEmail());
-	        	email.setSubject(vo.getUserid()+"님 비밀번호 찾기 메일입니다.");
-	        	emailSender.SendEmail(email);
 
-	        	return "/register/register";        	
-	        }else {
-	        	return "/register/register_findpwd";
+	        LoginVO vo=service.forgetId(login);
+	        log.info(""+vo);
+	        
+	        if(vo!=null) {
+	        	if(client.getUserid().equals(vo.getUserid())) {
+	        		vo.setPassword(tempPwd);
+	        		service.forgetPwd(login);
+	        		System.out.println(service.forgetPwd(login));
+	        		email.setContent("비밀번호는 "+vo.getPassword()+" 입니다.");
+	        		email.setReciver(vo.getEmail());
+	        		email.setSubject(vo.getUserid()+"님 비밀번호 찾기 메일입니다.");
+	        		emailSender.SendEmail(email);
+	        		
+	        		return "redirect:/register/register";        	
+	        	}else {
+	        		return "/register/register_findpwd";
+	        	}
 	        }
+	        return "/register/register_findpwd";
 	    }
 	 
-
 }
 
 

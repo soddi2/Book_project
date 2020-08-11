@@ -25,4 +25,9 @@ public class BookController {
 	public void shopping_list() {
 		log.info("쇼핑리스트 form");
 	}
+	
+	@GetMapping("shopSearch")
+	public void shopSearch() {
+		log.info("검색 리스트 페이지");
+	}
 }

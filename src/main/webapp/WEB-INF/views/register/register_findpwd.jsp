@@ -34,11 +34,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<form action="forgetPwd" method="post">
 			         <div>
 						<span><label>UserId</label></span>
-						<span><input type="text" class="textbox" id="active" value="">${vo.userid}</span>
+						<span><input type="text" name="userid" class="textbox" id="active" value=""></span>
 					 </div>
 					 <div>
 						<span><label>Email</label></span>
-					    <span><input type="email" class="password" value="">${vo.email}</span>
+					    <span><input type="email" name="email" class="password" value=""></span>
 					 </div>
 					<div class="sign">
 						<div class="submit">

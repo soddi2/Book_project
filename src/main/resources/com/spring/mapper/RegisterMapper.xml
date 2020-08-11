@@ -28,14 +28,20 @@
 		update client set password = #{password}, email = #{email}, address = #{address} where userid = #{userid}
 	</update>
 	
+	<!-- 탈퇴 -->
+	<delete id="leave">
+		delete from client where userid = #{userid} and password = #{password}  
+	</delete>
+	
+	<!-- 비밀번호 찾는 아이디  -->
+	<select id="forgetId" resultType="com.spring.domain.LoginVO">
+		select * from client where userid = #{userid} and email = #{email}
+	</select>
+	
 	<!-- 비밀번호 찾기 (비밀번호 변경) -->
 	<update id="forgetPwd">
 		update client set password = #{password} where userid = #{userid}
 	</update>
 	
-	<!-- 탈퇴 -->
-	<delete id="leave">
-		delete from client where userid = #{userid} and password = #{password}  
-	</delete>
 
 </mapper>

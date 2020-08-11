@@ -14,4 +14,5 @@ public interface RegisterMapper {
 	public int modify(ClientVO modify);
 	public String check_password(String userid);
 	public int forgetPwd(LoginVO vo);
+	public LoginVO forgetId(LoginVO vo);
 }

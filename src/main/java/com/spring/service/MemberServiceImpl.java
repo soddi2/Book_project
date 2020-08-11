@@ -57,6 +57,12 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return mapper.forgetPwd(vo) > 0 ? true:false;
 	}
+
+	@Override
+	public LoginVO forgetId(LoginVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.forgetId(vo);
+	}
 	
 
 
