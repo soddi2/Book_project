@@ -641,7 +641,7 @@
 		             		}
 			            }
 		        },
-		        error: function (request, status, error){        
+		        error: function (xhr,txtStatus,error){        
 		        	alert(xhr.responseText);
 		        }
 		      });

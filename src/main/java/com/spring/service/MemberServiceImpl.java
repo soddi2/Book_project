@@ -59,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public LoginVO forgetId(LoginVO vo) {
+	public LoginVO forgetId(ClientVO vo) {
 		// TODO Auto-generated method stub
 		return mapper.forgetId(vo);
 	}

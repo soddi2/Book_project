@@ -205,9 +205,10 @@ public class MemberController {
 	
 	//비밀번호 찾기
 	 @PostMapping("/forgetPwd")
-	    public String sendEmailAction (ClientVO client,LoginVO login, Model model) throws Exception {
+	    public String sendEmailAction (ClientVO client, Model model) throws Exception {
 	        log.info("E-mail 전송 서비스");
 	        log.info(""+client);
+	       
 	        
 	        //랜덤 문자열 reference
 	        String ENGLISH_LOWER = "abcdefghijklmnopqrstuvwxyz";
@@ -223,20 +224,20 @@ public class MemberController {
 	        RandomString randomStr = new RandomString();
 	        String tempPwd=randomStr.generate(DATA_FOR_RANDOM_STRING, random_string_length);
 
-	        LoginVO vo=service.forgetId(login);
+	        LoginVO vo=service.forgetId(client);
 	        log.info(""+vo);
 	        
 	        if(vo!=null) {
 	        	if(client.getUserid().equals(vo.getUserid())) {
 	        		vo.setPassword(tempPwd);
-	        		service.forgetPwd(login);
-	        		System.out.println(service.forgetPwd(login));
+	        		service.forgetPwd(vo);
+	        		System.out.println(service.forgetPwd(vo));
 	        		email.setContent("비밀번호는 "+vo.getPassword()+" 입니다.");
 	        		email.setReciver(vo.getEmail());
 	        		email.setSubject(vo.getUserid()+"님 비밀번호 찾기 메일입니다.");
 	        		emailSender.SendEmail(email);
 	        		
-	        		return "redirect:/register/register";        	
+	        		return "redirect:/";        	
 	        	}else {
 	        		return "/register/register_findpwd";
 	        	}

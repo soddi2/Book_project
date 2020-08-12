@@ -154,12 +154,11 @@
                     </div>
                 </div>
             </div>
-            <h2>recently added books to our store</h2>
             <div class="recent-book-sec">
                 <div class="row">
                 	 <div class="table-responsive">
 						<h2>Search List</h2>
-						<table class="table table-striped table-sm">
+						<table class="table table-striped table-sm" id="addList">
 							<colgroup>
 								<col style="width:5%;" />
 								<col style="width:auto;" />
@@ -177,10 +176,10 @@
 									<th>출판사</th>
 									<th>발행년도</th>
 									<th>도서권수</th>
-									<th>대출권수</th>
+									<th>대출건수</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="listbody">
 								<c:choose>
 									<c:when test="${empty list}" >
 										<tr><td colspan="7" align="center">데이터가 없습니다.</td></tr>
@@ -188,13 +187,13 @@
 									<c:when test="${!empty list}">
 										<c:forEach var="list" items="${list}">
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-		                                        <td></td>
-		                                        <td></td>
-		                                        <td></td>
+												<td>${list.bno}</td>
+												<td>${list.bookname}</td>
+												<td>${list.writer}</td>
+												<td>${list.publisher}</td>
+		                                        <td>${list.issue_year}</td>
+		                                        <td>${list.book_qnt}</td>
+		                                        <td>${list.rent_qnt}</td>
 											</tr>
 										</c:forEach>
 									</c:when>
@@ -203,12 +202,54 @@
 						</table>
 					</div>
                 </div>
-                <div class="btn-sec">
-                    <button class="btn gray-btn">load More books</button>
+                <!-- <a href="" type="button" class="btn gray-btn" id="morelist">load More books</a> -->
+               <div class="btn-sec">
+	                <button id="addBtn" class="btn gray-btn"><span>load More books</span></button>
                 </div>
             </div>
         </div>
+
+       	<!-- start search -->
+		<div class="row"> 
+              	<div class="col-md-12">
+              	  <div class="d-flex justify-content-center" style="margin-top: 10px"><!--search Form-->
+          	 		<!-- 검색 title -->
+             		<form action="" id="searchForm">
+             		<!-- 주소줄 자리 때문에 위에 있음,일관성을 줄수 있음 -->
+             			<input type="hidden" name="pageNum" value="${cri.pageNum}" />
+             			<input type="hidden" name="amount" value="${cri.amount}" />                            			
+             			<select name="type" id="">
+             				<option value="" <c:out value="${empty cri.type?'selected':'' }" />>-------</option>
+             				<option value="T" <c:out value="${cri.type=='T' ? 'selected':'' }" />>도서명</option>
+             				<option value="C" <c:out value="${cri.type=='C' ? 'selected':'' }" />>저자</option>
+             				<option value="W" <c:out value="${cri.type=='W' ? 'selected':'' }" />>출판사</option>             			
+             			</select>
+              				<input type="text" name="keyword" value="${cri.keyword}" />
+             			<button class="btn-search" type='button'>검색</button>
+             		</form>
+             	   </div>
+              	 </div>                             	 
+       		 </div>
+       <!-- end search -->
+        
     </section>
+    
+    <script>
+    $(function(){
+    	$("th").slice(0, 10).show(); // 최초 10개 선택
+    	
+    	$("#addBtn").click(function(e){ // Load More를 위한 클릭 이벤트e
+    	
+    		e.preventDefault();
+    	
+    	$("th:hidden").slice(0, 10).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+    	
+    	if($("th:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
+    		alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
+    		}
+    	});
+    });
+    </script>
     
     <footer>
         <div class="container">

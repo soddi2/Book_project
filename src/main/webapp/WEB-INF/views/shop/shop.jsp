@@ -305,13 +305,16 @@
         </div>
     </section>
     
-    <script>
+    <script type="text/javascript" src="/assets/js/board/js/jquery.ajax-cross-origin.min.js"></script>
+    <script>  
     
     $.ajax({ 
-    	url: "http://data4library.kr/api/loanItemSrch?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&format=json", 
-    	type: "GET", 
-		dataType: "Json", 
-    	data: { 
+    	crossOrigin : true,
+    	 url: "http://data4library.kr/api/loanItemSrch?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11",
+    	/* url: "http://data4library.kr/api/loanItemSrch", */
+    	type: "GET",     				
+		dataType : "json", 
+		data: { 
 	    		startDt : "2016-01-01",
 	    		endDt : "2016-05-15",
 	    		from_age : "6",
@@ -322,15 +325,13 @@
 	    		pageNo : 1,
 	    		pageSize : 200
 				},
-    	success : function(data){
-    		console.log(data);
+    	success : function(result){
+    		console.log(result);
     	},
-    	error: function (request, status, error){        
+    	error: function (xhr,txtStatus,error){        
         	alert(xhr.responseText);
-        }
+        }    
     	
-    	
-
     });
 
 

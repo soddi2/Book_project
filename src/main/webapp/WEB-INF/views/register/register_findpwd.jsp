@@ -38,7 +38,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					 </div>
 					 <div>
 						<span><label>Email</label></span>
-					    <span><input type="email" name="email" class="password" value=""></span>
+					    <span><input type="email" name="email" class="" value=""></span>
 					 </div>
 					<div class="sign">
 						<div class="submit">
