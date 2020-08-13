@@ -5,6 +5,7 @@
     <head>
         <title>로그인 / 회원가입 폼 템플릿</title>
         <link rel="stylesheet" href="/assets/css/register_modify.css">
+        <link rel="icon" type="image/png" href="/assets/bookico_bk.ico">
         
         <!-- jquery,jquery-validate : 순서 중요, 둘이 세트 -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

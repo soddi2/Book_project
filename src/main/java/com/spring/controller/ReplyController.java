@@ -77,8 +77,7 @@ public class ReplyController {
 	// http://localhost:8080/replies/pages/{1042}/{1}
 	//  1042번에 해당하는 첫번째 페이지 댓글 가져오기
 	@GetMapping("/pages/{bno}/{page}")
-	public ResponseEntity<ReplyPageVO> getList(@PathVariable("bno") int bno,
-			@PathVariable("page") int page){
+	public ResponseEntity<ReplyPageVO> getList(@PathVariable("bno") int bno, @PathVariable("page") int page){
 		log.info("댓글 가져오기 "+bno+" page = "+page);
 		
 		Criteria cri = new Criteria(page,10);

@@ -607,7 +607,27 @@
                 </div>
             </section><!-- End off test section -->
  
-       <script> 
+ 
+ 	   <script type="text/javascript" src="/assets/js/board/js/jquery.ajax-cross-origin.min.js"></script>
+       <script>  
+      $(function(){
+   	
+   	   $.ajax({ 
+   	    	crossOrigin : true,
+   	    	url: "http://data4library.kr/api/loanItemSrch?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&format=json",    	
+   	    	type: "GET",
+   	    	dataType: 'jsonp', 
+   	    	jsonpCallback: "myCallback", 
+   	    	success:function(result){
+   	    		console.log(result);
+   	    	},
+   	    	error: function (xhr,txtStatus,error){        
+   	        	alert(xhr.status);
+   	        }    	 
+   	    });	   
+
+
+      })
         // 네이버(검색)
         // 인터파크(베스트셀러)
         // 알라딘(신간)
@@ -646,6 +666,8 @@
 		        }
 		      });
         }
+        
+        
 		</script>
 
 

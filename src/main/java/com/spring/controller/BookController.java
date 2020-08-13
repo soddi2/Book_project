@@ -1,20 +1,28 @@
 package com.spring.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.domain.BookVO;
 import com.spring.domain.Criteria;
 import com.spring.domain.PageVO;
+import com.spring.domain.ReplyPageVO;
 import com.spring.service.BookService;
 
 import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Slf4j
 @Controller
@@ -36,6 +44,21 @@ public class BookController {
 		
 		return "/shop/shopSearch";
 	}
+
+	@PostMapping("/shoplist") 
+	 public ResponseEntity <List<BookVO>> loadmorebtn(Criteria cri,Model model){
+		log.info("더보기 버튼");
+		log.info(""+cri.getAmount());
+	 
+	    cri.setAmount(cri.getAmount());
+	    List<BookVO> list = service.booklist(cri);
+	    
+	    log.info(""+list);
+	    
+		  
+		return new ResponseEntity<List<BookVO>>(list,HttpStatus.OK); 
+	 }
+	
 	
 	@GetMapping("product_single")
 	public void product_single() {

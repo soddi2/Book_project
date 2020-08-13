@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/shop/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/shop/css/styles.css">
+    <link rel="icon" type="image/png" href="/assets/bookico_bk.ico">
     
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
@@ -302,41 +303,45 @@
                     <button class="btn gray-btn">load More books</button>
                 </div>
             </div>
-        </div>
+        </div> 
+    
     </section>
+    
+    
+    
+    
+    
+       
+    
+    
     
     <script type="text/javascript" src="/assets/js/board/js/jquery.ajax-cross-origin.min.js"></script>
     <script>  
-    
-    $.ajax({ 
-    	crossOrigin : true,
-    	 url: "http://data4library.kr/api/loanItemSrch?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11",
-    	/* url: "http://data4library.kr/api/loanItemSrch", */
-    	type: "GET",     				
-		dataType : "json", 
-		data: { 
-	    		startDt : "2016-01-01",
-	    		endDt : "2016-05-15",
-	    		from_age : "6",
-	    		to_age : "10",
-	    		addCode : "0",
-	    		kdc : "8",
-	    		region : "11",
-	    		pageNo : 1,
-	    		pageSize : 200
-				},
-    	success : function(result){
-    		console.log(result);
-    	},
-    	error: function (xhr,txtStatus,error){        
-        	alert(xhr.responseText);
-        }    
-    	
-    });
+   $(function(){
+	
+	   $.ajax({ 
+	    	/* crossOrigin : true, */
+	    	url: "http://data4library.kr/api/loanItemSrch?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&format=json",    	
+	    	type: "GET",
+	    	/* contentType:"application/json",
+	    	dataType:'json', */
+	    	/* dataType: 'jsonp',
+	    	jsonp: 'view', */
+	    	dataType: 'jsonp',  
+   	    	/* jsonpCallback: "myCallback", */
+	    	success:function(result){
+	    		console.log(result);
+	    	},
+	    	error: function (xhr,txtStatus,error){        
+	        	/* alert(xhr.status); */
+	        	console.log(xhr)
+	        	console.log(txtStatus)
+	        }    	 
+	    });	   
 
 
-    
-
+   })
+   
     </script>
     
     <footer>

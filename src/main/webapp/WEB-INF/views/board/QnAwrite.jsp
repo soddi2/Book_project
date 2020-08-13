@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/assets/shop/css/styles.css">
     <!-- <link rel="stylesheet" href="/assets/summernote/fonts/font/summernote.woff2"> -->
 	<link rel="stylesheet" href="/assets/css/summernote/summernote-lite.css">
+	<link rel="icon" type="image/png" href="/assets/bookico_bk.ico">
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

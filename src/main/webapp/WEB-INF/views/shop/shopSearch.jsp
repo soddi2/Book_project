@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/shop/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/shop/css/styles.css">
+    <link rel="icon" type="image/png" href="/assets/bookico_bk.ico">
     
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
@@ -158,7 +159,7 @@
                 <div class="row">
                 	 <div class="table-responsive">
 						<h2>Search List</h2>
-						<table class="table table-striped table-sm" id="addList">
+						<table class="table table-striped table-sm" id="table">
 							<colgroup>
 								<col style="width:5%;" />
 								<col style="width:auto;" />
@@ -179,14 +180,14 @@
 									<th>대출건수</th>
 								</tr>
 							</thead>
-							<tbody id="listbody">
+							<tbody>
 								<c:choose>
 									<c:when test="${empty list}" >
 										<tr><td colspan="7" align="center">데이터가 없습니다.</td></tr>
 									</c:when> 
 									<c:when test="${!empty list}">
 										<c:forEach var="list" items="${list}">
-											<tr>
+											<tr class="remove">
 												<td>${list.bno}</td>
 												<td>${list.bookname}</td>
 												<td>${list.writer}</td>
@@ -202,13 +203,26 @@
 						</table>
 					</div>
                 </div>
-                <!-- <a href="" type="button" class="btn gray-btn" id="morelist">load More books</a> -->
-               <div class="btn-sec">
+                <a href="" type="button" class="btn gray-btn" id="addbtn">load More books</a>
+               <%-- <div class="btn-sec">
+               		<input type="hidden" name="amount" value="${cri.amount}" />
 	                <button id="addBtn" class="btn gray-btn"><span>load More books</span></button>
-                </div>
+                </div> --%>
             </div>
         </div>
-
+        
+        <!--페이지 목록 갯수 지정하는 폼-->
+		<%-- <div class="d-flex justify-content-between" style="">
+			<div class="col-md-2 col-md-offset-2">
+				<select class="form-control" name="amount" style="width : 50%">
+        	   		<option value="10" <c:out value="${cri.amount == 10 ? 'selected':'' }" />>10</option>
+        	   		<option value="20" <c:out value="${cri.amount == 20 ? 'selected':'' }" />>20</option>
+        	   		<option value="30" <c:out value="${cri.amount == 30 ? 'selected':'' }" />>30</option>
+        	   		<option value="40" <c:out value="${cri.amount == 40 ? 'selected':'' }" />>40</option>
+            	</select>
+            </div>	
+		</div> --%>
+		
        	<!-- start search -->
 		<div class="row"> 
               	<div class="col-md-12">
@@ -218,6 +232,7 @@
              		<!-- 주소줄 자리 때문에 위에 있음,일관성을 줄수 있음 -->
              			<input type="hidden" name="pageNum" value="${cri.pageNum}" />
              			<input type="hidden" name="amount" value="${cri.amount}" />                            			
+             			<input type="hidden" name="tableamount" value="${cri.amount}" />                            			
              			<select name="type" id="">
              				<option value="" <c:out value="${empty cri.type?'selected':'' }" />>-------</option>
              				<option value="T" <c:out value="${cri.type=='T' ? 'selected':'' }" />>도서명</option>
@@ -235,20 +250,55 @@
     </section>
     
     <script>
-    $(function(){
-    	$("th").slice(0, 10).show(); // 최초 10개 선택
+   let amount = $("input[name='tableamount']").val();
+
+    $("#addbtn").click(function moreList(e){
+    	e.preventDefault();
     	
-    	$("#addBtn").click(function(e){ // Load More를 위한 클릭 이벤트e
-    	
-    		e.preventDefault();
-    	
-    	$("th:hidden").slice(0, 10).show(); // 숨김 설정된 다음 10개를 선택하여 표시
-    	
-    	if($("th:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
-    		alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
-    		}
-    	});
+    	amount = parseInt(amount);
+	    amount += 10;
+	    console.log(amount);
+             
+        $.ajax({
+            url :"/shop/shoplist",
+            type :"POST",
+            data : { 
+            		amount : amount
+            },
+            success :function(data){
+                console.log(data);
+
+    	   $('.remove').remove();
+    	   
+    	   
+           let content="";
+           for(var i=0; i<data.length; i++){
+        	   content +=
+        	   "<tr class='remove'>"+
+	                "<td>"+data[i].bno+"</td>"+
+	                "<td>"+data[i].bookname+"</td>"+
+	                "<td>"+data[i].writer+"</td>"+
+	                "<td>"+data[i].publisher+"</td>"+
+	                "<td>"+data[i].issue_year+"</td>"+
+	                "<td>"+data[i].book_qnt+"</td>"+
+	                "<td>"+data[i].rent_qnt+"</td>"+
+               "</tr>";
+           }
+           /* content+="<a href='' type='button' class='btn gray-btn' id='morelist'>load More books</a>"; */
+           
+           /* $('#addbtn').remove();//remove btn */
+
+           $(content).appendTo("#table");
+           
+           
+                
+            }, error:function(request,status,error){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+               }
+        });
     });
+	
+	
     </script>
     
     <footer>

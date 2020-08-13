@@ -5,6 +5,7 @@
     <head>
         <title>로그인 / 회원가입</title>
         <link rel="stylesheet" href="/assets/css/register_style.css">
+        <link rel="icon" type="image/png" href="/assets/bookico_bk.ico">
         <!-- Bootstrap CSS -->
 
 		<!-- jquery,jquery-validate : 순서 중요, 둘이 세트 -->

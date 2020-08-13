@@ -14,6 +14,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--webfonts-->
 <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/assets/bookico_bk.ico">
 <!--//webfonts-->
 <script>
 	function myFunction()
