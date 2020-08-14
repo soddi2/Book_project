@@ -190,6 +190,7 @@
 											<tr class="remove">
 												<td>${list.bno}</td>
 												<td>${list.bookname}</td>
+												<%-- <td><a href="#" onclick="fn_contentView(<c:out value="${list.bno}"/>)"><c:out value="${list.title}"/> --%>
 												<td>${list.writer}</td>
 												<td>${list.publisher}</td>
 		                                        <td>${list.issue_year}</td>
@@ -199,6 +200,24 @@
 										</c:forEach>
 									</c:when>
 								</c:choose>
+								<%-- <c:choose>
+									<c:when test="${empty search}" >
+										<tr><td colspan="7" align="center">데이터가 없습니다.</td></tr>
+									</c:when> 
+									<c:when test="${!empty search}">
+										<c:forEach var="list" items="${search}">
+											<tr class="remove">
+												<td>${search.bno}</td>
+												<td>${search.bookname}</td>
+												<td>${search.writer}</td>
+												<td>${search.publisher}</td>
+		                                        <td>${search.issue_year}</td>
+		                                        <td>${search.book_qnt}</td>
+		                                        <td>${search.rent_qnt}</td>
+											</tr>
+										</c:forEach>
+									</c:when>
+								</c:choose> --%>
 							</tbody>
 						</table>
 					</div>
@@ -249,21 +268,46 @@
         
     </section>
     
+    <!-- 모달창 -->
+	<div class="modal" tabindex="-1">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <p>Modal body text goes here.</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+    
     <script>
    let amount = $("input[name='tableamount']").val();
-
+   let amount = $("input[name='pageNum']").val();
+   let keyword = $("input[name='keyword']").val();
+   let searchForm = $("#searchForm");
+   
     $("#addbtn").click(function moreList(e){
     	e.preventDefault();
     	
     	amount = parseInt(amount);
 	    amount += 10;
 	    console.log(amount);
-             
+
         $.ajax({
             url :"/shop/shoplist",
             type :"POST",
             data : { 
-            		amount : amount
+            		amount : amount,
+            		keyword : keyword 
             },
             success :function(data){
                 console.log(data);
@@ -284,21 +328,45 @@
 	                "<td>"+data[i].rent_qnt+"</td>"+
                "</tr>";
            }
+	       /* content += "<input type='text' name='keyword' value='${cri.keyword}'/>" */
            /* content+="<a href='' type='button' class='btn gray-btn' id='morelist'>load More books</a>"; */
            
            /* $('#addbtn').remove();//remove btn */
 
            $(content).appendTo("#table");
            
-           
-                
+           searchForm.find("input[name='pageNum']").val("1");
+		   searchForm.submit();
+  
             }, error:function(request,status,error){
                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                }
         });
     });
-	
-	
+    
+	  //검색 버튼 클릭시
+	    $(".btn-search").click(function(){
+			//action id가 search폼인 거 담기
+	    	let searchForm = $("#searchForm");
+	    	
+	    	//type과 keyword가 비어 있는지 확인 하고
+			//비어 있으면 메세지 띄워준 후 return
+			//태그가 select면 select로 
+			if($("select[name='type']").val()===""){
+				alert("타입을 선택해 주세요");
+	    		return false; //return을 하면 안돌아 갈수도 있어어 예방차원에 false를 해줌
+			}else if($("input[name='keyword']").val()===""){
+		 		alert("검색어를 입력하세요");
+					return false;
+	  		}
+	  
+			//모두 입력이 되어 있으면 폼 전송
+			searchForm.find("input[name='pageNum']").val("1");
+			searchForm.submit();
+	    })
+	    
+	 
+
     </script>
     
     <footer>

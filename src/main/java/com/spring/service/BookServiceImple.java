@@ -17,12 +17,16 @@ public class BookServiceImple implements BookService {
 
 	@Override
 	public List<BookVO> booklist(Criteria cri) {
-		// TODO Auto-generated method stub
 		return mapper.booklist(cri);
 	}
 
 	@Override
 	public int total(Criteria cri) {
 		return mapper.total(cri);
+	}
+
+	@Override
+	public List<BookVO> booksearch(Criteria cri) {
+		return mapper.booksearch(cri);
 	}
 }

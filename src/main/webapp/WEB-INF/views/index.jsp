@@ -67,15 +67,17 @@
             <nav class="navbar navbar-default bootsnav navbar-fixed no-background white">
 
                 <!-- Start Top Search -->
-                <div class="top-search">
-                    <div class="container">
-                        <div class="input-group">
-                        	<span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input id="bookName" type="text" class="form-control" placeholder="Search" onkeyup="enterkey();" />
-                            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-                        </div>
-                    </div>
-                </div>
+                <form action="/shop/shopSearch" method="post">
+	                <div class="top-search">
+	                    <div class="container">
+	                        <div class="input-group">
+	                        	<span class="input-group-addon"><i class="fa fa-search"></i></span>
+	                            <input id="booksearch" type="text" name="keyword" class="form-control" placeholder="Search" value="${cri.keyword}" />
+	                            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+	                        </div>
+	                    </div>
+	                </div>
+                </form>
                 <!-- End Top Search -->
 
 
@@ -607,11 +609,10 @@
                 </div>
             </section><!-- End off test section -->
  
- 
  	   <script type="text/javascript" src="/assets/js/board/js/jquery.ajax-cross-origin.min.js"></script>
        <script>  
-      $(function(){
-   	
+      $(function Popularbooks(){
+
    	   $.ajax({ 
    	    	crossOrigin : true,
    	    	url: "http://data4library.kr/api/loanItemSrch?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&format=json",    	
@@ -626,51 +627,26 @@
    	        }    	 
    	    });	   
 
-
       })
-        // 네이버(검색)
-        // 인터파크(베스트셀러)
-        // 알라딘(신간)
-        
-        //카카오(검색)
-        function enterkey(e){
-		    $.ajax({
-		        url: "https://dapi.kakao.com/v3/search/book?target=title",
-		        type: "get",
-		        data: { query : $("#bookName").val() },
-		        headers : { Authorization : "KakaoAK d8a810dabcbbeac5ccd08bb772fcde61" },
-		        success: function(data){
-		        	console.log(data);
-		        	console.log(data.documents[0].title);	
-		        	console.log(data.documents[0].authors);
-		        	console.log(data.documents[0].thumbnail);
-		        	
-		        	$( "p" ).append( "<img scr='"+data.documents[0].thumbnail+"'/>" );
-		        	
-		        	if(window.event.keyCode ==  13){
-		            	 if($('#bookName').val() == ''){
-		               	     alert('검색어를 입력해 주세요');
-		                     $('#bookName').focus();
-		                     
-		            	 }else if($('#bookName').val() == data) {
-		            		
-		            	 	
-		            	 }else{
-		                     callAjax($('#bookName').val());
-		                     $('#name').val("");
-		             		}
-			            }
-		        },
-		        error: function (xhr,txtStatus,error){        
-		        	alert(xhr.responseText);
-		        }
-		      });
-        }
-        
-        
+      
+	
+		$("#booksearch").keydown(function(key) {
+			if (key.keyCode == 13) {
+				var thisText = $('#booksearch').val();  // 검색한 단어
+
+				if(thisText == ''){
+					alert('검색어가 없습니다.');
+					
+				}else {
+					/* location.href = "/shop/mainsearch"; */
+					window.location.href = ("${pageContext.request.contextPath}/shop/shopSearch?keyword=" + encodeURIComponent(thisText));
+					
+				}
+			}
+
+		});
+
 		</script>
-
-
 
             <footer id="contact" class="footer action-lage bg-black p-top-80">
                 <!--<div class="action-lage"></div>-->

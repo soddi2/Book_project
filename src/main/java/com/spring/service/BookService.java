@@ -8,4 +8,5 @@ import com.spring.domain.Criteria;
 public interface BookService {
 	public List<BookVO> booklist(Criteria cri);
 	public int total(Criteria cri);
+	public List<BookVO> booksearch(Criteria cri);
 }

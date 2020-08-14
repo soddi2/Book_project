@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.BookVO;
 import com.spring.domain.Criteria;
@@ -32,7 +33,8 @@ public class BookController {
 	@Autowired
 	private BookService service;
 	
-	@GetMapping("shopSearch")
+	
+	@GetMapping(value= {"shopSearch"})
 	public String rent(@ModelAttribute("cri") Criteria cri,Model model) {
 		log.info("shop 페이지 form");
 		
@@ -44,13 +46,33 @@ public class BookController {
 		
 		return "/shop/shopSearch";
 	}
+	
+	@PostMapping("shopSearch")
+	public String booksearch(@ModelAttribute("cri") Criteria cri,Model model,RedirectAttributes rttr) {
+		log.info("메인 서치 컨트롤러");
+		log.info(" 키워드 "+cri);
+		
+		/* cri.setKeyword("%"+cri.getKeyword()+"%"); */
+		
+		List<BookVO> search = service.booksearch(cri);
+		log.info("리스트 사이즈 " + search.size());
+		if(!search.isEmpty()) {
+			model.addAttribute("list" , search);
+			return "/shop/shopSearch";
+		}else {
+			rttr.addFlashAttribute("msg", "검색 결과 없음");
+			rttr.addFlashAttribute("tab", search);
+			return "redirect:/";
+		}		
+	}
 
-	@PostMapping("/shoplist") 
+	@PostMapping("shoplist") 
 	 public ResponseEntity <List<BookVO>> loadmorebtn(Criteria cri,Model model){
 		log.info("더보기 버튼");
 		log.info(""+cri.getAmount());
-	 
+	 System.out.println(cri.getKeyword());
 	    cri.setAmount(cri.getAmount());
+	    //cri.setKeyword(cri.getKeyword());
 	    List<BookVO> list = service.booklist(cri);
 	    
 	    log.info(""+list);
@@ -74,5 +96,26 @@ public class BookController {
 	public void shop() {
 		log.info("도서 페이지 구현");
 	}
+
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

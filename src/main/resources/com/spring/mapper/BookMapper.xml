@@ -16,7 +16,7 @@
 				from bookDB 
 				where 
 		]]>		
-			<include refid="criteria"></include>
+		<include refid="criteria"></include>
 		<![CDATA[
 				bno>0 and rownum <= (#{pageNum}*#{amount}))
 				where rn > (#{pageNum}-1)*#{amount}
@@ -30,23 +30,19 @@
 		bno>0
 	</select>
 	
-	<select id="booksearch">
-		select * from bookDB where bookname = #{bookname} and writer = #{writer}
-	</select>
-
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
 			<foreach collection="typeArr" item="type">
 				<trim prefix="OR">
 					<choose>
 						<when test="type=='T'.toString()">
-							title like '%'||#{keyword}||'%'
+							bookname like '%'||#{keyword}||'%'
 						</when>
 						<when test="type=='C'.toString()">
-							content like '%'||#{keyword}||'%'
+							writer like '%'||#{keyword}||'%'
 						</when>
 						<when test="type=='W'.toString()">
-							writer like '%'||#{keyword}||'%'
+							publisher like '%'||#{keyword}||'%'
 						</when>
 					</choose>
 				</trim>
@@ -54,5 +50,11 @@
 		</trim>
 	</sql>
 
+	<!-- main search -->
+	<select id="booksearch" resultType="com.spring.domain.BookVO">
+		select * 
+		from bookDB 
+		where bookname like #{keyword} or writer like '%'||#{keyword}||'%'
+	</select>
 
 </mapper>
