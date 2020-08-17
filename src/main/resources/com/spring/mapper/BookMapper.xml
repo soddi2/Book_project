@@ -30,6 +30,8 @@
 		bno>0
 	</select>
 	
+	
+	
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
 			<foreach collection="typeArr" item="type">
@@ -56,5 +58,18 @@
 		from bookDB 
 		where bookname like #{keyword} or writer like '%'||#{keyword}||'%'
 	</select>
+	<!-- Book 1개 정보 가져오기 -->
+	<select id="getBook" resultType="com.spring.domain.BookVO">
+	select * from bookDB where bno=#{bno}
+	</select>
+	
+	<!-- 장바구니에 Book담기 -->
+	<insert id="insertCart">insert into rent(bno,userid) values(#{bno},#{userid})</insert>
+	
+	<!-- 대여 리스트 -->
+	<select id="rent" resultType="com.spring.domain.RentVO">
+		select r.bno,r.userid,b.writer,b.publisher,b.bookname,rental_date, return_date from bookDB b, rent r,client c where r.bno=b.bno and r.userid=c.userid and c.userid=#{userid}
+	</select>
+	
 
 </mapper>

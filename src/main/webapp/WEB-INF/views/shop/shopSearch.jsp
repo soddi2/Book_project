@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- fmt라이브러리 : 등록일 생성 -->
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,11 +78,13 @@
                                 <a href="/register/logout" class="nav-link">LogOut</a>
                             </li>
 	                        <li>
-		                        <div class="cart my-2 my-lg-0">
-		                            <span>
-		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-		                            <span class="quntity">3</span>
-		                        </div>
+	                        	<form action="shopping_list" method="post">
+			                        <div class="cart my-2 my-lg-0">
+			                            <span>
+			                                <a href="/shop/shopping_list"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span>
+			                            <span class="quntity">3</span>
+			                        </div>
+			                     </form>
 	                        </li>
                         </c:if>
                         </ul>
@@ -189,8 +193,7 @@
 										<c:forEach var="list" items="${list}">
 											<tr class="remove">
 												<td>${list.bno}</td>
-												<td>${list.bookname}</td>
-												<%-- <td><a href="#" onclick="fn_contentView(<c:out value="${list.bno}"/>)"><c:out value="${list.title}"/> --%>
+												<td><a href="#" onClick="fn_contentView(<c:out value="${list.bno}"/>)"><c:out value="${list.bookname}"/></a></td>
 												<td>${list.writer}</td>
 												<td>${list.publisher}</td>
 		                                        <td>${list.issue_year}</td>
@@ -290,8 +293,16 @@
 	</div>
     
     <script>
+   
+    //글 제목 클릭시 상세페이지로 넘어가기
+    function fn_contentView(bno){
+		var url = "${pageContext.request.contextPath}/shop/product_single";
+		url = url + "?bno="+bno;
+		location.href = url;
+	} 
+
    let amount = $("input[name='tableamount']").val();
-   let amount = $("input[name='pageNum']").val();
+   let pageNum = $("input[name='pageNum']").val();
    let keyword = $("input[name='keyword']").val();
    let searchForm = $("#searchForm");
    
@@ -299,13 +310,14 @@
     	e.preventDefault();
     	
     	amount = parseInt(amount);
-	    amount += 10;
+    	pageNum += 1;
 	    console.log(amount);
 
         $.ajax({
             url :"/shop/shoplist",
             type :"POST",
             data : { 
+            		pageNum : pageNum,
             		amount : amount,
             		keyword : keyword 
             },
@@ -364,8 +376,6 @@
 			searchForm.find("input[name='pageNum']").val("1");
 			searchForm.submit();
 	    })
-	    
-	 
 
     </script>
     

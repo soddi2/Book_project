@@ -78,7 +78,7 @@
                             <li>
 		                        <div class="cart my-2 my-lg-0">
 		                            <span>
-		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+		                                <a href="/shop/shopping_list"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span>
 		                            <span class="quntity">3</span>
 		                        </div>
 	                        </li>
@@ -157,10 +157,14 @@
                         </li>
                         <li><span class="save-cost">Save $7.62 (69%)</span></li>
                     </ul>
-                    <div class="btn-sec">
-                        <button class="btn ">Add To cart</button>
-                        <button class="btn black">Buy Now</button>
-                    </div>
+                   <form action="shopping_list" role="form" method="post">
+                   		<input type="hidden" name="bno" value="${bno}"/>
+                   		<input type="hidden" name="userid" value="${auth.userid}"/>                  		
+	                    <div class="btn-sec">
+	                        <button class="btn add-cart">Add To cart</button>
+	                        <button class="btn black">Buy Now</button>
+	                    </div>
+                   </form>
                 </div>
             </div>
         </div>
@@ -296,6 +300,28 @@
                 </div>
             </div>
         </div>
+        <script>
+        
+        $(function(){
+        	let form = $("form[role='form']");
+        	let userid = $("input[name='userid']").val();
+        	
+        	$(".add-cart").on("click",function(e){
+        		e.preventDefault();
+        	if(userid!=''){
+        		form.submit();
+        	}else{
+        		alert("로그인이 필요한 기능입니다.");        		
+        	}
+        		
+        		
+        	})
+        	
+        	
+        })
+        </script>
+        
+        
     </footer>
     <script src="/assets/shop/js/jquery.min.js"></script>
     <script src="/assets/shop/js/bootstrap.min.js"></script>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.domain.BookVO;
 import com.spring.domain.Criteria;
+import com.spring.domain.RentVO;
 import com.spring.mapper.BookMapper;
 
 @Service
@@ -28,5 +29,21 @@ public class BookServiceImple implements BookService {
 	@Override
 	public List<BookVO> booksearch(Criteria cri) {
 		return mapper.booksearch(cri);
+	}
+
+	@Override
+	public List<RentVO> rent(String userid) {
+		
+		return mapper.rent(userid);
+	}
+
+	@Override
+	public BookVO getBook(int bno) {
+		return mapper.getBook(bno);
+	}
+
+	@Override
+	public boolean insertCart(RentVO vo) {
+		return mapper.insertCart(vo)>0?true:false;
 	}
 }

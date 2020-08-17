@@ -78,7 +78,7 @@
 	                        <li>
 		                        <div class="cart my-2 my-lg-0">
 		                            <span>
-		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+		                                <a href="/shop/shopping_list?userid=${auth.userid }"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span>
 		                            <span class="quntity">3</span>
 		                        </div>
 	                        </li>
