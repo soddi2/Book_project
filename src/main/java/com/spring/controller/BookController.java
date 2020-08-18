@@ -69,8 +69,10 @@ public class BookController {
 	@PostMapping("shoplist") 
 	 public ResponseEntity <List<BookVO>> loadmorebtn(Criteria cri,Model model){
 		log.info("더보기 버튼");
-		log.info(""+cri.getAmount());
-	 System.out.println(cri.getKeyword());
+		log.info(""+cri);
+		System.out.println(cri);
+		
+		cri.setPageNum(cri.getPageNum());
 	    cri.setAmount(cri.getAmount());
 	    //cri.setKeyword(cri.getKeyword());
 	    List<BookVO> list = service.booklist(cri);

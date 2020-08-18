@@ -17,6 +17,9 @@
     <link rel="icon" type="image/png" href="/assets/bookico_bk.ico">
     
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    
+    <!-- <script type="text/javascript" src="/script/dlgrids_eval.js"></script>
+	<script type="text/javascript" src="/script/realgridjs.js"></script> -->
 </head>
 
 <body>
@@ -251,7 +254,7 @@
              		<!-- 주소줄 자리 때문에 위에 있음,일관성을 줄수 있음 -->
              			<input type="hidden" name="pageNum" value="${cri.pageNum}" />
              			<input type="hidden" name="amount" value="${cri.amount}" />                            			
-             			<input type="hidden" name="tableamount" value="${cri.amount}" />                            			
+             			<input type="hidden" name="tableamount" value="${cri.amount}" />   
              			<select name="type" id="">
              				<option value="" <c:out value="${empty cri.type?'selected':'' }" />>-------</option>
              				<option value="T" <c:out value="${cri.type=='T' ? 'selected':'' }" />>도서명</option>
@@ -291,27 +294,27 @@
     
     <script>
    let amount = $("input[name='tableamount']").val();
-   let amount = $("input[name='pageNum']").val();
+   let pageNum = $("input[name='pageNum']").val();
    let keyword = $("input[name='keyword']").val();
    let searchForm = $("#searchForm");
    
     $("#addbtn").click(function moreList(e){
     	e.preventDefault();
     	
-    	amount = parseInt(amount);
-	    amount += 10;
-	    console.log(amount);
+       /* let pageNume1 = parseInt(pageNume); */
+	   /* console.log(pageNum); */
 
         $.ajax({
             url :"/shop/shoplist",
             type :"POST",
             data : { 
+            		/* pageNume : pageNume, */
             		amount : amount,
             		keyword : keyword 
             },
             success :function(data){
                 console.log(data);
-
+                pageNum += 1;
     	   $('.remove').remove();
     	   
     	   
@@ -331,11 +334,13 @@
 	       /* content += "<input type='text' name='keyword' value='${cri.keyword}'/>" */
            /* content+="<a href='' type='button' class='btn gray-btn' id='morelist'>load More books</a>"; */
            
-           /* $('#addbtn').remove();//remove btn */
+           $('#addbtn').remove(); /* remove btn */
 
            $(content).appendTo("#table");
            
            searchForm.find("input[name='pageNum']").val("1");
+           
+           
 		   searchForm.submit();
   
             }, error:function(request,status,error){
