@@ -82,11 +82,13 @@
                                 <a href="/register/logout" class="nav-link">LogOut</a>
                             </li>
                             <li>
-		                        <div class="cart my-2 my-lg-0">
-		                            <span>
-		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-		                            <span class="quntity">3</span>
-		                        </div>
+	                        	<form action="shopping_list" method="get">
+			                        <div class="cart my-2 my-lg-0">
+			                            <span>
+			                                <a href="/shop/shopping_list"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span>
+			                            <span class="quntity">3</span>
+			                        </div>
+			                     </form>
 	                        </li>
                         </c:if>
                         </ul>
@@ -112,33 +114,47 @@
 						<table class="table table-striped table-sm">
 							<colgroup>
 								<col style="width:5%;" />
+								<col style="width:5%;" />
 								<col style="width:auto;" />
 								<col style="width:15%;" />
+								<col style="width:10%;" />
 								<col style="width:10%;" />
 								<col style="width:10%;" />
 							</colgroup>
 							<thead>
 								<tr>
+									<th>항목</th>
 									<th>NO</th>
 									<th>책 제목</th>
 									<th>지은이</th>
-									<th></th>
-									<th>금 액</th>
+									<th>출판사</th>
+									<th>대여일</th>
+									<th>반납일</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:choose>
-									<c:when test="${empty boardList }" >
-										<tr><td colspan="5" align="center">데이터가 없습니다.</td></tr>
+									<c:when test="${empty rent }" >
+										<tr><td colspan="7" align="center">데이터가 없습니다.</td></tr>
 									</c:when> 
-									<c:when test="${!empty boardList}">
-										<c:forEach var="list" items="${boardList}">
+									<c:when test="${!empty rent}">
+										<c:forEach var="vo" items="${rent}">
 											<tr>
-												<td><c:out value="${list.bid}"/></td>
-												<td><c:out value="${list.title}"/></td>
-												<td><c:out value="${list.reg_id}"/></td>
-												<td><c:out value="${list.view_cnt}"/></td>
-												<td><c:out value="${list.reg_dt}"/></td>
+							 					<td>
+													<div class="input-group mb-3">
+													  <div class="input-group-prepend">
+													    <div class="input-group-text">
+													      <input type="checkbox" name="book_check" aria-label="Checkbox for following text input" data-cartNum="${vo.rno}">
+													    </div>
+													  </div>
+													</div>
+												</td> 
+												<td>${vo.bno }</td>
+												<td>${vo.bookname }</td>
+												<td>${vo.writer }</td>
+												<td>${vo.publisher }</td>
+												<td>${vo.rental_date }</td>
+												<td>${vo.return_date }</td>
 											</tr>
 										</c:forEach>
 									</c:when>
@@ -146,18 +162,47 @@
 							</tbody>
 						</table>
 					</div>
-					<div>
-						<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
+					<label for="">총 권수 : </label>
+					<div style="float: right;">
+						<button type="button" class="btn btn-sm btn-primary" id="btnReturnForm">반납</button>
 					</div>
 				</div>
-			</article>
 			<script>
-				$(document).on('click', '#btnWriteForm', function(e){
+				$(document).on('click', '#btnRentForm', function(e){
 					e.preventDefault();
-					location.href = "${pageContext.request.contextPath}/board/QnAwrite";
+					location.href = "${pageContext.request.contextPath}/shop/shop";
 				});
+				
+				
+				//체크 박스
+				$("#btnReturnForm").click(function(){
+				     var confirm_val = confirm("반납하시겠습니까?");
+				     
+				     if(confirm_val) {
+				      var checkArr = new Array();
+				      
+				      $("input[class='book_check']:checked").each(function(){
+				       		checkArr.push($(this).attr("data-cartNum"));
+				      });
+				       
+				      
+				      /* tranditional : true */
+				      $.ajax({
+				       url : "/shop/return",
+				       type : "post",
+				       data : { book_check : checkArr },
+				       success : function(){
+				    	   if(result == 1) {          
+				    		   location.href = "/shop/shopping_list";
+				    		  } else {
+				    		   alert("반납 실패");
+				    		  }
+				      	 }
+				    });
+				  } 
+			});
+
 			</script>
-        </div>
     </section>
     <footer>
         <div class="container">

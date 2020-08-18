@@ -1,5 +1,6 @@
 package com.spring.controller;
 
+import javax.print.PrintException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,16 +70,21 @@ public class MemberController {
 		
 		boolean register = service.register(vo);
 		
-		//로그인 확인 => 성공시 index.jsp / 실패시 로그인 페이지
-		LoginVO auth = service.isLogin(login);
-		if(register) {
-			model.addAttribute("userid", vo.getUserid());
-			model.addAttribute("password", vo.getPassword());
-			model.addAttribute("address", vo.getAddress());
-			model.addAttribute("email", vo.getEmail());
-			
-			return "/register/register";
-		}else {
+		try {
+			//로그인 확인 => 성공시 index.jsp / 실패시 로그인 페이지
+			LoginVO auth = service.isLogin(login);
+			if(register) {
+				model.addAttribute("userid", vo.getUserid());
+				model.addAttribute("password", vo.getPassword());
+				model.addAttribute("address", vo.getAddress());
+				model.addAttribute("email", vo.getEmail());
+				model.addAttribute("mobile", vo.getMobile());
+				
+				return "/register/register";
+			}else {
+				return "/register/register";
+			}
+		} catch (Exception e) {
 			return "/register/register";
 		}
 	}

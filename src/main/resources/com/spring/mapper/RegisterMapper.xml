@@ -5,7 +5,7 @@
 	<!-- 회원가입 -->
 	<insert id="register">
 		insert into client(userid, password, email, address, mobile)
-		values(#{userid}, #{password}, #{email}, #{address}, #{mobile})
+		values( #{userid}, #{password}, #{email}, #{address}, #{mobile})
 	</insert>
 
 	<!-- 중복 아이디 -->

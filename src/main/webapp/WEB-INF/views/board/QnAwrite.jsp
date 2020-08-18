@@ -94,12 +94,14 @@
                             <li class="navbar-item">
                                 <a href="/register/logout" class="nav-link">LogOut</a>
                             </li>
-                            <li>
-		                        <div class="cart my-2 my-lg-0">
-		                            <span>
-		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-		                            <span class="quntity">3</span>
-		                        </div>
+                           <li>
+	                        	<form action="shopping_list" method="get">
+			                        <div class="cart my-2 my-lg-0">
+			                            <span>
+			                                <a href="/shop/shopping_list"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span>
+			                            <span class="quntity">3</span>
+			                        </div>
+			                     </form>
 	                        </li>
                         </c:if>
                         </ul>
