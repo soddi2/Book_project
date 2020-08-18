@@ -78,7 +78,7 @@
                                 <a href="/register/logout" class="nav-link">LogOut</a>
                             </li>
 	                        <li>
-	                        	<form action="shopping_list" method="post">
+	                        	<form action="shopping_list" method="get">
 			                        <div class="cart my-2 my-lg-0">
 			                            <span>
 			                                <a href="/shop/shopping_list"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span>
@@ -314,7 +314,7 @@
 	    console.log(amount);
 
         $.ajax({
-            url :"/shop/shoplist",
+            url :"/shop/loadmore",
             type :"POST",
             data : { 
             		pageNum : pageNum,

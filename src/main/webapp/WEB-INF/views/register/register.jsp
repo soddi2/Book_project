@@ -45,7 +45,7 @@
                     <input type="password" name="password" class="input-field" placeholder="비밀번호를 입력해주세요." required>
                     <input type="email" name="email" class="input-field" placeholder="이메일을 입력해주세요." value="${vo.email}" required>
                     <input type="text" name="address" class="input-field" placeholder="주소를 입력해주세요." value="${vo.address}" required>
-                    <input type="text" name="address" class="input-field" placeholder="전화번호를 입력해주세요." value="${vo.mobile}" required>
+                    <input type="text" name="mobile" class="input-field" placeholder="전화번호를 입력해주세요 ex)010xxxxxxxx." value="${vo.mobile}" required>
                     <input type="checkbox" class="checkbox"><span>Terms and conditions</span>
                     <button class="submit" class="btn btn-primary">REGISTER</button>
                 </form>

@@ -76,11 +76,13 @@
                                 <a href="/register/logout" class="nav-link">LogOut</a>
                             </li>
                             <li>
-		                        <div class="cart my-2 my-lg-0">
-		                            <span>
-		                                <a href="/shop/shopping_list"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span>
-		                            <span class="quntity">3</span>
-		                        </div>
+	                        	<form action="shopping_list" method="get">
+			                        <div class="cart my-2 my-lg-0">
+			                            <span>
+			                                <a href="/shop/shopping_list"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span>
+			                            <span class="quntity">3</span>
+			                        </div>
+			                     </form>
 	                        </li>
                         </c:if>
                         </ul>
@@ -101,7 +103,7 @@
     </div>
     <section class="product-sec">
         <div class="container">
-            <h1>7 Day Self publish How to Write a Book</h1>
+            <h1>How to read the book you want in 7 days</h1>
             <div class="row">
                 <div class="col-md-6 slider-sec">
                     <!-- main slider carousel -->
@@ -109,7 +111,7 @@
                         <!-- main slider carousel items -->
                         <div class="carousel-inner">
                             <div class="active item carousel-item" data-slide-number="0">
-                                <img src="/assets/shop/images/product1.jpg" class="img-fluid">
+                                <img src="/assets/shop/images/xxlarge.jpg" class="img-fluid">
                             </div>
                             <div class="item carousel-item" data-slide-number="1">
                                 <img src="/assets/shop/images/product2.jpg" class="img-fluid">
@@ -122,7 +124,7 @@
                         <ul class="carousel-indicators list-inline">
                             <li class="list-inline-item active">
                                 <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
-                                <img src="/assets/shop/images/product1.jpg" class="img-fluid">
+                                <img src="/assets/shop/images/xxlarge.jpg" class="img-fluid">
                             </a>
                             </li>
                             <li class="list-inline-item">
@@ -156,15 +158,10 @@
                             <span class="price final">$3.37</span>
                         </li>
                         <li><span class="save-cost">Save $7.62 (69%)</span></li>
-                    </ul>
-                   <form action="shopping_list" role="form" method="post">
-                   		<input type="hidden" name="bno" value="${bno}"/>
-                   		<input type="hidden" name="userid" value="${auth.userid}"/>                  		
-	                    <div class="btn-sec">
-	                        <button class="btn add-cart">Add To cart</button>
-	                        <button class="btn black">Buy Now</button>
-	                    </div>
-                   </form>
+                    </ul>              		
+                    <div class="btn-sec">
+                        <button class="btn add-cart">Rental Now</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -300,8 +297,34 @@
                 </div>
             </div>
         </div>
-        <script>
+
+<!-- 대여 확인 창 -->
+<div class="modal" tabindex="-1" id="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Rental Window</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>대여하시겠습니까?</p>
+      </div>
+	<form action="insertCart" method="post">
+	      <div class="modal-footer">
+	     	<input type="hidden" name="bno" value="${bno}"/>
+	     	<input type="hidden" name="userid" value="${auth.userid}"/>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-Rental">Rental</button>
+	      </div>
+      </form>
+    </div>
+  </div>
+</div>
         
+        <script>
+ 
         $(function(){
         	let form = $("form[role='form']");
         	let userid = $("input[name='userid']").val();
@@ -309,15 +332,20 @@
         	$(".add-cart").on("click",function(e){
         		e.preventDefault();
         	if(userid!=''){
-        		form.submit();
+        		
+	    		 $("#modal").show();
+	    		 
+	    		 $(".btn-secondary, .close").on('click',function(){
+	    			 $("#modal").hide();
+	    			 
+	    		});
+
         	}else{
         		alert("로그인이 필요한 기능입니다.");        		
         	}
         		
         		
         	})
-        	
-        	
         })
         </script>
         

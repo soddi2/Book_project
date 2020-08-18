@@ -82,11 +82,13 @@
                                 <a href="/register/logout" class="nav-link">LogOut</a>
                             </li>
                             <li>
-		                        <div class="cart my-2 my-lg-0">
-		                            <span>
-		                                <a href="/shop/shopping_list"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span>
-		                            <span class="quntity">3</span>
-		                        </div>
+	                        	<form action="shopping_list" method="get">
+			                        <div class="cart my-2 my-lg-0">
+			                            <span>
+			                                <a href="/shop/shopping_list"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span>
+			                            <span class="quntity">3</span>
+			                        </div>
+			                     </form>
 	                        </li>
                         </c:if>
                         </ul>
@@ -142,7 +144,7 @@
 													<div class="input-group mb-3">
 													  <div class="input-group-prepend">
 													    <div class="input-group-text">
-													      <input type="checkbox" aria-label="Checkbox for following text input">
+													      <input type="checkbox" name="book_check" aria-label="Checkbox for following text input" data-cartNum="${vo.rno}">
 													    </div>
 													  </div>
 													</div>
@@ -162,9 +164,7 @@
 					</div>
 					<label for="">총 권수 : </label>
 					<div style="float: right;">
-						<button type="button" class="btn btn-sm btn-primary" id="btnRentForm">대여</button>
-						<button type="button" class="btn btn-sm btn-primary" id="btnRentForm">반납</button>
-						<button type="button" class="btn btn-sm btn-primary" id="btnRentForm">삭제</button>
+						<button type="button" class="btn btn-sm btn-primary" id="btnReturnForm">반납</button>
 					</div>
 				</div>
 			<script>
@@ -172,6 +172,36 @@
 					e.preventDefault();
 					location.href = "${pageContext.request.contextPath}/shop/shop";
 				});
+				
+				
+				//체크 박스
+				$("#btnReturnForm").click(function(){
+				     var confirm_val = confirm("반납하시겠습니까?");
+				     
+				     if(confirm_val) {
+				      var checkArr = new Array();
+				      
+				      $("input[class='book_check']:checked").each(function(){
+				       		checkArr.push($(this).attr("data-cartNum"));
+				      });
+				       
+				      
+				      /* tranditional : true */
+				      $.ajax({
+				       url : "/shop/return",
+				       type : "post",
+				       data : { book_check : checkArr },
+				       success : function(){
+				    	   if(result == 1) {          
+				    		   location.href = "/shop/shopping_list";
+				    		  } else {
+				    		   alert("반납 실패");
+				    		  }
+				      	 }
+				    });
+				  } 
+			});
+
 			</script>
     </section>
     <footer>
