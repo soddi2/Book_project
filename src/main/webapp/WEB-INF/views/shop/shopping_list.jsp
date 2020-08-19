@@ -144,7 +144,7 @@
 													<div class="input-group mb-3">
 													  <div class="input-group-prepend">
 													    <div class="input-group-text">
-													      <input type="checkbox" name="book_check" aria-label="Checkbox for following text input" data-cartNum="${vo.rno}">
+													      <input type="checkbox" name="bookcheck" class="bookcheck" aria-label="Checkbox for following text input" value="${vo.rno}">
 													    </div>
 													  </div>
 													</div>
@@ -164,7 +164,7 @@
 					</div>
 					<label for="">총 권수 : </label>
 					<div style="float: right;">
-						<button type="button" class="btn btn-sm btn-primary" id="btnReturnForm">반납</button>
+						<button type="button" class="btn btn-sm btn-primary" id="btnReturnForm" value="${vo.rno}">반납</button>
 					</div>
 				</div>
 			<script>
@@ -179,26 +179,32 @@
 				     var confirm_val = confirm("반납하시겠습니까?");
 				     
 				     if(confirm_val) {
-				      var checkArr = new Array();
+				      var checkArr = [];
 				      
-				      $("input[class='book_check']:checked").each(function(){
-				       		checkArr.push($(this).attr("data-cartNum"));
+				      $("input[class='bookcheck']:checked").each(function(){
+				       		checkArr.push($(this).val());
 				      });
+				      console.log(checkArr)
 				       
 				      
-				      /* tranditional : true */
 				      $.ajax({
 				       url : "/shop/return",
 				       type : "post",
-				       data : { book_check : checkArr },
-				       success : function(){
-				    	   if(result == 1) {          
+				       traditional : true,
+				       data : { 
+				    	  
+				    	   bookcheck : checkArr 
+				    	   
+				       },
+				       success : function(result){
+				    	   /* console.log(data) */
+				    	    if(result == 1) {          
 				    		   location.href = "/shop/shopping_list";
 				    		  } else {
 				    		   alert("반납 실패");
 				    		  }
-				      	 }
-				    });
+				      	 } 
+				    })
 				  } 
 			});
 

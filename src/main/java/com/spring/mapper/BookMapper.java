@@ -13,4 +13,5 @@ public interface BookMapper {
 	public List<RentVO> rent(String userid);
 	public BookVO getBook(int bno);
 	public int insertCart(RentVO vo);
+	public int deleteCart(RentVO rent);
 }

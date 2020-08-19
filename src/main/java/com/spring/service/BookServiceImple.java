@@ -46,4 +46,9 @@ public class BookServiceImple implements BookService {
 	public boolean insertCart(RentVO vo) {
 		return mapper.insertCart(vo)>0?true:false;
 	}
+
+	@Override
+	public boolean deleteCart(RentVO rent) {
+		return mapper.deleteCart(rent) > 0 ? true:false;
+	}
 }

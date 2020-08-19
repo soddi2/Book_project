@@ -153,10 +153,11 @@ public class BookController {
 	
 	  @PostMapping("return")
 	  @ResponseBody 
-	  public int bookCheck(@RequestParam(value = "book_check[]") List<String> chArr, RentVO rent,HttpSession session) throws Exception { 
-		  log.info("반납");
+	  public int bookCheck(int[] bookcheck,HttpSession session) throws Exception { 
+		  log.info("반납" + bookcheck);
 		  
 		  LoginVO userId = (LoginVO) session.getAttribute("auth");
+		  RentVO rent = new RentVO();
 		  
 		  int result = 0;
 		  int rno = 0;
@@ -164,10 +165,9 @@ public class BookController {
 		  if(userId.getUserid() != null) {
 			  rent.setUserid(userId.getUserid());
 			  
-			  for(String i : chArr) {   
-			   rno = Integer.parseInt(i);
-			   rent.setRno(rno);
-			   
+			  for(int i : bookcheck) {
+			   rent.setRno(i);
+			   service.deleteCart(rent);
 			  }   
 			  result = 1;
 			 }  

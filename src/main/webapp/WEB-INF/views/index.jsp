@@ -472,7 +472,7 @@
                             <div class="grid text-center">
 
                                 <div class="grid-item transition metal ium">
-                                    <img alt="" src="assets/images/porfolio-1.jpg">
+                                    <img alt="" src="http://image.aladin.co.kr/product/272/78/cover/8936433679_2.jpg">
                                     <div class="grid_hover_area text-center">
                                         <div class="girid_hover_text m-top-110">
                                             <h4 class="text-white">Your Work Title</h4>
@@ -483,7 +483,7 @@
                                 </div><!-- End off grid item -->
 
                                 <div class="grid-item metalloid " >
-                                    <img alt="" src="assets/images/porfolio-2.jpg">
+                                    <img alt="" src="http://image.aladin.co.kr/product/15848/6/cover/k622533431_1.jpg">
                                     <div class="grid_hover_area text-center">
                                         <div class="girid_hover_text m-top-180">
                                             <h4 class="text-white">Your Work Title</h4>
@@ -494,7 +494,7 @@
                                 </div><!-- End off grid item -->
 
                                 <div class="grid-item post-transition metal numberGreaterThan50">
-                                    <img alt="" src="assets/images/porfolio-3.jpg">
+                                    <img alt="" src="http://image.aladin.co.kr/product/14712/55/cover/k202532053_1.jpg">
                                     <div class="grid_hover_area text-center">
                                         <div class="girid_hover_text m-top-50">
                                             <h4 class="text-white">Your Work Title</h4>
@@ -505,7 +505,7 @@
                                 </div><!-- End off grid item -->
 
                                 <div class="grid-item post-transition metal ium" >
-                                    <img alt="" src="assets/images/porfolio-4.jpg">
+                                    <img alt="" src="http://image.aladin.co.kr/product/8/6/cover/8986565048_2.jpg">
                                     <div class="grid_hover_area text-center">
                                         <div class="girid_hover_text m-top-180">
                                             <h4 class="text-white">Your Work Title</h4>
@@ -516,7 +516,7 @@
                                 </div><!-- End off grid item -->
 
                                 <div class="grid-item metal ar" >
-                                    <img alt="" src="assets/images/porfolio-5.jpg">
+                                    <img alt="" src="http://image.aladin.co.kr/product/367/21/cover/8988537017_2.jpg">
                                     <div class="grid_hover_area text-center">
                                         <div class="girid_hover_text m-top-110">
                                             <h4 class="text-white">Your Work Title</h4>
@@ -527,7 +527,7 @@
                                 </div><!-- End off grid item -->
 
                                 <div class="grid-item alkali ar" >
-                                    <img alt="" src="assets/images/porfolio-6.jpg">
+                                    <img alt="" src="http://image.aladin.co.kr/product/8679/31/cover/k372535696_1.jpg">
                                     <div class="grid_hover_area text-center">
                                         <div class="girid_hover_text m-top-50">
                                             <h4 class="text-white">Your Work Title</h4>
@@ -621,6 +621,8 @@
    	    	jsonpCallback: "myCallback", 
    	    	success:function(result){
    	    		console.log(result);
+
+   	    		
    	    	},
    	    	error: function (xhr,txtStatus,error){        
    	        	alert(xhr.status);

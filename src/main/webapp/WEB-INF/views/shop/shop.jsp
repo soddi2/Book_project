@@ -105,10 +105,10 @@
         <div class="container">
             <h2>highly recommendes books</h2>
             <div class="recomended-sec">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
+                <div class="row" id="result">
+                    <%-- <div class="col-lg-3 col-md-6">
                         <div class="item">
-                            <img src="/assets/shop/images/img1.jpg" alt="img">
+                            <img src="${doc.bookImageURL}" alt="img">
                             <h3>how to be a bwase</h3>
                             <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
                             <div class="hover">
@@ -117,8 +117,8 @@
                             </a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
+                    </div> --%>
+                   <!--  <div class="col-lg-3 col-md-6">
                         <div class="item">
                             <img src="/assets/shop/images/img2.jpg" alt="img">
                             <h3>How to write a book...</h3>
@@ -154,7 +154,7 @@
                                     </a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <h2>recently added books to our store</h2>
@@ -308,20 +308,14 @@
         </div> 
     
     </section>
-    
-    
-    
-    
-    
-       
-    
-    
-    
+
     <script type="text/javascript" src="/assets/js/board/js/jquery.ajax-cross-origin.min.js"></script>
     <script>  
    $(function Popularbooks(){
 	   /* window.addEventListener("wheel", func); */
-
+		
+	   let result = $("#result");
+	   
 	   $.ajax({ 
 	    	/* crossOrigin : true, */
 	    	url: "http://data4library.kr/api/loanItemSrch?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&format=json",    	
@@ -332,8 +326,39 @@
 	    	jsonp: 'view', */
 	    	dataType: 'jsonp',  
    	    	/* jsonpCallback: "myCallback", */
-	    	success:function(result){
-	    		console.log(result);
+   	    	
+   	    	data : {
+   	    		pageSize : "4"
+   	    	},
+	    	success:function(data){
+	    		console.log(data);
+	    		
+	    		let str = "";
+	    		$.each(data.response.docs, function(i, item){
+	    		    // index(i) 에는 배열의 인덱스 (0 부터 시작)
+	    		    // el 에는 각각의 배열 요소를 말한다 ex) 첫번째 실행되는 콜백의 el 은 배열[0] 이 된다
+	     			str += "<div class='col-lg-3 col-md-6'>";
+	    			str += "<div class='item'>";
+	    			str += "<img src=" + item.doc.bookImageURL + " alt='img'>";
+	    			str += "<h3>" + item.doc.bookname + "</h3>";
+	    			str += "<h6><span class='price'>" + item.doc.authors + "</span> / <a href='#'>"+ item.doc.publisher + "</a></h6>";
+	    			str += "<div class='hover'>";
+	    			str += "<a href='" + item.doc.bookImageURL + "'>";
+	    			str += "<span><i class='fa fa-long-arrow-right' aria-hidden='true'></i></span>";
+	    			str += "</a>"
+	    			str += "</div>"
+	    			str += "</div>"
+	    			str += "</div>" 
+	    		})
+	   		
+	    	console.log(str);	
+	    	
+	    	result.append(str);
+	    	
+	    	/* result.attr(str); */
+	    	
+	   		//result.html(str);
+	    			
 	    	},
 	    	error: function (xhr,txtStatus,error){        
 	        	/* alert(xhr.status); */

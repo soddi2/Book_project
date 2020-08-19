@@ -70,8 +70,17 @@
 	
 	<!-- 대여 리스트 -->
 	<select id="rent" resultType="com.spring.domain.RentVO">
-		select r.bno,r.userid,b.writer,b.publisher,b.bookname,rental_date, return_date from bookDB b, rent r,client c where r.bno=b.bno and r.userid=c.userid and c.userid=#{userid}
+		select r.rno,r.bno,r.userid,b.writer,b.publisher,b.bookname,rental_date, return_date 
+		from bookDB b, rent r,client c 
+		where r.bno=b.bno and r.userid=c.userid and c.userid=#{userid}
 	</select>
+	
+	<!-- 대여 리스트 삭제 -->
+	<delete id="deleteCart">
+	 delete rent
+	     where rno = #{rno}
+	         and userid = #{userid}
+	</delete>
 	
 
 </mapper>

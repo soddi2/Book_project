@@ -13,4 +13,5 @@ public interface BookService {
 	public List<RentVO> rent(String userid);
 	public BookVO getBook(int bno);
 	public boolean insertCart(RentVO vo);
+	public boolean deleteCart(RentVO rent);
 }
