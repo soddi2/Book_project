@@ -183,7 +183,8 @@
                             <div class="main_about text-center">
                                 <h1 class="text-black">Made is design studio based on London </h1>
                                 <h2 class="text-white">- & -</h2>
-                                <h3 class="text-black text-uppercase">We love to design a website and the other awesome graphic</h3>
+                                <h3 class="text-black text-uppercase">We need men who can dream of things </h3>
+                                <h3 class="text-black text-uppercase">that never were.</h3>
 
                                 <a href="" class="btn btn-primary m-top-100">Get In Touch</a>
                             </div>
@@ -203,14 +204,17 @@
                             <div class="col-md-5">
                                 <div class="features_item">
                                     <div class="head_title">
-                                        <h2 class="text-uppercase">Our <strong>Featured</strong></h2>
+                                        <h2 class="text-uppercase">Author <strong> of the month</strong></h2>
                                     </div>
                                     <div class="featured_content">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit donec fringilla iaculis facilisis 
-                                            morbi nulla lectus, luctus interdum eu ultricies ac tortor maecenas nec massa sit 
-                                            amet erat condimentum porttitor ac quis turpis.</p>
-
-                                        <a href="" class="btn btn-default m-top-40">Read More</a>
+                                        <p>Culture makes people understand each other better.
+											And if they understand each other better in their soul,
+											it is easier to overcome the economic and political
+											barriers. But first they have to understand that their
+											neighbor is, in the end, just like them, with the same
+											problems, the same questions.</p>
+											<p style="text-align: center">-Paulo Coelho-</p>
+                                        <!-- <a href="" class="btn btn-default m-top-40">Read More</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -222,26 +226,26 @@
                                         <div class="divider_vertical"></div>
                                         <div class="col-xs-6">
                                             <div class="features_item_text">
-                                                <img src="assets/images/featured1.jpg" alt="" class="img-circle" />
-                                                <p class="m-top-20">Trending Design</p>
+                                                <img src="assets/images/authors/giyom.jpg" alt="" class="img-circle" />
+                                                <p class="m-top-20">Guillaume Musso</p>
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="features_item_text">
-                                                <img src="assets/images/featured2.jpg" alt="" class="img-circle" />
-                                                <p class="m-top-20">Easy to Customize</p>
+                                                <img src="assets/images/authors/Kennedy00208.jpg" alt="" class="img-circle" />
+                                                <p class="m-top-20">Douglas Kennedy</p>
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="features_item_text m-top-50">
-                                                <img src="assets/images/featured3.jpg" alt="" class="img-circle" />
-                                                <p class="m-top-20">Responsive Design</p>
+                                                <img src="assets/images/authors/paulocoelho.jpg" alt="" class="img-circle" />
+                                                <p class="m-top-20">Paulo Coelho</p>
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="features_item_text m-top-50">
-                                                <img src="assets/images/featured4.jpg" alt="" class="img-circle" />
-                                                <p class="m-top-20">Free Google Font</p>
+                                                <img src="assets/images/authors/rolling.jpg" alt="" class="img-circle" />
+                                                <p class="m-top-20">Joan K. Rowling</p>
                                             </div>
                                         </div>
 
@@ -264,13 +268,65 @@
                                     <div class="slid_shap bg-yellow"></div>
                                     <div class="service_slid_item text-center">
                                         <div class="service_slid_text">
-                                            <span class="icon icon icon-tools text-black"></span>
-                                            <h5 class="text-black m-top-20">UI/UX Design</h5>
+                                        	<div style="/*  place-content:center; */ text-align: -webkit-center; ">	
+	                                            <span class="" >
+	                                            	<a href="/register/register">
+		                                            	<img src="assets/images/serviceicon/register_icon.png" alt=""/>
+	                                            	</a>
+	                                            </span>
+                                            </div>
+                                            <h5 class="text-black m-top-20">Register</h5>
                                         </div>
+                                        
                                         <div class="service_slid_text">
-                                            <span class="icon icon icon-sports-2 text-black"></span>
-                                            <h5 class="text-black m-top-20">UI/UX Design</h5>
+                                        	<div style="/*  place-content:center; */ text-align: -webkit-center; ">	
+	                                            <span class="" >
+	                                            	<img src="assets/images/serviceicon/rantal_icon.png" alt=""/>
+	                                            </span>
+                                            </div>
+                                            <h5 class="text-black m-top-20">Rental</h5>
                                         </div>
+                                        
+                                        <div class="service_slid_text">
+                                        	<div style="/*  place-content:center; */ text-align: -webkit-center; ">	
+	                                            <span class="" >
+		                                            	<img src="assets/images/serviceicon/return_icon.png" alt=""/>
+	                                            </span>
+                                            </div>
+                                            <h5 class="text-black m-top-20">Return</h5>
+                                        </div>
+                                        
+                                        <div class="service_slid_text">
+                                        	<div style="/*  place-content:center; */ text-align: -webkit-center; ">	
+	                                            <span class="" >
+	                                            	<img src="assets/images/serviceicon/booksearch_icon.png" alt=""/>
+	                                            </span>
+                                            </div>
+                                            <h5 class="text-black m-top-20">BookSearch</h5>
+                                        </div>
+                                        
+                                        <div class="service_slid_text">
+                                        	<div style="/*  place-content:center; */ text-align: -webkit-center; ">	
+	                                            <span class="" >
+	                                            	<a href="/shop/shop">
+		                                            	<img src="assets/images/serviceicon/recommend_icon.png" alt=""/>
+	                                            	</a>
+	                                            </span>
+                                            </div>
+                                            <h5 class="text-black m-top-20">Recommend</h5>
+                                        </div>
+                                        
+                                        <div class="service_slid_text">
+                                        	<div style="/*  place-content:center; */ text-align: -webkit-center; ">	
+	                                            <span class="" >
+	                                            	<a href="/board/QnAlist">
+		                                            	<img src="assets/images/serviceicon/borad_icon.png" alt=""/>
+	                                            	</a>
+	                                            </span>
+                                            </div>
+                                            <h5 class="text-black m-top-20">Q&A Borad</h5>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -280,11 +336,15 @@
                                         <h2 class="text-uppercase">Our <strong>Service</strong></h2>
                                     </div>
                                     <div class="service_content">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit donec fringilla iaculis facilisis 
-                                            morbi nulla lectus, luctus interdum eu ultricies ac tortor maecenas nec massa sit 
-                                            amet erat condimentum porttitor ac quis turpis.</p>
+                                        <p>Culture makes people understand each other better.
+											And if they understand each other better in their soul,
+											it is easier to overcome the economic and political
+											barriers. But first they have to understand that their
+											neighbor is, in the end, just like them, with the same
+											problems, the same questions.</p>
+										<p style="text-align: center;">-Paulo Coelho-</p>
 
-                                        <a href="" class="btn btn-default m-top-40">Read More</a>
+                                         <!-- <a href="" class="btn btn-default m-top-40">Read More</a>  -->
                                     </div>
                                 </div>
                             </div>
@@ -626,9 +686,7 @@
     		    // el 에는 각각의 배열 요소를 말한다 ex) 첫번째 실행되는 콜백의 el 은 배열[0] 이 된다
 
     		})
-   		
-    	console.log(str);	
-    	
+	
     	result.append(str);
     	
     	/* result.attr(str); */
@@ -644,9 +702,7 @@
 
       })
       
-      //도서 상세 조회
-      
-	
+      //도서 검색
 		$("#booksearch").keydown(function(key) {
 			if (key.keyCode == 13) {
 				var thisText = $('#booksearch').val();  // 검색한 단어

@@ -312,8 +312,7 @@
     <script type="text/javascript" src="/assets/js/board/js/jquery.ajax-cross-origin.min.js"></script>
     <script>  
     //인기 도서 목록
-   $(function Popularbooks(){
-	   return new Promise(function(resolve, reject) {
+   $(function promise_function(){
 	   /* window.addEventListener("wheel", func); */
 		
 	   let result = $("#result");
@@ -344,15 +343,14 @@
 	    			str += "<div class='item' style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap;' >";
 	    			str += "<img src=" + item.doc.bookImageURL + " alt='img'>";
 	    			str += "<h3>" + item.doc.bookname + "</h3>";
-	    			str += "<td></td>";
-	    			str += "<h6><span class='price'>" + item.doc.authors + "</span> / <a href='#'>"+ item.doc.publisher + "</a></h6>";
+	    			str += "<h6><span class='price'>" + item.doc.authors + "</span> <br> / <a href='#'>"+ item.doc.publisher + "</a></h6>";
 	    			str += "<div class='hover'>";
-	    			str += "<a href='" + item.doc.bookImageURL + "'>";
+	    			str += "<a href='http://data4library.kr/api/srchDtlList?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&isbn13=" + item.doc.isbn13 + "&format=json'>";
 	    			str += "<span><i class='fa fa-long-arrow-right' aria-hidden='true'></i></span>";
-	    			str += "</a>"
-	    			str += "</div>"
-	    			str += "</div>"
-	    			str += "</div>" 
+	    			str += "</a>";
+	    			str += "</div>";
+	    			str += "</div>";
+	    			str += "</div>";
 	    		})
 	   		
 	    	console.log(str);	
@@ -366,15 +364,13 @@
 	    	},
 	    	error: function (xhr,txtStatus,error){        
 	        	/* alert(xhr.status); */
-	        	console.log(xhr)
-	        	console.log(txtStatus)
+	        	console.log(xhr);
+	        	console.log(txtStatus);
 	        }   
-	  	 });
 	    });	   
    })
-   
-   //도서 상세 조회
-   
+  
+
    
     </script>
     
