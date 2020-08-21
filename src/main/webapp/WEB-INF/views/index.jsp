@@ -106,11 +106,11 @@
                         <ul class="nav navbar-nav navbar-right">
                         	<c:if test="${empty auth}">
 	                            <li><a href="#home">Home</a></li>                    
-	                            <li><a href="#features">About</a></li>
+	                            <li><a href="#features">B.Author</a></li>
 	                            <li><a href="#service">Service</a></li>
-	                            <li><a href="#portfolio">Portfolio</a></li>
-	                            <li><a href="#test">Testimonial</a></li>
-	                            <li><a href="#contact">Contact</a></li>
+	                            <li><a href="#portfolio">N.BestSeller</a></li>
+	                            <li><a href="#test">Event</a></li>
+	                            <li><a href="#contact">Recommends</a></li>
 	                            <li><a href="/shop/shop">Shop</a></li>
 	                            <li><a href="/board/QnAlist">Q&A</a></li>
 	                            <li><a href="/register/register">Login</a></li>
@@ -118,11 +118,11 @@
                             <!-- 로그아웃 -->
 							<c:if test="${!empty auth}">
 							    <li><a href="#home">Home</a></li>                    
-	                            <li><a href="#features">About</a></li>
+	                            <li><a href="#features">B.Author</a></li>
 	                            <li><a href="#service">Service</a></li>
-	                            <li><a href="#portfolio">Portfolio</a></li>
-	                            <li><a href="#test">Testimonial</a></li>
-	                            <li><a href="#contact">Contact</a></li>
+	                            <li><a href="#portfolio">N.BestSeller</a></li>
+	                            <li><a href="#test">Event</a></li>
+	                            <li><a href="#contact">Recommends</a></li>
 	                            <li><a href="/shop/shop">Shop</a></li>
 	                            <li><a href="/board/QnAlist">Q&A</a></li>							
 								<li><a href="/register/logout">Logout</a></li>
@@ -181,7 +181,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="main_about text-center">
-                                <h1 class="text-black">Made is design studio based on London </h1>
+                                <h1 class="text-black">Made is local library based on Korea </h1>
                                 <h2 class="text-white">- & -</h2>
                                 <h3 class="text-black text-uppercase">We need men who can dream of things </h3>
                                 <h3 class="text-black text-uppercase">that never were.</h3>
@@ -362,12 +362,13 @@
                             <div class="col-md-6">
                                 <div class="teams_item">
                                     <div class="head_title">
-                                        <h2 class="text-uppercase">Our <strong>Best Team & Skill</strong></h2>
+                                        <h2 class="text-uppercase">New <strong>BestSeller</strong></h2>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit donec fringilla iaculis 
-                                        facilisis morbi nulla lectus, luctus interdum eu ultricies tortor maecenas 
-                                        nec massa sit amet erat condimentum porttitorac quis turpis nulla 
-                                        lectus sit amet consectetur.</p>
+                                    <p>Now, I say to you today my friends, even though we face the difficulties of today and tomorrow, 
+                                    I still have a dream. It is a dream deeply rooted in the American dream. 
+                                    I have a dream that one day this nation will rise up and live out the true meaning of its creed: - 
+                                    'We hold these truths to be self-evident, that all men are created equal.' </p>
+                                    <p style="text-align: center;"> -Martin Luther King Jr.- </p>
 
 
                                 </div>
@@ -376,9 +377,9 @@
                                 <div class="teams_item text-center sm-m-top-50">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <img src="assets/images/team1.jpg" alt="" class="img-circle" />
-                                            <h4 class="m-top-20">John <strong>Doe</strong></h4>
-                                            <h5>Lead Designer</h5>
+                                            <img src="assets/images/best/best1.jpg" alt="" />
+                                            <h4 class="m-top-20">저자 <strong>김영민</strong></h4>
+                                            <h5>어크로스</h5>
                                             <div class="separator"></div>
                                             <ul class="list-inline">
                                                 <li><a href=""><i class="fa fa-facebook"></i></a></li>
@@ -387,9 +388,9 @@
                                             </ul>
                                         </div><!-- End off col-md-4 -->
                                         <div class="col-sm-4">
-                                            <img src="assets/images/team2.jpg" alt="" class="img-circle" />
-                                            <h4 class="m-top-20">Sarah <strong>Smith</strong></h4>
-                                            <h5>UX Designer</h5>
+                                            <img src="assets/images/best/best2.jpg" alt=""  />
+                                            <h4 class="m-top-20">저자 <strong>크리스 토바니</strong></h4>
+                                            <h5>연암서가</h5>
                                             <div class="separator"></div>
                                             <ul class="list-inline">
                                                 <li><a href=""><i class="fa fa-facebook"></i></a></li>
@@ -398,9 +399,9 @@
                                             </ul>
                                         </div><!-- End off col-md-4 -->
                                         <div class="col-sm-4">
-                                            <img src="assets/images/team3.jpg" alt="" class="img-circle" />
-                                            <h4 class="m-top-20">Fabian <strong>Doe</strong></h4>
-                                            <h5>Web Engineer</h5>
+                                            <img src="assets/images/best/best3.jpg" alt="" />
+                                            <h4 class="m-top-20">저자 <strong>이재훈,임철호 외 </strong></h4>
+                                            <h5>수작걸다</h5>
                                             <div class="separator"></div>
                                             <ul class="list-inline">
                                                 <li><a href=""><i class="fa fa-facebook"></i></a></li>
@@ -419,24 +420,24 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="teamskillbar clearfix m-top-50 text-uppercase" data-percent="80%">
-                                                <label>Photoshop</label>
+                                                <label>kyobo books</label>
                                                 <div class="teamskillbar-bar" style="width: 80%;"></div>
                                             </div> <!-- End Skill Bar -->
 
                                             <div class="teamskillbar clearfix m-top-50 text-uppercase" data-percent="75%">
-                                                <label>Web Design</label>
+                                                <label>Yp books</label>
                                                 <div class="teamskillbar-bar" style="width: 75%;"></div>
                                             </div> <!-- End Skill Bar -->
                                         </div>
 
                                         <div class="col-sm-6">
                                             <div class="teamskillbar clearfix m-top-50 text-uppercase" data-percent="90%">
-                                                <label>DEvelopment</label>
+                                                <label>Aladin books</label>
                                                 <div class="teamskillbar-bar" style="width: 90%;"></div>
                                             </div> <!-- End Skill Bar -->
 
                                             <div class="teamskillbar clearfix m-top-50 text-uppercase" data-percent="98%">
-                                                <label>Branding</label>
+                                                <label>Bandinlunis</label>
                                                 <div class="teamskillbar-bar" style="width: 98%;"></div>
                                             </div> <!-- End Skill Bar -->
                                         </div>
@@ -458,14 +459,17 @@
                             <div class="col-md-6">
                                 <div class="choose_mac">
                                     <div class="choose_slide">
+                                        <!-- <div class="choose_item">
+                                            <img src="assets/images/event/event6.jpg" alt="" />
+                                        </div> -->
                                         <div class="choose_item">
-                                            <img src="assets/images/choose-img1.png" alt="" />
+                                            <img src="assets/images/event/event2.jpg" alt="" />
                                         </div>
                                         <div class="choose_item">
-                                            <img src="assets/images/choose-img1.png" alt="" />
+                                            <img src="assets/images/event/event3.jpg" alt="" />
                                         </div>
                                         <div class="choose_item">
-                                            <img src="assets/images/choose-img1.png" alt="" />
+                                            <img src="assets/images/event/event4.jpg" alt="" />
                                         </div>
                                     </div>
                                 </div>
@@ -474,24 +478,24 @@
                             <div class="col-md-5 col-md-offset-1">
                                 <div class="choose_content sm-m-top-40">
                                     <div class="head_title">
-                                        <h2 class="text-uppercase">Why <strong>Choose Us</strong></h2>
+                                        <h2 class="text-uppercase">EVENT <strong>OF THE YEAR</strong></h2>
                                     </div>
                                     <div class="choose_item_text fix">
-                                        <h6><i class="fa fa-check-square-o"></i> Easy to costumize.</h6>
-                                        <p>Atque ducimus velit, earum quidem, iusto dolorem. </p>
+                                        <h6><i class="fa fa-check-square-o"></i> 택배로 부탁해요</h6>
+                                        <p>출간 기념 이벤트 리뷰 & 한줄평을 작성하고 페이스북에 좋아요 공유 추첨 통해 문상 증정 </p>
                                     </div>
                                     <div class="choose_item_text fix m-top-20">
-                                        <h6><i class="fa fa-check-square-o"></i> Full of features.</h6>
-                                        <p>Atque ducimus velit, earum quidem, iusto dolorem. </p>
+                                        <h6><i class="fa fa-check-square-o"></i> 방콕 여행 더 쉽고 알차게</h6>
+                                        <p>바콕 호텔 3박 이상 결제 고객중 경제금액 30만원 이상분들께 드립니다. 선착순 50명 </p>
                                     </div>
                                     <div class="choose_item_text fix m-top-20">
-                                        <h6><i class="fa fa-check-square-o"></i> 24/7 Support.</h6>
-                                        <p>Atque ducimus velit, earum quidem, iusto dolorem. </p>
+                                        <h6><i class="fa fa-check-square-o"></i> 올해의 과학책 도서 증정 이벤트</h6>
+                                        <p>기간 내에 과학 도서를 구매하신 분들중 추첨을 통해 10분에게 도서3권을 드립니다. </p>
                                     </div>
-                                    <div class="choose_item_text fix m-top-20">
-                                        <h6><i class="fa fa-check-square-o"></i> All in psd files.</h6>
-                                        <p>Atque ducimus velit, earum quidem, iusto dolorem. </p>
-                                    </div>
+                                    <!-- <div class="choose_item_text fix m-top-20">
+                                        <h6><i class="fa fa-check-square-o"></i> 1일 1분 정리법</h6>
+                                        <p>SNS에 이벤트를 공유하고 추첨을 통해 10분꼐 -1일 1분 정리법- 을 선물로 드립니다 </p>
+                                    </div> -->
                                 </div>
                             </div><!-- End off col-md-6 -->
                         </div>
@@ -519,9 +523,9 @@
 
                             <div class="col-md-8">
                                 <div class="filters-button-group text-right sm-text-center">
-                                    <button class="btn button is-checked" data-filter="*">all</button>
-                                    <button class="btn button" data-filter=".metal">Web Design</button>
-                                    <button class="btn button" data-filter=".ar">Branding</button>
+                                    <button class="btn button is-checked" data-filter="*">전체</button>
+                                    <button class="btn button" data-filter=".metal">MD 추천도서</button>
+                                    <button class="btn button" data-filter=".ar">화제의 책</button>
                                 </div>
                             </div>
 
@@ -614,22 +618,22 @@
                                     <div class="divider_vertical"></div>
                                     <div class="col-xs-6">
                                         <div class="cbrand_item">
-                                            <img src="assets/images/cbrand-1.png" alt="" />
+                                            <img src="assets/images/star/1.jpg" alt="" />
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
                                         <div class="cbrand_item">
-                                            <img src="assets/images/cbrand-2.png" alt="" />
+                                            <img src="assets/images/star/10.jpg" alt="" />
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
                                         <div class="cbrand_item m-top-40">
-                                            <img src="assets/images/cbrand-3.png" alt="" />
+                                            <img src="assets/images/star/5.jpg" alt="" />
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
                                         <div class="cbrand_item m-top-40">
-                                            <img src="assets/images/cbrand-4.png" alt="" />
+                                            <img src="assets/images/star/800x0.jpg" alt="" />
                                         </div>
                                     </div>
 
@@ -639,20 +643,20 @@
                             <div class="col-md-6 sm-m-top-40">
                                 <div class="test_item1 fix ">
                                     <div class="head_title fix">
-                                        <h2 class="text-uppercase">What <strong>Client Say</strong></h2>
+                                        <h2 class="text-uppercase">Rising Star <strong> Recommended Books</strong></h2>
                                     </div>
                                     <div class="item_img">
-                                        <img class="img-circle" src="assets/images/test-img1.jpg" alt="" />
+                                        <img class="img-circle" src="assets/images/star/common.jpg" alt="" />
                                         <i class="fa fa-quote-left"></i>
                                     </div>
 
                                     <div class="item_text">
-                                        <h5>Sarah Smith</h5>
+                                        <h5>Alain de Botton</h5>
                                         <h6>envato.com</h6>
 
-                                        <p>Natus voluptatum enim quod necessitatibus quis
-                                            expedita harum provident eos obcaecati id culpa
-                                            corporis molestias.</p>
+                                        <p>What kill us isn’t one big thing,
+											but thousands of tiny obligations
+											we can’t turn down for fear of disappointing others.</p>
                                     </div>
                                 </div>
                             </div>

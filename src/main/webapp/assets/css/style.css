@@ -1193,7 +1193,7 @@ tems Section style
 /*Choose Section
 ======================*/
 .choose_mac{
-    background: url(../images/choose-mokup.png) no-repeat;
+    background: #fff/* url(../images/choose-mokup.png) */ no-repeat;
     background-size: cover;
     width: 600px;
     height: 365px;
@@ -1207,9 +1207,9 @@ tems Section style
     margin:0 auto;
 }
 .choose_mac .choose_item img{
-    width: 100%;
+    width: 65%;
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 80px;
     margin-top: 15px;
 }
 .choose_item_text h6{
