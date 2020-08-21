@@ -42,7 +42,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
-                        <c:if test="${empty auth}">
+                           <c:if test="${empty auth}">
                             <li class="navbar-item">
                                 <a href="/" class="nav-link">Home</a>
                             </li>
@@ -75,7 +75,7 @@
                             <li class="navbar-item">
                                 <a href="/register/logout" class="nav-link">LogOut</a>
                             </li>
-	                        <li>
+                            <li>
 	                        	<form action="shopping_list" method="get">
 			                        <div class="cart my-2 my-lg-0">
 			                            <span>
@@ -98,38 +98,97 @@
     <div class="breadcrumb">
         <div class="container">
             <a class="breadcrumb-item" href="index.html">Home</a>
-            <span class="breadcrumb-item active">Shop</span>
+            <span class="breadcrumb-item active">Terms and Condition</span>
         </div>
     </div>
-    <section class="static about-sec">
+    <section class="product-sec">
         <div class="container">
-            <h2>highly recommendes books</h2>
+            <h1>How to read the book you want in 7 days</h1>
+            <div class="row">
+                <div class="col-md-6 slider-sec">
+                    <!-- main slider carousel -->
+                    <div id="myCarousel" class="carousel slide">
+                        <!-- main slider carousel items -->
+                        <div class="carousel-inner">
+                            <div class="active item carousel-item" data-slide-number="0">
+                                <img src="/assets/shop/images/product2.jpg" class="img-fluid">
+                            </div>
+                            <div class="item carousel-item" data-slide-number="1">
+                                <img src="/assets/shop/images/product2.jpg" class="img-fluid">
+                            </div>
+                            <div class="item carousel-item" data-slide-number="2">
+                                <img src="/assets/shop/images/product3.jpg" class="img-fluid">
+                            </div>
+                        </div>
+                        <!-- main slider carousel nav controls -->
+                        <ul class="carousel-indicators list-inline">
+                            <li class="list-inline-item active">
+                                <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
+                                <img src="/assets/shop/images/xxlarge.jpg" class="img-fluid">
+                            </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a id="carousel-selector-1" data-slide-to="1" data-target="#myCarousel">
+                                <img src="/assets/shop/images/product2.jpg" class="img-fluid">
+                            </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a id="carousel-selector-2" data-slide-to="2" data-target="#myCarousel">
+                                <img src="/assets/shop/images/product3.jpg" class="img-fluid">
+                            </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/main slider carousel-->
+                </div>
+                <div class="col-md-6 slider-content">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and Scrambled it to make a type and typesetting industry. Lorem Ipsum has been the book. </p>
+                    <p>t has survived not only fiveLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and</p>
+                    <ul>
+                        <li>
+                            <span class="name">Digital List Price</span><span class="clm">:</span>
+                            <span class="price">$4.71</span>
+                        </li>
+                        <li>
+                            <span class="name">Print List Price</span><span class="clm">:</span>
+                            <span class="price">$10.99</span>
+                        </li>
+                        <li>
+                            <span class="name">Kindle Price</span><span class="clm">:</span>
+                            <span class="price final">$3.37</span>
+                        </li>
+                        <li><span class="save-cost">Save $7.62 (69%)</span></li>
+                    </ul>              		
+                    <div class="btn-sec">
+                        <button class="btn add-cart">Rental Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="related-books">
+        <div class="container">
+            <h2>You may also like these book</h2>
             <div class="recomended-sec">
-                <div class="row" id="result">
-               <!--  <form action="/shop/detailbooks">
-                </form> -->
-                   <%--  <div class="col-lg-3 col-md-6">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
                         <div class="item">
-                            <img src="${doc.bookImageURL}" alt="img">
+                            <img src="/assets/shop/images/img1.jpg" alt="img">
                             <h3>how to be a bwase</h3>
                             <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
                             <div class="hover">
-                                <a href="product-single.html">
-                            <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                            </a>
+                                <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                    </div> --%>
-                   <!--  <div class="col-lg-3 col-md-6">
+                    </div>
+                    <div class="col-lg-3 col-md-6">
                         <div class="item">
                             <img src="/assets/shop/images/img2.jpg" alt="img">
                             <h3>How to write a book...</h3>
                             <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
                             <span class="sale">Sale !</span>
                             <div class="hover">
-                                <a href="product-single.html">
-                            <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                            </a>
+                                <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
                             </div>
                         </div>
                     </div>
@@ -139,9 +198,7 @@
                             <h3>7-day self publish...</h3>
                             <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
                             <div class="hover">
-                                <a href="product-single.html">
-                            <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                            </a>
+                                <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
                             </div>
                         </div>
                     </div>
@@ -151,154 +208,14 @@
                             <h3>wendy doniger</h3>
                             <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
                             <div class="hover">
-                                <a href="product-single.html">
-                                    <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                                    </a>
+                                <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
-            <h2>recently added books to our store</h2>
-            <div class="recent-book-sec">
-                <div class="row" id="recently">
-                    <!-- <div class="col-md-3">
-                        <div class="item">
-                            <img src="/assets/shop/images/r1.jpg" alt="img">
-                            <h3><a href="#">Keepers of the kalachakara</a></h3>
-                            <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                        </div>
-                    </div> -->
-                </div>
-                <div class="btn-sec">
-                    <button class="btn gray-btn">load More books</button>
-                </div>
-            </div>
-        </div> 
-    
+        </div>
     </section>
-
-    <script type="text/javascript" src="/assets/js/board/js/jquery.ajax-cross-origin.min.js"></script>
-    <script>  
-   //인기 도서 목록
-   $(function(){
-	   $(function popularbooks(){
-		   /* window.addEventListener("wheel", func); */
-			
-		   let result = $("#result");
-		   
-		   
-		   $.ajax({ 
-		    	/* crossOrigin : true, */
-		    	url: "http://data4library.kr/api/loanItemSrch?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&format=json",    	
-		    	type: "GET",
-		    	/* contentType:"application/json",
-		    	dataType:'json', */
-		    	/* dataType: 'jsonp',
-		    	jsonp: 'view', */
-		    	dataType: 'jsonp',  
-	   	    	/* jsonpCallback: "myCallback", */
-	   	    	
-	   	    	data : {
-	   	    		pageNo : "1",
-	   	    		pageSize : "4"
-	   	    	},
-		    	success:function(data){
-		    		console.log(data);
-
-		    		let str = "";
-		    		$.each(data.response.docs, function(i, item){
-		    		    // index(i) 에는 배열의 인덱스 (0 부터 시작)
-		    		    // el 에는 각각의 배열 요소를 말한다 ex) 첫번째 실행되는 콜백의 el 은 배열[0] 이 된다
-		     			str += "<div class='col-lg-3 col-md-6'>";
-		    			str += "<div class='item' style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap;' >";
-		    			str += "<img src=" + item.doc.bookImageURL + " alt='img'>";
-		    			str += "<h3>" + item.doc.bookname + "</h3>";
-		    			str += "<h6><span class='price'>" + item.doc.authors + "</span> <br> / <p>"+ item.doc.publisher + "</p></h6>";
-		    			str += "<div class='hover'>";
-		    			/* str += "<form action='/shop/detailbooks' method='get'>"; */
-		    			/* str += "<a class="detailPage" href='http://data4library.kr/api/srchDtlList?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&isbn13=" + item.doc.isbn13 + "&format=json'>"; */
-		    			str += "<a class='detail' href='detailbooks?isbn="+item.doc.isbn13+ "'>";
-		    			str += "<span><i class='fa fa-long-arrow-right' aria-hidden='true'></i></span>";
-		    			str += "</a>";
-		    			str += "</div>";
-		    			str += "</div>";
-		    			str += "</div>";
-		    		})	
-		    	
-		    		console.log(str);	
-
-		   			result.append(str);
-			    	
-			    },
-		    	error: function (xhr,txtStatus,error){        
-		        	/* alert(xhr.status); */
-		        	console.log(xhr);
-		        	console.log(txtStatus);
-		        }   
-		    });	   
-	  
-	   })//function 종료
-	   
-	   //최근 추가 추천 도서 목록
-	   $(function recentlybooks(){
-		   /* window.addEventListener("wheel", func); */
-			
-		   let recently = $("#recently");
-		   
-		   $.ajax({ 
-		    	/* crossOrigin : true, */
-		    	url: "http://data4library.kr/api/loanItemSrch?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&format=json",    	
-		    	type: "GET",
-		    	/* contentType:"application/json",
-		    	dataType:'json', */
-		    	/* dataType: 'jsonp',
-		    	jsonp: 'view', */
-		    	dataType: 'jsonp',  
-	   	    	/* jsonpCallback: "myCallback", */
-	   	    	
-	   	    	data : {
-	   	    		pageNo : "2",
-	   	    		pageSize : "20"
-	   	    	},
-		    	success:function(data){
-		    		console.log(data);
-		    		
-		    		let str = "";
-		    		$.each(data.response.docs, function(i, item){
-		    		    // index(i) 에는 배열의 인덱스 (0 부터 시작)
-		    		    // el 에는 각각의 배열 요소를 말한다 ex) 첫번째 실행되는 콜백의 el 은 배열[0] 이 된다
-		     			str += "<div class='col-md-3'>";
-		     			str += "<div class='item'>";
-		     			str += "<img src=" + item.doc.bookImageURL + " alt='img'>";
-		     			str += "<h3><a href='#'>" + item.doc.bookname + "</a></h3>";
-		     			str += "<h6><span class='price'>" + item.doc.authors + "</span> <br> / <a href='#'>"+ item.doc.publisher + "</a></h6>";
-		     			str += "</div>";
-		     			str += "</div>";
-		    		})
-		   		
-		    	console.log(str);	
-
-		    	recently.append(str);
-		    	
-		    	/* result.attr(str); */
-		    	
-		   		//result.html(str); 데이터를 한번만 보여줄때
-		    			
-		    	},
-		    	error: function (xhr,txtStatus,error){        
-		        	/* alert(xhr.status); */
-		        	console.log(xhr);
-		        	console.log(txtStatus);
-		        }   
-		    });	   
-	   }) 
-
-   })//전체 $(function) end
-   
-   
-    </script>
-    
     <footer>
         <div class="container">
             <div class="row">
@@ -321,8 +238,8 @@
                     <div class="navigation">
                         <h4>Navigation</h4>
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="about.jsp">About Us</a></li>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
                             <li><a href="privacy-policy.html">Privacy Policy</a></li>
                             <li><a href="terms-conditions.html">Terms</a></li>
                             <li><a href="products.html">Products</a></li>
@@ -380,6 +297,84 @@
                 </div>
             </div>
         </div>
+
+<!-- 대여 확인 창 -->
+<div class="modal" tabindex="-1" id="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Rental Window</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>대여하시겠습니까?</p>
+      </div>
+	<form action="insertCart" method="post">
+	      <div class="modal-footer">
+	     	<input type="hidden" name="bno" value="${bno}"/>
+	     	<input type="hidden" name="userid" value="${auth.userid}"/>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-Rental">Rental</button>
+	      </div>
+      </form>
+    </div>
+  </div>
+</div>
+        
+        <script>
+ 
+        $(function(){
+        	let form = $("form[role='form']");
+        	let userid = $("input[name='userid']").val();
+        	
+        	$(".add-cart").on("click",function(e){
+        		e.preventDefault();
+	        	if(userid!=''){
+	        		
+		    		 $("#modal").show();
+		    		 
+		    		 $(".btn-secondary, .close").on('click',function(){
+		    			 $("#modal").hide();
+		    			 
+		    		});
+	
+	        	}else{
+	        		alert("로그인이 필요한 기능입니다.");        		
+	        	}
+	        		
+	        		
+	        })//add-cart end
+	        
+	        
+	        // 도서 상세 정보 요청
+	        let isbn = '${isbn}';
+	        let detail = "http://data4library.kr/api/srchDtlList?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&isbn13="+ isbn +"&format=json"
+	        	        	    		
+    		$.ajax({	
+    			url : detail,
+    			type : "get",
+    			dataType: 'jsonp',
+    			/* data : {
+    				isbn13 : isbn
+    			}, */
+    			success:function(data){
+    	    		console.log(data);
+
+    			},
+    			error: function (xhr,txtStatus,error){        
+    	        	 /* alert(xhr.status); */ 
+    	        	console.log(xhr);
+    	        	console.log(txtStatus);
+    	        }
+    		}) 
+        })
+        
+	   
+        </script>
+        
+        
     </footer>
     <script src="/assets/shop/js/jquery.min.js"></script>
     <script src="/assets/shop/js/bootstrap.min.js"></script>
