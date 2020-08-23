@@ -174,11 +174,11 @@ public class BookController {
 			 return result;  
 		}
 	
-	@GetMapping("shop")
-	public void shop() {
-		log.info("도서 페이지 구현");
-		
-	}
+		@GetMapping("shop")
+		public void shop() {
+			log.info("도서 페이지 구현");
+			
+		}
 	
 	
 	  @GetMapping("detailbooks") 
@@ -187,16 +187,6 @@ public class BookController {
 	  
 		  model.addAttribute("isbn", isbn);
 	  }
-	 
-	
-	/*
-	 * @PostMapping("detailbooks") public ResponseEntity<String>
-	 * detailbooks_post(String detail,Model model) { log.info(""+detail);
-	 * 
-	 * 
-	 * return new ResponseEntity<String>(HttpStatus.OK); }
-	 */
-
 	
 }
 

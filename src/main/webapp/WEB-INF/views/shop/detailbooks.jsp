@@ -110,7 +110,7 @@
                     <div id="myCarousel" class="carousel slide">
                         <!-- main slider carousel items -->
                         <div class="carousel-inner">
-                            <div class="active item carousel-item" data-slide-number="0">
+                            <!-- <div class="active item carousel-item" data-slide-number="0">
                                 <img src="/assets/shop/images/product2.jpg" class="img-fluid">
                             </div>
                             <div class="item carousel-item" data-slide-number="1">
@@ -118,7 +118,7 @@
                             </div>
                             <div class="item carousel-item" data-slide-number="2">
                                 <img src="/assets/shop/images/product3.jpg" class="img-fluid">
-                            </div>
+                            </div> -->
                         </div>
                         <!-- main slider carousel nav controls -->
                         <ul class="carousel-indicators list-inline">
@@ -351,7 +351,8 @@
 	        // 도서 상세 정보 요청
 	        let isbn = '${isbn}';
 	        let detail = "http://data4library.kr/api/srchDtlList?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&isbn13="+ isbn +"&format=json"
-	        	        	    		
+	        let mainimage = $("#carousel-inner");
+	        		
     		$.ajax({	
     			url : detail,
     			type : "get",
@@ -361,6 +362,8 @@
     			}, */
     			success:function(data){
     	    		console.log(data);
+    	    		
+    	    		
 
     			},
     			error: function (xhr,txtStatus,error){        

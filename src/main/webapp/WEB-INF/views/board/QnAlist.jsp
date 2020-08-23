@@ -328,6 +328,7 @@
 	    	<%-- <a href="read?bno=${vo.bno}&pageNum=${cri.pageNum}&amount=${cri.amount}">${vo.title}</a> --%>
 	    	// 이렇게 작성하는 부분 대체
 	    	e.preventDefault();
+	    	<%-- $(this).attr("href")  :  this 내각 클린한 정보의 벨류값을 가져와줌 --%>
 	    	actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"' />");
 	    	actionForm.attr('action','read');
 	    	actionForm.submit();

@@ -218,7 +218,7 @@
 		    			str += "<div class='hover'>";
 		    			/* str += "<form action='/shop/detailbooks' method='get'>"; */
 		    			/* str += "<a class="detailPage" href='http://data4library.kr/api/srchDtlList?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&isbn13=" + item.doc.isbn13 + "&format=json'>"; */
-		    			str += "<a class='detail' href='detailbooks?isbn="+item.doc.isbn13+ "'>";
+		    			str += "<a class='detail' href='/shop/detailbooks?isbn="+item.doc.isbn13+ "'>";
 		    			str += "<span><i class='fa fa-long-arrow-right' aria-hidden='true'></i></span>";
 		    			str += "</a>";
 		    			str += "</div>";

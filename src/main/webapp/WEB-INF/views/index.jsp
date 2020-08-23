@@ -541,7 +541,7 @@
                                         <div class="girid_hover_text m-top-110">
                                             <h4 class="text-white">Your Work Title</h4>
                                             <p class="text-white">- Business Card, Branding</p>
-                                            <a href="assets/images/porfolio-1.jpg" class="btn btn-primary popup-img">View Project</a>
+                                            <a href="http://image.aladin.co.kr/product/272/78/cover/8936433679_2.jpg" class="btn btn-primary popup-img">View Project</a>
                                         </div>
                                     </div><!-- End off grid Hover area -->
                                 </div><!-- End off grid item -->
@@ -552,7 +552,7 @@
                                         <div class="girid_hover_text m-top-180">
                                             <h4 class="text-white">Your Work Title</h4>
                                             <p class="text-white">- Business Card, Branding</p>
-                                            <a href="assets/images/porfolio-2.jpg" class="btn btn-primary popup-img">View Project</a>
+                                            <a href="http://image.aladin.co.kr/product/15848/6/cover/k622533431_1.jpg" class="btn btn-primary popup-img">View Project</a>
                                         </div>
                                     </div><!-- End off grid Hover area -->
                                 </div><!-- End off grid item -->
@@ -563,7 +563,7 @@
                                         <div class="girid_hover_text m-top-50">
                                             <h4 class="text-white">Your Work Title</h4>
                                             <p class="text-white">- Business Card, Branding</p>
-                                            <a href="assets/images/porfolio-3.jpg" class="btn btn-primary popup-img">View Project</a>
+                                            <a href="http://image.aladin.co.kr/product/29/99/cover/8973374117_1.jpg" class="btn btn-primary popup-img">View Project</a>
                                         </div>
                                     </div><!-- End off grid Hover area -->
                                 </div><!-- End off grid item -->
@@ -574,7 +574,7 @@
                                         <div class="girid_hover_text m-top-180">
                                             <h4 class="text-white">Your Work Title</h4>
                                             <p class="text-white">- Business Card, Branding</p>
-                                            <a href="assets/images/porfolio-4.jpg" class="btn btn-primary popup-img">View Project</a>
+                                            <a href="https://bookthumb-phinf.pstatic.net/cover/013/434/01343405.jpg?type=m1&udate=20071117" class="btn btn-primary popup-img">View Project</a>
                                         </div>
                                     </div><!-- End off grid Hover area -->
                                 </div><!-- End off grid item -->
@@ -585,7 +585,7 @@
                                         <div class="girid_hover_text m-top-110">
                                             <h4 class="text-white">Your Work Title</h4>
                                             <p class="text-white">- Business Card, Branding</p>
-                                            <a href="assets/images/porfolio-5.jpg" class="btn btn-primary popup-img">View Project</a>
+                                            <a href="http://image.aladin.co.kr/product/14712/55/cover/k202532053_1.jpg" class="btn btn-primary popup-img">View Project</a>
                                         </div>
                                     </div><!-- End off grid Hover area -->
                                 </div><!-- End off grid item -->
@@ -596,7 +596,7 @@
                                         <div class="girid_hover_text m-top-50">
                                             <h4 class="text-white">Your Work Title</h4>
                                             <p class="text-white">- Business Card, Branding</p>
-                                            <a href="assets/images/porfolio-6.jpg" class="btn btn-primary popup-img">View Project</a>
+                                            <a href="http://image.aladin.co.kr/product/50/20/cover/8957090258_1.gif" class="btn btn-primary popup-img">View Project</a>
                                         </div>
                                     </div><!-- End off grid Hover area -->
                                 </div><!-- End off grid item -->
@@ -667,45 +667,6 @@
  
  	   <script type="text/javascript" src="/assets/js/board/js/jquery.ajax-cross-origin.min.js"></script>
        <script>    
-      //인기 대출 도서 api(정보나루)
-      $(function Popularbooks(){
-    	  
-       let result = $("");
-
-   	   $.ajax({ 
-   	    	crossOrigin : true,
-   	    	url: "http://data4library.kr/api/loanItemSrch?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&format=json",    	
-   	    	type: "GET",
-   	    	dataType: 'jsonp', 
-   	    	jsonpCallback: "myCallback", 
-   	    	data : {
-   	    		pageSize : "6"
-   	    	},
-   	    	success:function(data){
-   	    		console.log(data);
-
-            let str = "";
-    		$.each(data.response.docs, function(i, item){
-    		    // index(i) 에는 배열의 인덱스 (0 부터 시작)
-    		    // el 에는 각각의 배열 요소를 말한다 ex) 첫번째 실행되는 콜백의 el 은 배열[0] 이 된다
-
-    		})
-	
-    	result.append(str);
-    	
-    	/* result.attr(str); */
-    	
-   		//result.html(str);
-
-   	    		
-   	    	},
-   	    	error: function (xhr,txtStatus,error){        
-   	        	alert(xhr.status);
-   	        }    	 
-   	    });	   
-
-      })
-      
       //도서 검색
 		$("#booksearch").keydown(function(key) {
 			if (key.keyCode == 13) {
