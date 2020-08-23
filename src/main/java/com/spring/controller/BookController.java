@@ -183,7 +183,7 @@ public class BookController {
 	
 	  @GetMapping("detailbooks") 
 	  public void detailbooks(String isbn,Model model) {
-		  log.info("상품 디테일 페이지" + isbn); 
+		  log.info("상품 디테일 페이지  : " + isbn); 
 	  
 		  model.addAttribute("isbn", isbn);
 	  }
