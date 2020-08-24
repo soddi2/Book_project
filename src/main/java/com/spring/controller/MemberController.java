@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +36,10 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	/*
+	 * @Autowired private BCryptPasswordEncoder pwencoding;
+	 */
 	
 	@Autowired
 	private EmailSender emailSender;
@@ -74,6 +79,9 @@ public class MemberController {
 			//로그인 확인 => 성공시 index.jsp / 실패시 로그인 페이지
 			LoginVO auth = service.isLogin(login);
 			if(register) {
+				//비밀번호 암호화
+				/* pwencoding.encode(vo.getPassword()); */
+				
 				model.addAttribute("userid", vo.getUserid());
 				model.addAttribute("password", vo.getPassword());
 				model.addAttribute("address", vo.getAddress());

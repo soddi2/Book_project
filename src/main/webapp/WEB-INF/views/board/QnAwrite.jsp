@@ -5,6 +5,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- fmt라이브러리 : 등록일 생성 -->
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!-- 시큐리티 -->
+<%@taglib uri="http://www.springframework.org/security/tags"  prefix="sec"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -132,7 +134,8 @@
 				</div>
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="writer" id="reg_id" placeholder="이름을 입력해 주세요">
+					<input type="text" class="form-control" name="writer" id="reg_id" placeholder="이름을 입력해 주세요"> 
+					<%-- value='<sec:authentication property="principal.username"/>' readonly> --%>
 				</div>
 				<div class="mb-3">
 					<label for="content">내용</label>
@@ -146,6 +149,8 @@
 			<div>
 				<button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 				<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/board/QnAlist'">목록</button>
+				<!-- post로 가는 모든 경로는 csrf로 담기(보안) -->
+				<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>  
 			</div>
 		</div>
 	</article>
@@ -189,6 +194,10 @@
 				fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
 		  });
 		
+		//csrf 토큰 값 생성
+		let csrfHeaderName = "${_csrf.headerName}"
+		let csrfTokenValue = "${_csrf.token}"
+		
 		function uploadSummernoteImageFile(file, editor) {
             data = new FormData();
             data.append("file", file);
@@ -198,6 +207,10 @@
                 url : "/uploadSummernoteImageFile",
                 contentType : false,
                 processData : false,
+              	//csrf 셋팅
+    			/* beforeSend : function(xhr){
+    				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+    			}, */
                 success : function(data) {
                 	console.log("data"+data);
                     //항상 업로드된 파일의 url이 있어야 한다.

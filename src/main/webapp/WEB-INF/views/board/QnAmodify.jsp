@@ -5,6 +5,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- fmt라이브러리 : 등록일 생성 -->
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!-- 시큐리티 -->
+<%@taglib uri="http://www.springframework.org/security/tags"  prefix="sec"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -132,7 +134,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="writer" id="reg_id" value="${vo.writer}">
+					<input type="text" class="form-control" name="writer" id="reg_id" readonly="readonly" value="${vo.writer}">
 				</div>
 				<div class="mb-3">
 					<label for="content">내용</label>
@@ -143,10 +145,16 @@
 					<input type="text" class="form-control" name="tag" id="tag" value="${vo.tag}"> 
 				</div>
 				<input type="hidden" name="bno" value="${vo.bno}" />
+				<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />  --%> 
 			</form>
 			<div>
-				<button type="submit" data-oper='modify' class="btn btn-sm btn-primary" id="btnSave">저장</button>
-				<button type="submit" data-oper='remove' class="btn btn-sm btn-primary" id="btnSave">삭제</button>
+				<%-- <sec:authentication property="principal" var="info"/>
+				<sec:authorize access="isAuthenticated()">
+					<c:if test="${info.username == vo.writer}"> --%>
+						<button type="submit" data-oper='modify' class="btn btn-sm btn-primary" id="btnSave">저장</button>
+						<button type="submit" data-oper='remove' class="btn btn-sm btn-primary" id="btnSave">삭제</button>
+					<%-- </c:if>
+				</sec:authorize> --%>
 				<button type="submit" data-oper='list' class="btn btn-sm btn-primary" id="btnList">목록</button>
 			</div>
 		</div>

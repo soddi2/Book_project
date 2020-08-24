@@ -39,5 +39,8 @@
 	</beans:bean>
 		<beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.GsonHttpMessageConverter">
     </beans:bean> -->
-
+    
+    <!-- 시큐리티 어노테이션 활성화 -->
+	<!-- <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/> -->
+    
 </beans:beans>

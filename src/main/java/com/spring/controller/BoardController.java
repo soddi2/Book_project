@@ -3,6 +3,7 @@ package com.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,11 +44,13 @@ public class BoardController {
 		return "/board/QnAlist";
 	}
 	
+	/* @PreAuthorize("isAuthenticated()") */ 
 	@GetMapping("QnAwrite")
 	public void writer() {
 		log.info("writse form");
 	}
-
+	
+	/* @PreAuthorize("isAuthenticated()") */ 
 	@PostMapping("QnAwrite")
 	public String writePost(BoardVO vo) {
 		log.info(""+vo);
@@ -81,7 +84,7 @@ public class BoardController {
 //	}
 	
 	//내용 수정
-	//@PreAuthorize("principal.username == #vo.writer")
+	/* @PreAuthorize("principal.username == #vo.writer") */
 	@PostMapping("QnAmodify")
 	public String modifyPost(Criteria cri,BoardVO modify,RedirectAttributes rttr) {
 		log.info(""+cri);
@@ -110,7 +113,7 @@ public class BoardController {
 	}
 	
 	//내용 삭제
-	//@PreAuthorize("principal.username == #writer")
+	/* @PreAuthorize("principal.username == #writer") */
 	@PostMapping("/QnAremove")
 	public String delete(BoardVO vo,String writer,int bno,RedirectAttributes rttr,Criteria cri) {
 		

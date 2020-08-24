@@ -112,21 +112,21 @@
                         <div class="carousel-inner">
                             <!-- <div class="active item carousel-item" data-slide-number="0">
                                 <img src="/assets/shop/images/product2.jpg" class="img-fluid">
-                            </div>
+                            </div> -->
                             <div class="item carousel-item" data-slide-number="1">
                                 <img src="/assets/shop/images/product2.jpg" class="img-fluid">
                             </div>
                             <div class="item carousel-item" data-slide-number="2">
                                 <img src="/assets/shop/images/product3.jpg" class="img-fluid">
-                            </div> -->
+                            </div>
                         </div>
                         <!-- main slider carousel nav controls -->
                         <ul class="carousel-indicators list-inline">
-                            <li class="list-inline-item active">
-                                <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
-                                <img src="/assets/shop/images/xxlarge.jpg" class="img-fluid">
+                            <!-- <li class="list-inline-item active">
+                            <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
+                                <img src="/assets/shop/images/detailpage/202004211422083541_3.jpg" class="img-fluid">
                             </a>
-                            </li>
+                            </li> -->
                             <li class="list-inline-item">
                                 <a id="carousel-selector-1" data-slide-to="1" data-target="#myCarousel">
                                 <img src="/assets/shop/images/product2.jpg" class="img-fluid">
@@ -142,30 +142,31 @@
                     <!--/main slider carousel-->
                 </div>
                 <div class="col-md-6 slider-content">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and Scrambled it to make a type and typesetting industry. Lorem Ipsum has been the book. </p>
+                    <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and Scrambled it to make a type and typesetting industry. Lorem Ipsum has been the book. </p>
                     <p>t has survived not only fiveLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and</p>
                     <ul>
                         <li>
-                            <span class="name">Digital List Price</span><span class="clm">:</span>
+                            <span class="name">Book name</span><span class="clm">:</span>
                             <span class="price">$4.71</span>
                         </li>
                         <li>
-                            <span class="name">Print List Price</span><span class="clm">:</span>
+                            <span class="name">author</span><span class="clm">:</span>
                             <span class="price">$10.99</span>
                         </li>
                         <li>
-                            <span class="name">Kindle Price</span><span class="clm">:</span>
-                            <span class="price final">$3.37</span>
+                            <span class="name">publisher</span><span class="clm">:</span>
+                            <span class="price">$3.37</span>
                         </li>
-                        <li><span class="save-cost">Save $7.62 (69%)</span></li>
-                    </ul>              		
+                        <li><span class="save-cost"></span></li>
+                    </ul> -->             		
                     <div class="btn-sec">
                         <button class="btn add-cart">Rental Now</button>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
     </section>
+    
     <section class="related-books">
         <div class="container">
             <h2>You may also like these book</h2>
@@ -351,8 +352,10 @@
 	        // 도서 상세 정보 요청
 	        let isbn = '${isbn}';
 	        let detail = "http://data4library.kr/api/srchDtlList?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&isbn13="+ isbn +"&format=json"
-	        let mainimage = $("#carousel-inner");
-	        		
+	        let mainimage = $(".carousel-inner");
+	        let sideimage = $(".carousel-indicators");
+	        let summaryC = $(".slider-content");
+	        
     		$.ajax({	
     			url : detail,
     			type : "get",
@@ -362,9 +365,47 @@
     			}, */
     			success:function(data){
     	    		console.log(data);
+    	    		console.log(data.response.detail[0].book.bookImageURL);
     	    		
+    	    		let content = "";
+    	    		content += 
+    	    		"<div class='active item carousel-item' style='text-align: center;' data-slide-number='0'>"+
+                    	"<img src='"+ data.response.detail[0].book.bookImageURL +"'alt='41616516' class='img-fluid'>"+
+                	"</div>";
+                	
+					let str = "";
+					str +=
+                	"<li class='list-inline-item active'>"+
+                    "<a id='carousel-selector-0' class='selected' data-slide-to='0' data-target=''#myCarousel'>"+
+                        "<img src='"+ data.response.detail[0].book.bookImageURL +"' class='img-fluid'>"+
+                    "</a>"+
+                    "</li>";
+                    
+                    let summary = "";
+                    summary +=
+                    "<p>"+ data.response.detail[0].book.description +"</p>"+ 
+                    "<ul>"+
+                        "<li>"+
+                            "<span class='name'>Book name</span><span class='clm'>:</span>"+
+                            "<span class='price'>"+ data.response.detail[0].book.bookname +"</span>"+
+                        "</li>"+
+                        "<li>"+
+                            "<span class='name'>author</span><span class='clm'>:</span>"+
+                            "<span class='price'>"+ data.response.detail[0].book.authors +"</span>"+
+                        "</li>"+
+                        "<li>"+
+                            "<span class='name'>publisher</span><span class='clm'>:</span>"+
+                            "<span class='price'>"+ data.response.detail[0].book.publisher +"</span>"+
+                        "</li>"+
+                        "<li><span class='save-cost'></span></li>"+
+                    "</ul>";
     	    		
-
+    	    		/*  $(content).append(".carousel-inner"); */
+    	    		 $(str).prependTo(".carousel-indicators");
+   	    			 mainimage.append(content);
+   	    			 /* sideimage.append(str); */
+   	    			 summaryC.prepend(summary);
+					 
     			},
     			error: function (xhr,txtStatus,error){        
     	        	 /* alert(xhr.status); */ 

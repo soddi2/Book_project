@@ -935,7 +935,7 @@ header .cart {
   .recent-book-sec .row {
     margin: 0 -15px; } }
 .product-sec {
-  margin-bottom: 100px; }
+  margin-bottom: 300px; }
   .product-sec h1 {
     font-size: 36px;
     font-weight: 500;
@@ -993,15 +993,15 @@ header .cart {
       float: left;
       width: 100%; }
       .product-sec .slider-content ul li span {
-        width: 180px;
+        width: 120px;
         font-weight: 300;
         display: inline-block;
         float: left; }
         .product-sec .slider-content ul li span.price {
           padding-left: 20px;
           font-weight: 600;
-          text-decoration: line-through;
-          width: 100px; }
+          text-decoration: blink;
+          width: 500px; }
         .product-sec .slider-content ul li span.final {
           font-size: 24px;
           text-decoration: none;
@@ -1072,10 +1072,11 @@ header .cart {
     padding: 0 5px; }
 
   .product-sec h1 {
-    font-size: 24px; }
+    font-size: 24px; 
+    }
 
   .related-books h2 {
-    font-size: 24px; } }
+    font-size: 24px;  } }
 footer {
   background: #f0f0f0;
   padding: 80px 0 0;

@@ -129,7 +129,12 @@
 				</form>
 				<section>
 					<div style="margin-top : 20px; margin : 50px">
-						<button type="submit" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
+					<%-- <sec:authentication property="principal" var="info"/>
+       				<sec:authorize access="isAuthenticated()">
+        				<c:if test="${info.username == vo.writer}">  --%>               				
+							<button type="submit" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
+        				<%-- </c:if>
+       				</sec:authorize> --%>
 						<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/board/QnAlist'">목록</button>
 					</div>					
 				</section>
@@ -263,9 +268,9 @@ $(function() {
 	
 	//현재 로그인 사용자값 가져오기
 	let replyer = null;
-	<%-- <sec:authorize access="isAuthenticated()"> --%>
-		replyer = '<sec:authentication property="principal.username"/>';
-	<%-- </sec:authorize> --%>
+	/* <sec:authorize access="isAuthenticated()"> */
+		/* replyer = '<sec:authentication property="principal.username"/>'; */
+	/* </sec:authorize> */
 	
 	$("#addReplyBtn").click(function(){
 		//input 안에 들어있는 내용 없애주기
