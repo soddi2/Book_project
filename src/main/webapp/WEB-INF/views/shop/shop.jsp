@@ -183,22 +183,12 @@
    //인기 도서 목록
    $(function(){
 	   $(function popularbooks(){
-		   /* window.addEventListener("wheel", func); */
-			
 		   let result = $("#result");
-		   
-		   
+
 		   $.ajax({ 
-		    	/* crossOrigin : true, */
 		    	url: "http://data4library.kr/api/loanItemSrch?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&format=json",    	
 		    	type: "GET",
-		    	/* contentType:"application/json",
-		    	dataType:'json', */
-		    	/* dataType: 'jsonp',
-		    	jsonp: 'view', */
 		    	dataType: 'jsonp',  
-	   	    	/* jsonpCallback: "myCallback", */
-	   	    	
 	   	    	data : {
 	   	    		pageNo : "1",
 	   	    		pageSize : "4"
@@ -207,17 +197,13 @@
 		    		console.log(data);
 
 		    		let str = "";
-		    		$.each(data.response.docs, function(i, item){
-		    		    // index(i) 에는 배열의 인덱스 (0 부터 시작)
-		    		    // el 에는 각각의 배열 요소를 말한다 ex) 첫번째 실행되는 콜백의 el 은 배열[0] 이 된다
+		    		$.each(data.response.docs, function(i, item){	  
 		     			str += "<div class='col-lg-3 col-md-6'>";
 		    			str += "<div class='item' style='text-overflow:ellipsis; overflow:hidden; white-space:nowrap;' >";
 		    			str += "<img src=" + item.doc.bookImageURL + " alt='img'>";
 		    			str += "<h3>" + item.doc.bookname + "</h3>";
 		    			str += "<h6><span class='price'>" + item.doc.authors + "</span> <br> / <p>"+ item.doc.publisher + "</p></h6>";
 		    			str += "<div class='hover'>";
-		    			/* str += "<form action='/shop/detailbooks' method='get'>"; */
-		    			/* str += "<a class="detailPage" href='http://data4library.kr/api/srchDtlList?authKey=7005ece19af1a6fef5c5c2415a002da8d094906b46fd7fee08525d0a12d15b11&isbn13=" + item.doc.isbn13 + "&format=json'>"; */
 		    			str += "<a class='detail' href='/shop/detailbooks?isbn="+item.doc.isbn13+ "'>";
 		    			str += "<span><i class='fa fa-long-arrow-right' aria-hidden='true'></i></span>";
 		    			str += "</a>";
@@ -232,7 +218,6 @@
 			    	
 			    },
 		    	error: function (xhr,txtStatus,error){        
-		        	/* alert(xhr.status); */
 		        	console.log(xhr);
 		        	console.log(txtStatus);
 		        }   
