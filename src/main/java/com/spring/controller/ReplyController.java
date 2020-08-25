@@ -1,5 +1,7 @@
 package com.spring.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.domain.Criteria;
+import com.spring.domain.LoginVO;
 import com.spring.domain.ReplyPageVO;
 import com.spring.domain.ReplyVO;
 import com.spring.service.ReplyService;
@@ -28,9 +31,9 @@ public class ReplyController {
 	@Autowired
 	private ReplyService service;
 
-	@PreAuthorize("isAuthenticated()")
+	/* @PreAuthorize("isAuthenticated()") */
 	@PostMapping("/new")  //http://localhost:8080/replies/new + post
-	public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
+	public ResponseEntity<String> create(@RequestBody ReplyVO vo,HttpSession session) {
 		log.info("댓글 등록..."+vo);
 		
 		return service.replyInsert(vo)?
@@ -47,7 +50,7 @@ public class ReplyController {
 	}
 	
 	//댓글 수정하기  http://localhost:8080/replies/3 + put
-	@PreAuthorize("principal.username == #vo.replyer")
+	/* @PreAuthorize("principal.username == #vo.replyer") */
 	@PutMapping("/{rno}")
 	public ResponseEntity<String> modify(@PathVariable("rno") int rno,@RequestBody ReplyVO vo) { 
 		log.info("댓글 수정 : "+rno+" 내용 : "+vo.getReply()
@@ -62,7 +65,7 @@ public class ReplyController {
 	}
 	
 	//댓글 삭제 http://localhost:8080/replies/3 + delete
-	@PreAuthorize("principal.username == #vo.replyer")
+	/* @PreAuthorize("principal.username == #vo.replyer") */
 	@DeleteMapping("/{rno}")
 	public ResponseEntity<String> delete(@PathVariable("rno") int rno,
 			@RequestBody ReplyVO vo) { 

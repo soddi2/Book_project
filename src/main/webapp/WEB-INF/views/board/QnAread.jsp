@@ -151,6 +151,7 @@
 									<button id="addReplyBtn" class="btn-reply btn-primary btn-sm">
 										New Reply
 									</button>
+									<input type="hidden" name="userid" value="${auth.userid}"/>
 								<%-- </sec:authorize> --%>
 							</div>
 							
@@ -197,7 +198,7 @@
       	</div>
       	<div class="form-group">
       		<label for="">작성자</label>
-      		<input type="text" class="form-control" name="replyer" value="작성자"/>
+      		<input type="text" class="form-control" name="replyer" value="${auth.userid}" readonly="readonly" />
       	</div>
       	<div class="form-group">
       		<label for="">작성일</label>
@@ -205,6 +206,7 @@
       	</div>
       </div>
       <div class="modal-footer">
+        <input type="hidden" name="userid" value="${auth.userid}"/>
         <button type="button" class="btn btn-warning" id="modalRegisterBtn">등록</button>
         <button type="button" class="btn btn-success" id="modalModBtn">수정</button>
         <button type="button" class="btn btn-danger" id="modalRemoveBtn">삭제</button>
@@ -245,13 +247,15 @@ $(function() {
 	
 	//댓글 영역 내용을 보여주는 함수 호출 
 	showList(1);
-	
+
 	//모달 영역 가져오기
 	let modal = $(".modal");
+	
 	//모달 영역이 가지고 있는 input 영역 찾기
 	let modalInputReply = modal.find("input[name='reply']");
 	let modalInputReplyer = modal.find("input[name='replyer']");
 	let modalInputReplyDate = modal.find("input[name='replydate']");
+	
 	//모달 영역이 가지고 있는 버튼 찾기
 	let modalModBtn = $("#modalModBtn");
 	let modalRemoveBtn = $("#modalRemoveBtn");
@@ -267,33 +271,39 @@ $(function() {
 	})
 	
 	//현재 로그인 사용자값 가져오기
-	let replyer = null;
+	let replyer = $("input[name='userid']").val();
 	/* <sec:authorize access="isAuthenticated()"> */
 		/* replyer = '<sec:authentication property="principal.username"/>'; */
 	/* </sec:authorize> */
 	
-	$("#addReplyBtn").click(function(){
-		//input 안에 들어있는 내용 없애주기
-		modal.find("input").val("");
-		
-		//현재 로그인한 사용자 replyer에 보여주기
-		modalInputReplyer.val(replyer).attr("readonly","readonly");
-		
-		//작성날짜 영역 없애기
-		modalInputReplyDate.closest("div").hide();
-		// 닫기 버튼만 제외하고 모든 버튼을 숨기기
-		modal.find("button[id!='modalCloseBtn']").hide();
-		// 등록 버튼 다시 보이기
-		modalRegisterBtn.show();
-		
-		modal.modal("show");
-	})
+	//세션에 userid 값 가져오기
+	let userid = $("input[name='userid']").val();
+	
+		$("#addReplyBtn").click(function(){
+			if( userid != '' ){
+			//input 안에 들어있는 내용 없애주기
+			modal.find("input").val("");
+			
+			//현재 로그인한 사용자 replyer에 보여주기
+			modalInputReplyer.val(replyer).attr("readonly","readonly");
+			
+			//작성날짜 영역 없애기
+			modalInputReplyDate.closest("div").hide();
+			// 닫기 버튼만 제외하고 모든 버튼을 숨기기
+			modal.find("button[id!='modalCloseBtn']").hide();
+			// 등록 버튼 다시 보이기
+			modalRegisterBtn.show();
+			
+			modal.modal("show");
+			}else {
+				alert("로그인이 필요한 기능입니다.");
+			}
+		})
 
 	let pageNum = 1;
 	
 	modalRegisterBtn.on("click",function(){
-		
-		
+
 		var reply = {
 				bno:bno,
 				replyer: modalInputReplyer.val(),

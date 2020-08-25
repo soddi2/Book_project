@@ -2,6 +2,8 @@ package com.spring.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.BoardVO;
 import com.spring.domain.Criteria;
+import com.spring.domain.LoginVO;
 import com.spring.domain.PageVO;
 import com.spring.service.BoardService;
 import com.spring.service.BoardServiceImpl;
@@ -30,8 +33,10 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("QnAlist")
-	public String boardlist(@ModelAttribute("cri") Criteria cri,Model model) {
+	public String boardlist(@ModelAttribute("cri") Criteria cri,Model model,HttpSession session) {
 		log.info("list Form");
+		
+		LoginVO userId = (LoginVO) session.getAttribute("auth");
 		
 		//현재 페이지에 보여줄 게시물
 		List<BoardVO> list = service.list(cri);
@@ -52,8 +57,10 @@ public class BoardController {
 	
 	/* @PreAuthorize("isAuthenticated()") */ 
 	@PostMapping("QnAwrite")
-	public String writePost(BoardVO vo) {
+	public String writePost(BoardVO vo,HttpSession session) {
 		log.info(""+vo);
+		
+		LoginVO userId = (LoginVO) session.getAttribute("auth");
 		
 		try {
 			if(service.board_insert(vo)) {
@@ -67,9 +74,11 @@ public class BoardController {
 	}
 	
 	@GetMapping(value= {"QnAread","QnAmodify"})
-	public void read(@ModelAttribute("cri") Criteria cri,int bno,Model model) {
+	public void read(@ModelAttribute("cri") Criteria cri,int bno,Model model,HttpSession session) {
 		log.info("read form");
 		log.info(""+cri);
+		
+		LoginVO userId = (LoginVO) session.getAttribute("auth");
 		
 		BoardVO read = service.read(bno);
 		model.addAttribute("vo", read);

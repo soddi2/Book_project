@@ -205,6 +205,7 @@
 	
 				<!-- 글쓰기 -->
 				<div class="p-2 bd-highlight" style="margin-top: -20px">
+					<input type="hidden" name="userid" value="${auth.userid}"/>
 					<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
 				</div>	                 	 
 			</div>
@@ -258,9 +259,16 @@
 
 <!-- 스크립트 -->
 <script>
+	let userid = $("input[name='userid']").val();
+	
 	$(document).on('click', '#btnWriteForm', function(e){
 		e.preventDefault();
-		location.href = "${pageContext.request.contextPath}/board/QnAwrite";
+		
+		if(userid != ''){
+			location.href = "${pageContext.request.contextPath}/board/QnAwrite";			
+		}else {
+			alert("로그인이 필요한 기능입니다.");
+		}
 	});
 	
 	//글제목 클릭시 read창으로 넘어가는 스크립트
