@@ -47,9 +47,9 @@ public class MemberController {
 	@Autowired
 	private EmailVO email;
 	
+	//페이지를 넘기지 않고 가만히 있을때는 ajax로 정보를 담아서 이동
 	
 	//중복아이디
-	//페이지를 넘기지 않고 가만히 있을때는 ajax로 정보를 담아서 이동
 	@GetMapping("/dupId")
 	public ResponseEntity<String> duplicateId(String userid){
 		
@@ -98,7 +98,6 @@ public class MemberController {
 	}
 
 	//로그인
-	//로그인 처리
 	@PostMapping("/login")
 	public String loginPost(@ModelAttribute("login") LoginVO login,HttpSession session) {
 		//login.jsp에서 넘긴 값 가져오기

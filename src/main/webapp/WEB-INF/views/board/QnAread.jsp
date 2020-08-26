@@ -266,9 +266,9 @@ $(function() {
 	let csrfTokenValue = "${_csrf.token}"
 	
 	//ajax가 호출될 떄는 무조건 이 부분이 따라가도록 설정
-	$(document).ajaxSend(function(e,xhr,options){
+	/* $(document).ajaxSend(function(e,xhr,options){
 		xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
-	})
+	}) */
 	
 	//현재 로그인 사용자값 가져오기
 	let replyer = $("input[name='userid']").val();
@@ -301,13 +301,13 @@ $(function() {
 		})
 
 	let pageNum = 1;
-	
+		
 	modalRegisterBtn.on("click",function(){
 
 		var reply = {
 				bno:bno,
-				replyer: modalInputReplyer.val(),
-				reply: modalInputReply.val()
+				replyer:modalInputReplyer.val(),
+				reply:modalInputReply.val()
 			};
 		
 			replyService.add(reply,function(result){ 

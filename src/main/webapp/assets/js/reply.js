@@ -1,5 +1,9 @@
 /**
  * 댓글 작성 스크립트
+
+
+
+
  */
 
 let replyService=(function(){ //익명 함수
@@ -8,19 +12,21 @@ let replyService=(function(){ //익명 함수
 	function add(reply, callback){ //못부르는 스코프
 		console.log("add method 실행");
 		console.log(reply);
+		
 		$.ajax({
 			url : "/replies/new",
 			type : "post",
-			contentType: 'application/json',
+			data : reply,
+			contentType: 'application/json;charset=utf-8',
 			data : JSON.stringify(reply),
 			success:function(result){ //결과값을 read화면으로 돌려주고 싶다 , 콜백함수 : 자동으로 호출되는 함수 영역 성공하면 알아서 호출
-				//console.log(result);
+				console.log(result);
 				if(callback){ //callback익명함수를 사용한 것과 같은 효과
 					callback(result); 
 				}
 			},
 			error:function(xhr,txtstatus,error){
-				console.log(xhr.responseText);
+				console.log(xhr.responseText);			
 			}
 			
 		})

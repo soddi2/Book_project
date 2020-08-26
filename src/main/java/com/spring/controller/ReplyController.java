@@ -33,7 +33,7 @@ public class ReplyController {
 
 	/* @PreAuthorize("isAuthenticated()") */
 	@PostMapping("/new")  //http://localhost:8080/replies/new + post
-	public ResponseEntity<String> create(@RequestBody ReplyVO vo,HttpSession session) {
+	public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
 		log.info("댓글 등록..."+vo);
 		
 		return service.replyInsert(vo)?
