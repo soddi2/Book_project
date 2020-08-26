@@ -256,8 +256,8 @@
 		     			str += "<div class='col-md-3'>";
 		     			str += "<div class='item'>";
 		     			str += "<img src=" + item.doc.bookImageURL + " alt='img'>";
-		     			str += "<h3><a href='#'>" + item.doc.bookname + "</a></h3>";
-		     			str += "<h6><span class='price'>" + item.doc.authors + "</span> <br> / <a href='#'>"+ item.doc.publisher + "</a></h6>";
+		     			str += "<h3><a class='detail' href='/shop/detailbooks?isbn="+item.doc.isbn13+ "'>" + item.doc.bookname + "</a></h3>";
+		     			str += "<h6><span class='price'>" + item.doc.authors + "</span> <br> / <a class='detail' href='/shop/detailbooks?isbn="+item.doc.isbn13+ "'>"+ item.doc.publisher + "</a></h6>";
 		     			str += "</div>";
 		     			str += "</div>";
 		    		})
