@@ -159,9 +159,9 @@
                         </li>
                         <li><span class="save-cost"></span></li>
                     </ul> -->             		
-                    <div class="btn-sec">
+                    <!-- <div class="btn-sec">
                         <button class="btn add-cart">Rental Now</button>
-                    </div> 
+                    </div>  -->
                 </div>
             </div>
         </div>

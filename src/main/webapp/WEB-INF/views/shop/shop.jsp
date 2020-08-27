@@ -277,6 +277,7 @@
 		        	console.log(txtStatus);
 		        }   
 		    });	   
+	   
 	   }) 
 
    })//전체 $(function) end
